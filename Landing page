@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varible - Custom Tech Products</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #facc15, #ffffff);
+      color: #000;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+    }
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .logo .v { color: #000; }
+    .logo .a { color: #888; font-size: 0.9em; }
+    .logo .rest { color: #111; }
+    .logo .dot { color: #facc15; }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #000;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+      background: #facc15;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+    a.button:hover {
+      background: #eab308;
+    }
+    .social-links {
+      margin-top: 40px;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <span class="v">V</span><span class="a">a</span><span class="rest">rible</span><span class="dot">.</span>
+    </div>
+    <h1>Fine-tuned tech, built just for you.</h1>
+    <p>At Varible, we create custom technology products based on your ideas. If you can imagine it, we can build it.</p>
+    <a href="#" class="button">Fund us on Kickstarter</a>
+    <div class="social-links">
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="https://tiktok.com" target="_blank">TikTok</a>
+    </div>
+  </div>
+</body>
+</html>
