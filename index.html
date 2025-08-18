@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Varible - Custom Tech Products</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- or for .ico -->
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fef3c7, #ffffff);
+      background: linear-gradient(135deg, #facc15, #ffffff);
       color: #000;
       text-align: center;
       min-height: 100vh;
@@ -16,45 +22,32 @@
       justify-content: center;
       align-items: center;
     }
-
     .container {
       max-width: 800px;
       padding: 60px 20px;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-      animation: fadeIn 1s ease forwards;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
     .logo {
       font-size: 3rem;
       font-weight: bold;
       margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     .logo .v { color: #000; }
     .logo .a { color: #888; font-size: 0.9em; }
     .logo .rest { color: #111; }
-    .logo .dot { color: #facc15; font-size: 1.2em; }
-
+    .logo .dot { color: #facc15; }
     h1 {
       font-size: 2rem;
       margin-bottom: 15px;
       color: #000;
     }
-
     p {
       font-size: 1.1rem;
-      color: #555;
+      color: #333;
       margin-bottom: 30px;
     }
-
     a.button {
       display: inline-block;
       padding: 12px 24px;
@@ -66,16 +59,13 @@
       border-radius: 8px;
       transition: background 0.3s ease, transform 0.3s ease;
     }
-
     a.button:hover {
       background: #eab308;
       transform: scale(1.05);
     }
-
     .social-links {
       margin-top: 40px;
     }
-
     .social-links a {
       margin: 0 10px;
       text-decoration: none;
@@ -83,15 +73,8 @@
       font-weight: bold;
       transition: color 0.3s ease;
     }
-
     .social-links a:hover {
       color: #000;
-    }
-
-    @media (max-width: 500px) {
-      .container { padding: 40px 15px; }
-      .logo { font-size: 2.5rem; }
-      h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -106,4 +89,8 @@
     <div class="social-links">
       <a href="https://instagram.com" target="_blank">Instagram</a>
       <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://tiktok.com" target="_blank">TikTok
+      <a href="https://tiktok.com" target="_blank">TikTok</a>
+    </div>
+  </div>
+</body>
+</html>
