@@ -7,46 +7,53 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
-  <!-- or for .ico -->
-  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #facc15, #ffffff);
       color: #000;
-      text-align: center;
-      min-height: 100vh;
+      background: #fff;
+    }
+    .hero {
+      background: url('hero-image.jpg') center/cover no-repeat;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
     }
-    .container {
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
       max-width: 800px;
-      padding: 60px 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      padding: 20px;
     }
     .logo {
       font-size: 3rem;
       font-weight: bold;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
-    .logo .v { color: #000; }
-    .logo .a { color: #888; font-size: 0.9em; }
-    .logo .rest { color: #111; }
+    .logo .v { color: #fff; }
+    .logo .a { color: #ccc; font-size: 0.9em; }
+    .logo .rest { color: #eee; }
     .logo .dot { color: #facc15; }
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 15px;
-      color: #000;
     }
     p {
-      font-size: 1.1rem;
-      color: #333;
+      font-size: 1.2rem;
       margin-bottom: 30px;
+      color: #f0f0f0;
     }
     a.button {
       display: inline-block;
@@ -55,8 +62,9 @@
       font-weight: bold;
       text-decoration: none;
       color: #000;
-      background: #facc15;
+      background: #fff;
       border-radius: 8px;
+      margin: 5px;
       transition: background 0.3s ease, transform 0.3s ease;
     }
     a.button:hover {
@@ -69,28 +77,113 @@
     .social-links a {
       margin: 0 10px;
       text-decoration: none;
-      color: #555;
+      color: #fff;
       font-weight: bold;
       transition: color 0.3s ease;
     }
     .social-links a:hover {
+      color: #facc15;
+    }
+    .content-section {
+      padding: 60px 20px;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    .content-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .content-section p {
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .testimonial, .social-proof {
+      background: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .testimonial blockquote {
+      font-style: italic;
+      color: #444;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+    .cta-section {
+      padding: 60px 20px;
+      text-align: center;
+      background: #facc15;
       color: #000;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    footer {
+      padding: 20px;
+      background: #222;
+      color: #ccc;
+      text-align: center;
+    }
+    footer a {
+      color: #facc15;
+      margin: 0 8px;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <span class="v">V</span><span class="a">a</span><span class="rest">rible</span><span class="dot">.</span>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="logo">
+        <span class="v">V</span><span class="a">a</span><span class="rest">rible</span><span class="dot">.</span>
+      </div>
+      <h1>Fine-tuned tech, built just for you.</h1>
+      <p>From one-off prototypes to scalable STEM kits, our modular architecture slashes dev costs and time-to-market by 40%.</p>
+      <a href="#" class="button">Fund us on Kickstarter</a>
+      <a href="#" class="button">Join the Beta List</a>
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://youtube.com" target="_blank">YouTube</a>
+        <a href="https://tiktok.com" target="_blank">TikTok</a>
+      </div>
     </div>
-    <h1>Fine-tuned tech, built just for you.</h1>
-    <p>At Varible, we create custom technology products based on your ideas. If you can imagine it, we can build it.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>How Varible Works</h2>
+    <p>From idea → design → prototype → shipment.</p>
+    <p>Our process makes custom tech builds fast, affordable, and tailored exactly to your needs.<p>
+  </section>
+
+  <section class="content-section">
+    <h2>Featured Kit</h2>
+    <p>Explore our modular STEM pack, designed to let creators snap together components and bring ideas to life in record time.</p>
+  </section>
+
+  <section class="testimonial">
+    <h2>What Makers Say</h2>
+    <blockquote>“Varible turned my napkin sketch into a working prototype in under a month. Truly game-changing.” – Early Beta Tester</blockquote>
+  </section>
+
+  <section class="social-proof">
+    <h2>Backed by the Community</h2>
+    <p>127 makers and counting have supported us on Kickstarter – join the movement!</p>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Create?</h2>
     <a href="#" class="button">Fund us on Kickstarter</a>
-    <div class="social-links">
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://tiktok.com" target="_blank">TikTok</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Varible. All rights reserved.</p>
+    <div>
+      <a href="#">Instagram</a>|
+      <a href="#">YouTube</a>|
+      <a href="#">TikTok</a>
     </div>
-  </div>
+  </footer>
 </body>
 </html>
