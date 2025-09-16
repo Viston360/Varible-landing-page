@@ -1,188 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Varible - Landing Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Varible — Fund us on Kickstarter</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --text: #222;
+      --muted: #666;
+      --bg: #fff;
+      --accent: #05ce78; /* Kickstarter green */
+      --container: 1100px;
+    }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #000;
-      background: #fff;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
-    .hero {
-      background: url('hero-image.jpg') center/cover no-repeat;
-      height: 100vh;
+    .wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+    header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
-      color: #fff;
-      position: relative;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.65);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
     .logo {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 28px;
     }
-    .logo .v { color: #fff; }
-    .logo .a { color: #ccc; font-size: 0.9em; }
-    .logo .rest { color: #eee; }
-    .logo .dot { color: #facc15; }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
+    .logo span {
+      color: var(--accent);
     }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #f0f0f0;
-    }
-    a.button {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: bold;
+    nav a {
+      margin-left: 20px;
       text-decoration: none;
-      color: #000;
-      background: #fff;
-      border-radius: 8px;
-      margin: 5px;
-      transition: background 0.3s ease, transform 0.3s ease;
+      color: var(--muted);
+      font-weight: 500;
     }
-    a.button:hover {
-      background: #eab308;
-      transform: scale(1.05);
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
     }
-    .social-links {
-      margin-top: 40px;
+    .hero h1 {
+      font-size: 48px;
+      margin: 0 0 20px;
     }
-    .social-links a {
-      margin: 0 10px;
-      text-decoration: none;
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 30px;
+    }
+    .btn {
+      background: var(--accent);
       color: #fff;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    .social-links a:hover {
-      color: #facc15;
-    }
-    .content-section {
-      padding: 60px 20px;
-      text-align: center;
-      background: #f9f9f9;
-    }
-    .content-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .content-section p {
-      max-width: 700px;
-      margin: 0 auto 30px auto;
-      font-size: 1.1rem;
-      color: #333;
-    }
-    .testimonial, .social-proof {
-      background: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .testimonial blockquote {
-      font-style: italic;
-      color: #444;
-      margin: 0 auto;
-      max-width: 600px;
-    }
-    .cta-section {
-      padding: 60px 20px;
-      text-align: center;
-      background: #facc15;
-      color: #000;
-    }
-    .cta-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    footer {
-      padding: 20px;
-      background: #222;
-      color: #ccc;
-      text-align: center;
-    }
-    footer a {
-      color: #facc15;
-      margin: 0 8px;
       text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #04b86a;
+    }
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 80px 0;
+    }
+    .feature {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .feature h3 {
+      margin-top: 0;
+    }
+    .feature p {
+      color: var(--muted);
+    }
+    /* Kickstarter section */
+    .kickstarter {
+      background: #f4fff9;
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 60px 20px;
+      text-align: center;
+      margin: 80px 0;
+    }
+    .kickstarter h2 {
+      margin-top: 0;
+      font-size: 36px;
+    }
+    .kickstarter p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      border-top: 1px solid #eee;
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-content">
-      <div class="logo">
-        <span class="v">V</span><span class="a">a</span><span class="rest">rible</span><span class="dot">.</span>
+  <div class="wrap">
+    <header>
+      <div class="logo">Varible<span>.</span></div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#kickstarter">Kickstarter</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Turn Ideas Into Reality</h1>
+      <p>We help creators build and launch custom electronics faster than ever.</p>
+      <a href="#kickstarter" class="btn">Fund us on Kickstarter</a>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+      <div class="feature">
+        <h3>Rapid Prototyping</h3>
+        <p>Quickly move from sketches to working prototypes with expert support.</p>
       </div>
-      <h1>Grow your Ideas Into Reality.</h1>
-      <p>Bring your tech ideas to life. Learn electronics while making something truly yours.</p>
-      <a href="https://www.kickstarter.com/" target="_blank" class="button">Fund us on Kickstarter</a>
-      <div class="social-links">
-        <a href="https://instagram.com" target="_blank">Instagram</a>
-        <a href="https://youtube.com" target="_blank">YouTube</a>
-        <a href="https://tiktok.com" target="_blank">TikTok</a>
+      <div class="feature">
+        <h3>Small-Batch Runs</h3>
+        <p>Test your idea with real users before scaling to production.</p>
       </div>
-    </div>
-  </section>
+      <div class="feature">
+        <h3>Scale With Partners</h3>
+        <p>Access our trusted network of suppliers and manufacturers.</p>
+      </div>
+    </section>
 
-  <section class="content-section">
-    <h2>How Varible Works</h2>
-    <p>From idea → design → prototype → shipment.</p>
-    <p>Our process makes custom tech builds fast, affordable, and tailored exactly to your needs.<p>
-  </section>
+    <!-- Kickstarter Section -->
+    <section id="kickstarter" class="kickstarter">
+      <h2>Support Our Kickstarter</h2>
+      <p>We’re raising funds to bring Varible to life — every pledge brings us closer to empowering creators everywhere.</p>
+      <a href="https://kickstarter.com" target="_blank" class="btn">Back us on Kickstarter</a>
+    </section>
 
-  <section class="content-section">
-    <h2>Featured Kit</h2>
-    <p>Explore our modular STEM pack, designed to let creators snap together components and bring ideas to life in record time.</p>
-  </section>
-
-  <section class="testimonial">
-    <h2>What Makers Say</h2>
-    <blockquote>“Varible turned my napkin sketch into a working prototype in under a month. Truly game-changing.” – Early Beta Tester</blockquote>
-  </section>
-
-  <section class="social-proof">
-    <h2>Backed by the Community</h2>
-    <p>127 makers and counting have supported us on Kickstarter – join the movement!</p>
-  </section>
-
-  <section class="cta-section">
-    <h2>Ready to Create?</h2>
-    <a href="https://www.kickstarter.com/" target="_blank" class="button">Fund us on Kickstarter</a>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Varible. All rights reserved.</p>
-    <div>
-      <a href="https://instagram.com" target="_blank">Instagram</a>|
-      <a href="https://youtube.com" target="_blank">YouTube</a>|
-      <a href="https://tiktok.com" target="_blank">TikTok</a>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer>
+      © 2025 Varible — All Rights Reserved
+    </footer>
+  </div>
 </body>
 </html>
