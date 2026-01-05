@@ -1,85 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Varible - Custom Tech Products</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varible — Adaptive Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #06064a;
+      --card: rgba(255,255,255,0.06);
+      --text: #ffffff;
+      --muted: #c7c7d1;
+      --accent: #ffb703;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #facc15, #ffffff);
-      color: #000;
-      text-align: center;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
+
+    header {
+      padding: 28px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .logo {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 30px;
+
+    .logo img {
+      height: 44px;
     }
-    .logo .v { color: #000; }
-    .logo .a { color: #888; font-size: 0.9em; }
-    .logo .rest { color: #111; }
-    .logo .dot { color: #facc15; }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: #000;
+
+    nav a {
+      margin-left: 32px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
     }
-    p {
+
+    nav a:hover { color: var(--text); }
+
+    section {
+      padding: 120px 64px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 700;
+      max-width: 720px;
+    }
+
+    .hero p {
+      margin-top: 28px;
+      max-width: 560px;
+      color: var(--muted);
       font-size: 1.1rem;
-      color: #333;
-      margin-bottom: 30px;
     }
-    a.button {
+
+    .cta {
+      margin-top: 44px;
       display: inline-block;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: bold;
-      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 14px;
+      background: var(--accent);
       color: #000;
-      background: #facc15;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-    a.button:hover {
-      background: #eab308;
-    }
-    .social-links {
-      margin-top: 40px;
-    }
-    .social-links a {
-      margin: 0 10px;
       text-decoration: none;
-      color: #555;
-      font-weight: bold;
-      transition: color 0.3s ease;
+      font-weight: 700;
     }
-    .social-links a:hover {
-      color: #000;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 1.25rem;
+    }
+
+    .card p { color: var(--muted); }
+
+    footer {
+      padding: 48px 64px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header, section, footer { padding-left: 24px; padding-right: 24px; }
+      nav a { margin-left: 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <header>
     <div class="logo">
-      <span class="v">V</span><span class="a">a</span><span class="rest">rible</span><span class="dot">.</span>
+      <img src="assets/varible-logo.png" alt="Varible logo" />
     </div>
-    <h1>Fine-tuned tech, built just for you.</h1>
-    <p>At Varible, we create custom technology products based on your ideas. If you can imagine it, we can build it.</p>
-    <a href="#" class="button">Fund us on Kickstarter</a>
-    <div class="social-links">
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://tiktok.com" target="_blank">TikTok</a>
-    </div>
-  </div>
+    <nav>
+      <a href="#product">Product</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Technology that adapts as fast as your business.</h1>
+      <p>Varible builds modular, scalable systems designed to evolve — not break — as markets change.</p>
+      <a href="#contact" class="cta">Start a Conversation</a>
+    </section>
+
+    <section id="product">
+      <div class="grid">
+        <div class="card">
+          <h3>Core Platform</h3>
+          <p>A flexible foundation engineered for performance, longevity, and clean integration.</p>
+        </div>
+        <div class="card">
+          <h3>Custom Solutions</h3>
+          <p>Tailored systems designed around your operational and technical reality.</p>
+        </div>
+        <div class="card">
+          <h3>Scalable Architecture</h3>
+          <p>Grow without rewrites. Adapt without friction.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="grid">
+        <div class="card">
+          <h3>Enterprise</h3>
+          <p>Secure, compliant, and ready for complex environments.</p>
+        </div>
+        <div class="card">
+          <h3>Startups</h3>
+          <p>Move fast without creating long-term technical debt.</p>
+        </div>
+        <div class="card">
+          <h3>R&D Teams</h3>
+          <p>Rapid experimentation with production-grade foundations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="company">
+      <div class="grid">
+        <div class="card">
+          <h3>Our Philosophy</h3>
+          <p>Clarity over complexity. Systems should serve people, not the other way around.</p>
+        </div>
+        <div class="card">
+          <h3>Long-Term Thinking</h3>
+          <p>We optimize for durability, not trends.</p>
+        </div>
+        <div class="card">
+          <h3>Design-Led Engineering</h3>
+          <p>Elegant solutions emerge from disciplined design.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="grid">
+        <div class="card">
+          <h3>Contact Varible</h3>
+          <p>hello@varible.com<br/>Based in Europe · Working globally</p>
+        </div>
+        <div class="card">
+          <h3>Partnerships</h3>
+          <p>Strategic collaborations and long-term engagements.</p>
+        </div>
+        <div class="card">
+          <h3>Careers</h3>
+          <p>Small team. High standards. Real impact.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Varible. All rights reserved.</div>
+    <div>Adaptive by design.</div>
+  </footer>
+
 </body>
 </html>
