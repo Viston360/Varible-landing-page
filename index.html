@@ -3,205 +3,231 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Varible — Adaptive Technology</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Varilbe | Innovative Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #06064a;
-      --card: rgba(255,255,255,0.06);
-      --text: #ffffff;
-      --muted: #c7c7d1;
-      --accent: #ffb703;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #0f172a;
+      color: #f1f5f9;
       line-height: 1.6;
     }
 
     header {
-      padding: 28px 64px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 20px 8%;
+      background: rgba(15, 23, 42, 0.9);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
     }
 
-    .logo img {
-      height: 44px;
+    header h1 {
+      color: #38bdf8;
+      font-size: 24px;
     }
 
     nav a {
-      margin-left: 32px;
+      margin-left: 25px;
       text-decoration: none;
-      color: var(--muted);
+      color: #cbd5e1;
       font-weight: 500;
+      transition: 0.3s;
     }
 
-    nav a:hover { color: var(--text); }
-
-    section {
-      padding: 120px 64px;
-      max-width: 1200px;
-      margin: auto;
+    nav a:hover {
+      color: #38bdf8;
     }
 
-    .hero h1 {
-      font-size: clamp(2.6rem, 5vw, 4.2rem);
-      font-weight: 700;
-      max-width: 720px;
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 10%;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero span {
+      color: #38bdf8;
     }
 
     .hero p {
-      margin-top: 28px;
-      max-width: 560px;
-      color: var(--muted);
-      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+      color: #94a3b8;
+      margin-bottom: 30px;
     }
 
-    .cta {
-      margin-top: 44px;
+    .btn {
       display: inline-block;
-      padding: 16px 32px;
-      border-radius: 14px;
-      background: var(--accent);
-      color: #000;
+      padding: 12px 28px;
+      background: #38bdf8;
+      color: #0f172a;
+      border-radius: 30px;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
-    .grid {
+    .btn:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 32px;
+      color: #38bdf8;
+    }
+
+    .about, .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
     }
 
     .card {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 36px;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: #273449;
     }
 
     .card h3 {
-      margin-bottom: 14px;
-      font-size: 1.25rem;
+      margin-bottom: 15px;
+      color: #f8fafc;
     }
 
-    .card p { color: var(--muted); }
+    .card p {
+      color: #94a3b8;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact input, .contact textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #1e293b;
+      color: white;
+    }
 
     footer {
-      padding: 48px 64px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 0.9rem;
+      text-align: center;
+      padding: 25px;
+      background: #0f172a;
+      color: #64748b;
+      margin-top: 50px;
     }
 
     @media (max-width: 768px) {
-      header, section, footer { padding-left: 24px; padding-right: 24px; }
-      nav a { margin-left: 16px; }
+      .hero h2 {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="Varible logo.png" alt="logo" />
+<header>
+  <h1>Varilbe</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Welcome to <span>Varilbe</span></h2>
+    <p>We create innovative digital solutions that help businesses grow, adapt, and lead in a fast-changing world.</p>
+    <a href="#services" class="btn">Explore Services</a>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">About Us</h2>
+  <div class="about">
+    <div class="card">
+      <h3>Who We Are</h3>
+      <p>Varilbe is a modern company focused on technology, creativity, and smart problem-solving.</p>
     </div>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="product.html">Product</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="company.html">Company</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+    <div class="card">
+      <h3>Our Mission</h3>
+      <p>To empower businesses with digital tools that are powerful, scalable, and future-ready.</p>
+    </div>
+    <div class="card">
+      <h3>Our Vision</h3>
+      <p>We aim to be a leader in innovation, delivering solutions that make a real impact.</p>
+    </div>
+  </div>
+</section>
 
-  <main>
-    <section class="hero">
-      <h1>Technology that adapts as fast as your business.</h1>
-      <p>Varible builds modular, scalable systems designed to evolve — not break — as markets change.</p>
-      <a href="#contact" class="cta">Start a Conversation</a>
-    </section>
+<section id="services">
+  <h2 class="section-title">Our Services</h2>
+  <div class="services">
+    <div class="card">
+      <h3>Web Development</h3>
+      <p>Modern, fast, and responsive websites tailored to your brand.</p>
+    </div>
+    <div class="card">
+      <h3>App Solutions</h3>
+      <p>Custom mobile and web applications designed for performance.</p>
+    </div>
+    <div class="card">
+      <h3>Digital Strategy</h3>
+      <p>Helping your business grow through smart technology decisions.</p>
+    </div>
+  </div>
+</section>
 
-    <section id="product">
-      <div class="grid">
-        <div class="card">
-          <h3>Core Platform</h3>
-          <p>A flexible foundation engineered for performance, longevity, and clean integration.</p>
-        </div>
-        <div class="card">
-          <h3>Custom Solutions</h3>
-          <p>Tailored systems designed around your operational and technical reality.</p>
-        </div>
-        <div class="card">
-          <h3>Scalable Architecture</h3>
-          <p>Grow without rewrites. Adapt without friction.</p>
-        </div>
-      </div>
-    </section>
+<section id="contact">
+  <h2 class="section-title">Contact Us</h2>
+  <div class="contact">
+    <p>Have a project in mind? Let’s talk.</p>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="5" placeholder="Your Message"></textarea><br>
+    <a href="#" class="btn">Send Message</a>
+  </div>
+</section>
 
-    <section id="solutions">
-      <div class="grid">
-        <div class="card">
-          <h3>Enterprise</h3>
-          <p>Secure, compliant, and ready for complex environments.</p>
-        </div>
-        <div class="card">
-          <h3>Startups</h3>
-          <p>Move fast without creating long-term technical debt.</p>
-        </div>
-        <div class="card">
-          <h3>R&D Teams</h3>
-          <p>Rapid experimentation with production-grade foundations.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="company">
-      <div class="grid">
-        <div class="card">
-          <h3>Our Philosophy</h3>
-          <p>Clarity over complexity. Systems should serve people, not the other way around.</p>
-        </div>
-        <div class="card">
-          <h3>Long-Term Thinking</h3>
-          <p>We optimize for durability, not trends.</p>
-        </div>
-        <div class="card">
-          <h3>Design-Led Engineering</h3>
-          <p>Elegant solutions emerge from disciplined design.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="grid">
-        <div class="card">
-          <h3>Contact Varible</h3>
-          <p>hello@varible.com<br/>Based in Europe · Working globally</p>
-        </div>
-        <div class="card">
-          <h3>Partnerships</h3>
-          <p>Strategic collaborations and long-term engagements.</p>
-        </div>
-        <div class="card">
-          <h3>Careers</h3>
-          <p>Small team. High standards. Real impact.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div>© 2026 Varible. All rights reserved.</div>
-    <div>Adaptive by design.</div>
-  </footer>
+<footer>
+  © 2026 Varilbe. All rights reserved.
+</footer>
 
 </body>
 </html>
