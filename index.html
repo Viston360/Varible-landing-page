@@ -13,49 +13,40 @@ body {
     padding: 30px;
 }
 .app {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: auto;
     background: #020617;
     padding: 30px;
     border-radius: 14px;
 }
 h1 { margin-top: 0; }
-h2 { margin-top: 30px; font-size: 18px; }
-
-label {
-    display: block;
+details {
     margin-top: 14px;
-    font-weight: 600;
-    font-size: 14px;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 10px;
 }
-
+summary {
+    cursor: pointer;
+    font-weight: 700;
+}
+.module {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 13px;
+}
 input, textarea, select {
     width: 100%;
-    margin-top: 6px;
+    margin-top: 8px;
     padding: 10px;
     border-radius: 8px;
     background: #020617;
     color: #e5e7eb;
     border: 1px solid #1e293b;
 }
-
 textarea { min-height: 90px; }
-
-.modules {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.module {
-    background: #020617;
-    border: 1px solid #1e293b;
-    padding: 8px 10px;
-    border-radius: 8px;
-    font-size: 13px;
-}
-
 button {
     margin-top: 20px;
     padding: 12px 18px;
@@ -66,7 +57,6 @@ button {
     font-weight: 700;
     cursor: pointer;
 }
-
 .output {
     margin-top: 30px;
     background: #020617;
@@ -84,110 +74,103 @@ button {
 <div class="app">
 <h1>Embedded C++ Prompt Builder</h1>
 
-<label>Device Name</label>
-<input id="deviceName" placeholder="Smart Environment Monitor">
+<label>Search modules</label>
+<input id="search" placeholder="e.g. BME280, accelerometer, LoRa">
 
-<label>Board / Platform</label>
-<select id="board">
-    <option>Arduino Uno</option>
-    <option>Arduino Nano</option>
-    <option>ESP32</option>
-    <option>Raspberry Pi Pico</option>
-    <option>Custom Board</option>
-</select>
-
-<h2>Module Preset Library</h2>
-
-<div class="modules">
-<!-- Sensors -->
-<div class="module"><input type="checkbox" value="DHT11 / DHT22 temperature & humidity sensor"> DHT11 / DHT22</div>
-<div class="module"><input type="checkbox" value="BME280 temperature, humidity & pressure sensor"> BME280</div>
-<div class="module"><input type="checkbox" value="DS18B20 temperature sensor"> DS18B20</div>
-<div class="module"><input type="checkbox" value="HC-SR04 ultrasonic distance sensor"> HC-SR04</div>
-<div class="module"><input type="checkbox" value="PIR motion sensor"> PIR Motion</div>
-<div class="module"><input type="checkbox" value="MQ gas sensor"> MQ Gas Sensor</div>
-
-<!-- Displays -->
-<div class="module"><input type="checkbox" value="OLED SSD1306 display"> OLED SSD1306</div>
-<div class="module"><input type="checkbox" value="I2C LCD 16x2 display"> LCD 16x2</div>
-<div class="module"><input type="checkbox" value="TFT SPI display"> TFT Display</div>
-
-<!-- Actuators -->
-<div class="module"><input type="checkbox" value="Relay module"> Relay</div>
-<div class="module"><input type="checkbox" value="Servo motor"> Servo Motor</div>
-<div class="module"><input type="checkbox" value="DC motor with driver"> DC Motor</div>
-<div class="module"><input type="checkbox" value="Stepper motor with driver"> Stepper Motor</div>
-<div class="module"><input type="checkbox" value="Active / passive buzzer"> Buzzer</div>
-
-<!-- Input -->
-<div class="module"><input type="checkbox" value="Push button"> Button</div>
-<div class="module"><input type="checkbox" value="Rotary encoder"> Rotary Encoder</div>
-<div class="module"><input type="checkbox" value="Keypad matrix"> Keypad</div>
-
-<!-- Communication -->
-<div class="module"><input type="checkbox" value="WiFi connectivity"> WiFi</div>
-<div class="module"><input type="checkbox" value="Bluetooth / BLE"> Bluetooth / BLE</div>
-<div class="module"><input type="checkbox" value="LoRa module"> LoRa</div>
-<div class="module"><input type="checkbox" value="RF 433MHz module"> RF 433MHz</div>
-
-<!-- Storage / Power -->
-<div class="module"><input type="checkbox" value="SD card module"> SD Card</div>
-<div class="module"><input type="checkbox" value="Battery + charging circuit"> Battery + Charger</div>
-</div>
-
-<label>Additional Modules (optional)</label>
-<input id="manualModules" placeholder="CAN bus, GPS, RTC...">
-
-<label>Device Purpose</label>
-<textarea id="purpose"></textarea>
-
-<label>Coding Preferences</label>
-<textarea id="style" placeholder="Non-blocking, low power, modular, comments, error handling..."></textarea>
+<div id="moduleContainer"></div>
 
 <button onclick="generatePrompt()">Generate AI Prompt</button>
-
 <div class="output" id="output"></div>
 </div>
 
 <script>
+const modules = {
+  "Environmental Sensors": [
+    { name: "BME280", desc: "Temperature, Humidity, Pressure (I2C/SPI)" },
+    { name: "BMP280", desc: "Pressure & Temperature" },
+    { name: "SHT31-D", desc: "High-accuracy temperature & humidity" },
+    { name: "DHT22 (AM2302)", desc: "Temperature & humidity sensor" },
+    { name: "DS18B20", desc: "1-Wire digital temperature sensor" }
+  ],
+  "Motion & IMU": [
+    { name: "MPU6050", desc: "6-axis accelerometer + gyroscope" },
+    { name: "MPU9250", desc: "9-axis IMU with magnetometer" },
+    { name: "LSM9DS1", desc: "9-DOF IMU" }
+  ],
+  "Distance & Proximity": [
+    { name: "HC-SR04", desc: "Ultrasonic distance sensor" },
+    { name: "VL53L0X", desc: "Laser time-of-flight distance sensor" },
+    { name: "Sharp GP2Y0A21", desc: "Infrared distance sensor" }
+  ],
+  "Displays": [
+    { name: "SSD1306 OLED", desc: "128x64 OLED display (I2C/SPI)" },
+    { name: "SH1106 OLED", desc: "OLED display controller" },
+    { name: "ILI9341 TFT", desc: "240x320 SPI TFT display" },
+    { name: "MAX7219", desc: "LED matrix / 7-seg driver" }
+  ],
+  "Communication": [
+    { name: "ESP8266", desc: "WiFi module" },
+    { name: "nRF24L01+", desc: "2.4GHz RF transceiver" },
+    { name: "SX1276 / SX1278", desc: "LoRa transceiver" },
+    { name: "SIM800L", desc: "GSM/GPRS module" }
+  ],
+  "Timing & Storage": [
+    { name: "DS3231", desc: "High-precision RTC" },
+    { name: "AT24C256", desc: "I2C EEPROM" },
+    { name: "MicroSD Card Module", desc: "SPI storage module" }
+  ]
+};
+
+function renderModules(filter = "") {
+  const container = document.getElementById("moduleContainer");
+  container.innerHTML = "";
+
+  Object.entries(modules).forEach(([category, items]) => {
+    const filtered = items.filter(m =>
+      (m.name + m.desc).toLowerCase().includes(filter)
+    );
+    if (!filtered.length) return;
+
+    const details = document.createElement("details");
+    details.innerHTML = `<summary>${category}</summary>`;
+    filtered.forEach(m => {
+      const div = document.createElement("div");
+      div.className = "module";
+      div.innerHTML = `
+        <input type="checkbox" value="${m.name} – ${m.desc}">
+        <span><strong>${m.name}</strong> — ${m.desc}</span>
+      `;
+      details.appendChild(div);
+    });
+    container.appendChild(details);
+  });
+}
+
+document.getElementById("search").addEventListener("input", e => {
+  renderModules(e.target.value.toLowerCase());
+});
+
+renderModules();
+
 function generatePrompt() {
-    const selected = [...document.querySelectorAll('.modules input:checked')]
-        .map(cb => cb.value)
-        .join(', ');
+  const selected = [...document.querySelectorAll('input[type="checkbox"]:checked')]
+    .map(cb => cb.value)
+    .join(", ");
 
-    const allModules = [selected, manualModules.value]
-        .filter(Boolean)
-        .join(', ');
-
-    const prompt = `
+  output.textContent = `
 You are an expert embedded systems engineer.
 
 Generate clean, production-ready C++ firmware.
 
-Device Name:
-${deviceName.value}
-
-Target Platform:
-${board.value}
-
-Hardware Modules:
-${allModules}
-
-Functional Requirements:
-${purpose.value}
-
-Coding Requirements:
-${style.value}
+Hardware modules used:
+${selected}
 
 Rules:
-- Use best practices for embedded systems
-- Avoid blocking delays
-- Modular, readable structure
+- Use non-blocking code
+- Follow embedded best practices
+- Modular, maintainable structure
 - Clear pin definitions and comments
-- Output C++ code and a short explanation
 `;
-
-    output.textContent = prompt.trim();
 }
 </script>
 
