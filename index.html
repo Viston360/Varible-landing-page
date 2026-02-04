@@ -5,117 +5,164 @@
 <title>Embedded Prompt Builder</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    body {
-        font-family: Inter, system-ui, sans-serif;
-        background: #0f172a;
-        color: #e5e7eb;
-        margin: 0;
-        padding: 30px;
-    }
-    .app {
-        max-width: 900px;
-        margin: auto;
-        background: #020617;
-        padding: 30px;
-        border-radius: 14px;
-        box-shadow: 0 20px 40px rgba(0,0,0,.4);
-    }
-    h1 {
-        margin-top: 0;
-        font-size: 28px;
-    }
-    label {
-        display: block;
-        margin-top: 16px;
-        font-weight: 600;
-        font-size: 14px;
-    }
-    input, textarea, select {
-        width: 100%;
-        margin-top: 6px;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background: #020617;
-        color: #e5e7eb;
-        border: 1px solid #1e293b;
-    }
-    textarea {
-        min-height: 100px;
-        resize: vertical;
-    }
-    button {
-        margin-top: 20px;
-        padding: 12px 18px;
-        font-size: 15px;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        background: #38bdf8;
-        color: #020617;
-        font-weight: 700;
-    }
-    button:hover {
-        background: #0ea5e9;
-    }
-    .output {
-        margin-top: 30px;
-        background: #020617;
-        border: 1px solid #1e293b;
-        padding: 20px;
-        border-radius: 10px;
-        white-space: pre-wrap;
-        font-family: ui-monospace, monospace;
-        font-size: 13px;
-    }
+body {
+    font-family: Inter, system-ui, sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+    margin: 0;
+    padding: 30px;
+}
+.app {
+    max-width: 1000px;
+    margin: auto;
+    background: #020617;
+    padding: 30px;
+    border-radius: 14px;
+}
+h1 { margin-top: 0; }
+h2 { margin-top: 30px; font-size: 18px; }
+
+label {
+    display: block;
+    margin-top: 14px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+input, textarea, select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid #1e293b;
+}
+
+textarea { min-height: 90px; }
+
+.modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.module {
+    background: #020617;
+    border: 1px solid #1e293b;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #38bdf8;
+    color: #020617;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.output {
+    margin-top: 30px;
+    background: #020617;
+    border: 1px solid #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+}
 </style>
 </head>
 <body>
 
 <div class="app">
-<h1>C++ Prompt Builder</h1>
+<h1>Embedded C++ Prompt Builder</h1>
 
 <label>Device Name</label>
-<input id="deviceName" placeholder="Soil Moisture Checker">
+<input id="deviceName" placeholder="Smart Environment Monitor">
 
 <label>Board / Platform</label>
 <select id="board">
     <option>Arduino Uno</option>
     <option>Arduino Nano</option>
-    <option>Arduino Mega<option>
     <option>ESP32</option>
     <option>Raspberry Pi Pico</option>
     <option>Custom Board</option>
 </select>
 
-<label>Modules / Components (comma separated)</label>
-<input id="modules" placeholder="DHT22, OLED SSD1306, Relay, Button">
+<h2>Module Preset Library</h2>
 
-<label>Power Source</label>
-<select id="power">
-    <option>USB</option>
-    <option>Battery</option>
-    <option>Rechargable Battery</option>
-    <option>External Power Supply</option>
-</select>
+<div class="modules">
+<!-- Sensors -->
+<div class="module"><input type="checkbox" value="DHT11 / DHT22 temperature & humidity sensor"> DHT11 / DHT22</div>
+<div class="module"><input type="checkbox" value="BME280 temperature, humidity & pressure sensor"> BME280</div>
+<div class="module"><input type="checkbox" value="DS18B20 temperature sensor"> DS18B20</div>
+<div class="module"><input type="checkbox" value="HC-SR04 ultrasonic distance sensor"> HC-SR04</div>
+<div class="module"><input type="checkbox" value="PIR motion sensor"> PIR Motion</div>
+<div class="module"><input type="checkbox" value="MQ gas sensor"> MQ Gas Sensor</div>
 
-<label>Device Purpose / Behavior</label>
-<textarea id="purpose" placeholder="Describe what the device should do..."></textarea>
+<!-- Displays -->
+<div class="module"><input type="checkbox" value="OLED SSD1306 display"> OLED SSD1306</div>
+<div class="module"><input type="checkbox" value="I2C LCD 16x2 display"> LCD 16x2</div>
+<div class="module"><input type="checkbox" value="TFT SPI display"> TFT Display</div>
+
+<!-- Actuators -->
+<div class="module"><input type="checkbox" value="Relay module"> Relay</div>
+<div class="module"><input type="checkbox" value="Servo motor"> Servo Motor</div>
+<div class="module"><input type="checkbox" value="DC motor with driver"> DC Motor</div>
+<div class="module"><input type="checkbox" value="Stepper motor with driver"> Stepper Motor</div>
+<div class="module"><input type="checkbox" value="Active / passive buzzer"> Buzzer</div>
+
+<!-- Input -->
+<div class="module"><input type="checkbox" value="Push button"> Button</div>
+<div class="module"><input type="checkbox" value="Rotary encoder"> Rotary Encoder</div>
+<div class="module"><input type="checkbox" value="Keypad matrix"> Keypad</div>
+
+<!-- Communication -->
+<div class="module"><input type="checkbox" value="WiFi connectivity"> WiFi</div>
+<div class="module"><input type="checkbox" value="Bluetooth / BLE"> Bluetooth / BLE</div>
+<div class="module"><input type="checkbox" value="LoRa module"> LoRa</div>
+<div class="module"><input type="checkbox" value="RF 433MHz module"> RF 433MHz</div>
+
+<!-- Storage / Power -->
+<div class="module"><input type="checkbox" value="SD card module"> SD Card</div>
+<div class="module"><input type="checkbox" value="Battery + charging circuit"> Battery + Charger</div>
+</div>
+
+<label>Additional Modules (optional)</label>
+<input id="manualModules" placeholder="CAN bus, GPS, RTC...">
+
+<label>Device Purpose</label>
+<textarea id="purpose"></textarea>
 
 <label>Coding Preferences</label>
-<textarea id="style" placeholder="Non-blocking code, comments, low power, modular structure..."></textarea>
+<textarea id="style" placeholder="Non-blocking, low power, modular, comments, error handling..."></textarea>
 
-<button onclick="generatePrompt()">Generate Prompt for AI (ChatGPT Recomended)</button>
+<button onclick="generatePrompt()">Generate AI Prompt</button>
 
 <div class="output" id="output"></div>
 </div>
 
 <script>
 function generatePrompt() {
+    const selected = [...document.querySelectorAll('.modules input:checked')]
+        .map(cb => cb.value)
+        .join(', ');
+
+    const allModules = [selected, manualModules.value]
+        .filter(Boolean)
+        .join(', ');
+
     const prompt = `
 You are an expert embedded systems engineer.
 
-Generate clean, production-ready C++ firmware for the following device:
+Generate clean, production-ready C++ firmware.
 
 Device Name:
 ${deviceName.value}
@@ -124,10 +171,7 @@ Target Platform:
 ${board.value}
 
 Hardware Modules:
-${modules.value}
-
-Power Source :
-${power.value}
+${allModules}
 
 Functional Requirements:
 ${purpose.value}
@@ -137,18 +181,13 @@ ${style.value}
 
 Rules:
 - Use best practices for embedded systems
-- Avoid blocking delays where possible
-- Include clear comments
-- Use readable pin definitions
-- Optimize for stability and maintainability
-- Output only C++ code and brief explanation
-- Output only in Canvas and With no Annotation in the Canvas
-- Annotate but outside Canvas
-
-If assumptions are required, state them clearly before the code.
+- Avoid blocking delays
+- Modular, readable structure
+- Clear pin definitions and comments
+- Output C++ code and a short explanation
 `;
 
-    document.getElementById("output").textContent = prompt.trim();
+    output.textContent = prompt.trim();
 }
 </script>
 
