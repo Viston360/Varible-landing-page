@@ -73,15 +73,16 @@
 <body>
 
 <div class="app">
-<h1>Embedded C++ Prompt Builder</h1>
+<h1>C++ Prompt Builder</h1>
 
 <label>Device Name</label>
-<input id="deviceName" placeholder="Smart Door Sensor">
+<input id="deviceName" placeholder="Soil Moisture Checker">
 
 <label>Board / Platform</label>
 <select id="board">
     <option>Arduino Uno</option>
     <option>Arduino Nano</option>
+    <option>Arduino Mega<option>
     <option>ESP32</option>
     <option>Raspberry Pi Pico</option>
     <option>Custom Board</option>
@@ -89,11 +90,18 @@
 
 <label>Modules / Components (comma separated)</label>
 <input id="modules" placeholder="DHT22, OLED SSD1306, Relay, Button">
+<select id="modules">
+    <option>LCD Display I2C</option>
+    <option>LCD Display no I2C</options>
+    <option>Ultrasonic Sensor</option>
+    <option>IR Remote & IR Receiver</option>
+    <option>Dc Motor</select>
 
 <label>Power Source</label>
 <select id="power">
     <option>USB</option>
     <option>Battery</option>
+    <option>Rechargable Battery</option>
     <option>External Power Supply</option>
 </select>
 
@@ -103,7 +111,7 @@
 <label>Coding Preferences</label>
 <textarea id="style" placeholder="Non-blocking code, comments, low power, modular structure..."></textarea>
 
-<button onclick="generatePrompt()">Generate AI Prompt</button>
+<button onclick="generatePrompt()">Generate Prompt for AI (ChatGPT Recomended)</button>
 
 <div class="output" id="output"></div>
 </div>
@@ -124,7 +132,7 @@ ${board.value}
 Hardware Modules:
 ${modules.value}
 
-Power Source:
+Power Source :
 ${power.value}
 
 Functional Requirements:
@@ -140,6 +148,8 @@ Rules:
 - Use readable pin definitions
 - Optimize for stability and maintainability
 - Output only C++ code and brief explanation
+- Output only in Canvas and With no Annotation in the Canvas
+- Annotate but outside Canvas
 
 If assumptions are required, state them clearly before the code.
 `;
