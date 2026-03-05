@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pro AI Prompt Builder vNext</title>
+<title>Ultimate AI Prompt Studio</title>
 <style>
-body{font-family:Arial, sans-serif;background:#f0f2f5;color:#333;padding:20px;}
-.container{max-width:1200px;margin:auto;background:white;padding:30px;border-radius:12px;box-shadow:0 4px 25px rgba(0,0,0,0.1);}
-input,textarea,select{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid #ccc;background:white;color:#333;}
+body{margin:0;padding:0;font-family:Arial,sans-serif;background:#f5f6fa;color:#333;}
+.container{max-width:1300px;margin:40px auto;background:white;padding:30px;border-radius:12px;box-shadow:0 6px 30px rgba(0,0,0,0.08);}
+h1{color:#222;}
+input,textarea,select{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid #ccc;font-size:14px;}
 textarea{height:80px;}
-button{padding:12px 20px;margin-top:20px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;}
+button{padding:12px 22px;margin-top:20px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;}
 .generate{background:#4caf50;color:white;}
 .copy{background:#2196f3;color:white;margin-left:10px;}
-.section{margin-top:20px;}
-.output{margin-top:25px;background:#eee;padding:20px;border-radius:6px;white-space:pre-wrap;max-height:500px;overflow:auto;font-family:monospace;}
+.output{margin-top:25px;background:#eee;padding:20px;border-radius:6px;white-space:pre-wrap;max-height:600px;overflow:auto;font-family:monospace;}
 label{font-weight:bold;margin-top:10px;display:block;}
 .checkbox-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
 .checkbox-group input{width:auto;}
 .color-preview{display:inline-block;width:30px;height:30px;vertical-align:middle;margin-left:10px;border-radius:6px;border:1px solid #ccc;}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tag{background:#d1e7ff;padding:4px 8px;border-radius:4px;font-size:13px;cursor:pointer;}
 </style>
 </head>
 <body>
 <div class="container">
-<h1>Pro AI Prompt Builder vNext</h1>
+<h1>Ultimate AI Prompt Studio</h1>
 
 <label>Prompt Type</label>
 <select id="type" onchange="updateFields()">
 <option value="app">App</option>
 <option value="website">Website</option>
-<option value="device">Embedded Device / IoT</option>
+<option value="device">IoT / Embedded Device</option>
 <option value="automation">Automation</option>
 <option value="api">API / Backend</option>
 <option value="game">Game</option>
 <option value="chatbot">Chatbot</option>
+<option value="learning">Learning Module</option>
+<option value="writing">Writing Assistant</option>
+<option value="marketing">Marketing Campaign</option>
 <option value="auto">Automatic Prompt Generator</option>
 </select>
 
@@ -43,8 +48,9 @@ label{font-weight:bold;margin-top:10px;display:block;}
 
 <div id="dynamic"></div>
 
-<label>Subcategory / Learning Focus</label>
+<label>Subcategory / Focus</label>
 <select id="subcategory">
+<option>General</option>
 <option>Learning</option>
 <option>Coding</option>
 <option>Writing</option>
@@ -52,6 +58,7 @@ label{font-weight:bold;margin-top:10px;display:block;}
 <option>Design</option>
 <option>Productivity</option>
 <option>Research</option>
+<option>Social Media</option>
 </select>
 
 <label>Theme Color</label>
@@ -59,7 +66,7 @@ label{font-weight:bold;margin-top:10px;display:block;}
 <div class="color-preview" id="colorPreview" style="background:#4caf50"></div>
 
 <label>Goals / Constraints</label>
-<textarea id="goals" placeholder="Performance, scalability, learning objectives, limitations..."></textarea>
+<textarea id="goals"></textarea>
 
 <label>Extra Instructions</label>
 <textarea id="extra"></textarea>
@@ -71,95 +78,112 @@ label{font-weight:bold;margin-top:10px;display:block;}
 </div>
 
 <script>
+// Update live color preview
 function updateColorPreview(){
     document.getElementById("colorPreview").style.backgroundColor = document.getElementById("themeColor").value;
 }
 
-function updateFields(){
-  let type = document.getElementById("type").value;
-  let d = document.getElementById("dynamic");
-  d.innerHTML="";
-
-  function multiSelect(label, id, options){
+// Generate multi-select HTML
+function multiSelect(label, id, options){
     let html = `<label>${label}</label><div class="checkbox-group">`;
     options.forEach(opt => html+=`<label><input type="checkbox" value="${opt}" class="${id}"> ${opt}</label>`);
     html+="</div>";
     return html;
-  }
+}
 
-  if(type=="app"){
-    d.innerHTML=`
+// Dynamic fields per type
+function updateFields(){
+    const type = document.getElementById("type").value;
+    const d = document.getElementById("dynamic");
+    d.innerHTML = "";
+
+    if(type=="app"){
+        d.innerHTML = `
 <label>Platform</label>
 <select id="platform"><option>iOS</option><option>Android</option><option>Web</option><option>Cross-Platform</option></select>
-
-<label>Main Features</label>
-<textarea id="features" placeholder="dashboard, payments, AI assistant, notifications"></textarea>
-
+<label>Main Features</label><textarea id="features"></textarea>
 <label>Authentication & RBAC</label>
 <select id="auth"><option>None</option><option>Email Login</option><option>OAuth</option><option>Full RBAC</option></select>
-
-<label>UX/UI Style</label>
-<select id="ui"><option>Minimal</option><option>Material</option><option>Modern</option></select>
-
-${multiSelect("AI Features","aiFeatures",["Recommendation Engine","Chat Assistant","Predictive Analytics","Automation","Voice Recognition","Adaptive Learning"])}
-${multiSelect("Integrations","integrations",["Stripe","OpenAI","Firebase","Twilio","Slack","Google APIs","CRM","Email"])}
+<label>UX/UI Style</label><select id="ui"><option>Minimal</option><option>Material</option><option>Modern</option></select>
+${multiSelect("AI Features","aiFeatures",["Recommendation Engine","Chat Assistant","Predictive Analytics","Automation","Voice Recognition","Adaptive Learning","Self-Optimization"])}
+${multiSelect("Integrations","integrations",["Stripe","OpenAI","Firebase","Twilio","Slack","Google APIs","CRM","Email","Zapier"])}
 `;
-  }
+    }
 
-  if(type=="auto"){
-    d.innerHTML=`
+    if(type=="website"){
+        d.innerHTML = `
+<label>Website Type</label>
+<select id="webtype"><option>Landing Page</option><option>Portfolio</option><option>Ecommerce</option><option>SaaS</option></select>
+<label>Pages</label><input id="pages">
+<label>CMS</label><select id="cms"><option>No</option><option>Headless</option><option>Full CMS</option></select>
+<label>UX/UI Style</label><select id="ui"><option>Minimal</option><option>Material</option><option>Modern</option></select>
+${multiSelect("Integrations","integrations",["Stripe","Analytics","OpenAI","Maps API","Payment Gateway","CRM"])}
+`;
+    }
+
+    if(type=="device"){
+        d.innerHTML = `
+<label>Platform / MCU</label><select id="platform"><option>Arduino</option><option>ESP32</option><option>Raspberry Pi</option><option>Custom MCU</option></select>
+<label>Sensors / Modules</label><textarea id="modules"></textarea>
+<label>Outputs</label><input id="outputs">
+<label>Connectivity</label><select id="connect"><option>None</option><option>WiFi</option><option>Bluetooth</option><option>LoRa</option></select>
+${multiSelect("AI / Automation Features","aiFeatures",["Data Logging","Prediction","Remote Control","Monitoring","Voice Control","Self-Optimization","Energy Saving"])}
+`;
+    }
+
+    if(type=="auto"){
+        d.innerHTML = `
 <label>Automatic Prompt Subcategory</label>
-<select id="autoSubcat">
-<option>Learning</option>
-<option>Coding</option>
-<option>Writing</option>
-<option>Marketing</option>
-<option>Design</option>
-<option>Productivity</option>
-<option>Research</option>
-</select>
-
-<label>Keywords / Focus</label>
-<input id="keywords" placeholder="Python, AI, Essay, SEO, UX...">
-
-<label>AI Recommendations</label>
-${multiSelect("autoAI", "aiFeatures", ["Suggest Field","Suggest Format","Optimize Prompt","Add Constraints","Add Steps"])}
+<select id="autoSubcat"><option>Learning</option><option>Coding</option><option>Writing</option><option>Marketing</option><option>Design</option><option>Productivity</option><option>Research</option><option>Social Media</option></select>
+<label>Keywords / Focus</label><input id="keywords">
+${multiSelect("AI Recommendations","aiFeatures",["Suggest Field","Suggest Format","Optimize Prompt","Add Constraints","Add Steps","Generate Sub-prompts","Auto-fill Missing"])}
 `;
-  }
+    }
 }
 
 updateFields();
 
-function generatePrompt(){
-  let type = document.getElementById("type").value;
-  let name = document.getElementById("name").value;
-  let users = document.getElementById("users").value;
-  let goals = document.getElementById("goals").value;
-  let extra = document.getElementById("extra").value;
-  let themeColor = document.getElementById("themeColor").value;
-
-  function getMulti(id){
+// Utility to get multi-select values
+function getMulti(id){
     return Array.from(document.getElementsByClassName(id)).filter(c=>c.checked).map(c=>c.value).join(", ");
-  }
-
-  let prompt = `Project/Prompt: ${name}\nType: ${type}\nTarget Users: ${users}\nTheme Color: ${themeColor}\nGoals/Constraints: ${goals}\nExtra Instructions: ${extra}\n\n`;
-
-  if(type=="auto"){
-    let subcat = document.getElementById("autoSubcat").value;
-    let keywords = document.getElementById("keywords").value;
-    prompt+=`Automatic Prompt for "${subcat}" with keywords: ${keywords}\nAI Recommendations: ${getMulti("autoAI")}\n`;
-  } else if(type=="app"){
-    prompt+=`Platform: ${document.getElementById("platform").value}\nFeatures: ${document.getElementById("features").value}\nAuthentication: ${document.getElementById("auth").value}\nUX/UI: ${document.getElementById("ui").value}\nAI Features: ${getMulti("aiFeatures")}\nIntegrations: ${getMulti("integrations")}\n`;
-  }
-
-  prompt+=`\nOutput Structure:\n1. Architecture\n2. Components / Modules\n3. Data / DB Schema\n4. Implementation Plan\n5. Testing / QA\n6. Deployment & Monitoring\n7. Security / Privacy`;
-
-  document.getElementById("output").textContent = prompt;
 }
 
+// Generate final prompt
+function generatePrompt(){
+    const type = document.getElementById("type").value;
+    const name = document.getElementById("name").value;
+    const users = document.getElementById("users").value;
+    const goals = document.getElementById("goals").value;
+    const extra = document.getElementById("extra").value;
+    const themeColor = document.getElementById("themeColor").value;
+
+    let prompt = `Project/Prompt: ${name}\nType: ${type}\nTarget Users: ${users}\nTheme Color: ${themeColor}\nGoals/Constraints: ${goals}\nExtra Instructions: ${extra}\n\n`;
+
+    if(type=="app"){
+        prompt += `Platform: ${document.getElementById("platform").value}\nFeatures: ${document.getElementById("features").value}\nAuthentication: ${document.getElementById("auth").value}\nUX/UI: ${document.getElementById("ui").value}\nAI Features: ${getMulti("aiFeatures")}\nIntegrations: ${getMulti("integrations")}\n`;
+    }
+
+    if(type=="website"){
+        prompt += `Website Type: ${document.getElementById("webtype").value}\nPages: ${document.getElementById("pages").value}\nCMS: ${document.getElementById("cms").value}\nUX/UI: ${document.getElementById("ui").value}\nIntegrations: ${getMulti("integrations")}\n`;
+    }
+
+    if(type=="device"){
+        prompt += `Platform: ${document.getElementById("platform").value}\nModules: ${document.getElementById("modules").value}\nOutputs: ${document.getElementById("outputs").value}\nConnectivity: ${document.getElementById("connect").value}\nAI Features: ${getMulti("aiFeatures")}\n`;
+    }
+
+    if(type=="auto"){
+        prompt += `Automatic Subcategory: ${document.getElementById("autoSubcat").value}\nKeywords: ${document.getElementById("keywords").value}\nAI Recommendations: ${getMulti("aiFeatures")}\n`;
+    }
+
+    prompt += `\nOutput Structure:\n1. Architecture\n2. Components / Modules\n3. Data / DB Schema\n4. Implementation Plan\n5. Testing / QA\n6. Deployment & Monitoring\n7. Security / Privacy\n8. AI Recommendations & Optimization`;
+
+    document.getElementById("output").textContent = prompt;
+}
+
+// Copy prompt to clipboard
 function copyPrompt(){
-  navigator.clipboard.writeText(document.getElementById("output").textContent);
-  alert("Copied to clipboard");
+    navigator.clipboard.writeText(document.getElementById("output").textContent);
+    alert("Copied to clipboard!");
 }
 </script>
 </body>
