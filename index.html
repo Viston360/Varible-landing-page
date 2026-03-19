@@ -420,6 +420,43 @@ footer .logo-img{ height:32px; }
 /* Used on dark backgrounds */
 .logo-dark .logo-img{ filter:brightness(0) invert(1); }
 
+/* ── KIT PICKER TABS ── */
+.pick-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.ptab{background:var(--bg);border:1.5px solid var(--bdr2);border-radius:50px;padding:.36rem .92rem;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;font-family:var(--font);transition:all .2s}
+.ptab:hover{border-color:var(--bdr);color:var(--ink);background:var(--brand-s)}
+.ptab.active{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+
+/* ── KIT PICKER CARDS (big grid) ── */
+.picker-cards-big{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.pick-big-card{background:var(--surface);border:2px solid var(--bdr2);border-radius:var(--r);padding:1.3rem;cursor:pointer;transition:all .22s;position:relative;display:flex;gap:.9rem;align-items:flex-start}
+.pick-big-card:hover{border-color:var(--bdr);background:var(--brand-s);transform:translateY(-2px);box-shadow:var(--sh)}
+.pick-big-card.selected{border-color:var(--brand);background:var(--brand-s);box-shadow:0 0 0 3px rgba(255,176,0,.18)}
+.pick-big-card.hidden{display:none}
+.pbc-ico{font-size:1.65rem;flex-shrink:0;margin-top:.05rem}
+.pbc-body h4{font-size:.86rem;font-weight:700;margin-bottom:.28rem;color:var(--ink)}
+.pbc-body p{font-size:.74rem;color:var(--muted);line-height:1.55}
+.pbc-tag{position:absolute;bottom:.65rem;right:.75rem;font-family:var(--mono);font-size:.58rem;color:var(--muted2);background:var(--bg2);padding:.16rem .52rem;border-radius:50px;border:1px solid var(--bdr2)}
+.pbc-check{position:absolute;top:.6rem;right:.6rem;width:18px;height:18px;background:var(--brand);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.56rem;opacity:0;transition:opacity .2s;color:var(--ink);font-weight:800}
+.pick-big-card.selected .pbc-check{opacity:1}
+.pick-custom{border-style:dashed;background:var(--bg2)}
+
+/* ── EDU EXAMPLES ── */
+.edu-examples{margin-bottom:.5rem}
+.edu-ex-label{font-size:.74rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.65rem}
+.edu-ex-tags{display:flex;gap:.45rem;flex-wrap:wrap}
+.edu-ex-tag{background:var(--brand-s);border:1px solid var(--bdr);border-radius:50px;font-size:.76rem;font-weight:600;color:var(--ink2);padding:.28rem .7rem;transition:background .18s,transform .15s}
+.edu-ex-tag:hover{background:var(--brand-m);transform:translateY(-1px)}
+
+/* ── DISCLAIMER / SCHOOLS CARDS ── */
+.disc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.disc-card{background:var(--surface);border:1.5px solid var(--bdr2);border-radius:var(--r);padding:2rem;transition:transform .25s,box-shadow .25s}
+.disc-card:hover{transform:translateY(-3px);box-shadow:var(--sh2)}
+.disc-icon{font-size:2rem;margin-bottom:1rem}
+.disc-card h3{font-size:1rem;font-weight:700;margin-bottom:.7rem;color:var(--ink)}
+.disc-card p{font-size:.84rem;color:var(--muted);line-height:1.72}
+.disc-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}
+.disc-list li{font-size:.83rem;color:var(--ink2);font-weight:500}
+
 @media(max-width:1024px){
   nav{padding:0 1.5rem}
   .hero{padding:7.5rem 1.5rem 4rem}
@@ -427,12 +464,13 @@ footer .logo-img{ height:32px; }
   .hero-vis{display:none}
   .wrap,.picker-wrap{padding:4rem 1.5rem}
   .sgrid,.picker-cards{grid-template-columns:1fr 1fr}
+  .picker-cards-big{grid-template-columns:1fr 1fr}
   .edu-layout{grid-template-columns:1fr;gap:3rem}
   .hsteps2{grid-template-columns:1fr 1fr}
   .hsteps2::before{display:none}
   .pgrid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .pgrid .pcard:first-child{grid-row:span 1}
-  .tgrid,.faq-grid{grid-template-columns:1fr}
+  .tgrid,.faq-grid,.disc-grid{grid-template-columns:1fr}
   .trust{flex-wrap:wrap}
   .ti{min-width:45%}
   footer{flex-direction:column;text-align:center}
@@ -443,7 +481,7 @@ footer .logo-img{ height:32px; }
   .road-wrap{display:block}
 }
 @media(max-width:640px){
-  .sgrid,.hsteps2,.pgrid,.picker-cards{grid-template-columns:1fr}
+  .sgrid,.hsteps2,.pgrid,.picker-cards,.picker-cards-big{grid-template-columns:1fr}
   nav .nav-links{display:none}
   .announce-bar{font-size:.72rem;padding:.5rem 1.5rem}
 }
@@ -469,9 +507,9 @@ footer .logo-img{ height:32px; }
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#services">What We Do</a></li>
-      <li><a href="#edukit">Edu Kit</a></li>
+      <li><a href="#edukit">Edu Kits</a></li>
       <li><a href="#kickstarter">Kickstarter</a></li>
-      <li><a href="#feed">Feed</a></li>
+      <li><a href="#schools">Schools 🏫</a></li>
       <li><a href="#contact" class="ncta">Talk to Us →</a></li>
     </ul>
     <div class="nav-beta"><div class="nav-beta-dot"></div> Beta</div>
@@ -580,17 +618,12 @@ footer .logo-img{ height:32px; }
           </div>
           <div style="text-align:right">
             <div class="bs-count" id="spotsCount">0</div>
-            <div class="bs-count-lbl">of 50 filled</div>
+            <div class="bs-count-lbl" id="spotsLabel">of 50 spots filled</div>
           </div>
         </div>
         <div class="progress-bar"><div class="progress-fill" id="spotsFill" style="width:0%"></div></div>
         <div class="bs-names" id="betaAvatars">
-          <div class="bs-avatar">ML</div>
-          <div class="bs-avatar">TK</div>
-          <div class="bs-avatar">RS</div>
-          <div class="bs-avatar">AN</div>
-          <div class="bs-avatar">JW</div>
-          <div class="bs-avatar bs-avatar-more">+7</div>
+          <!-- filled dynamically from shared storage -->
         </div>
         <button class="btn btn-brand" style="width:100%;justify-content:center" onclick="handleBetaJoin()">Join Beta Testing →</button>
       </div>
@@ -629,42 +662,188 @@ footer .logo-img{ height:32px; }
 <section class="picker-bg" id="kitpicker">
   <div class="picker-wrap">
     <div class="picker-header reveal">
-      <span class="eyebrow">✦ Not sure where to start?</span>
+      <span class="eyebrow">✦ Build anything — seriously, anything</span>
       <h2 class="stitle">What do you want to build?</h2>
-      <p class="ssub">Pick the category that sounds most exciting and I'll tell you exactly what kit fits you best.</p>
+      <p class="ssub">There's no wrong answer. Pick the thing that excites you — from a smart lamp to a personal AI assistant. If you don't see your idea, scroll to the bottom and type it in yourself.</p>
     </div>
-    <div class="picker-cards reveal" id="pickerCards">
-      <div class="picker-card" data-pick="0" onclick="pickKit(this)">
-        <div class="check">✓</div>
-        <div class="ico">🌱</div>
-        <h4>Nature &amp; Home</h4>
-        <p>Plant monitors, weather stations, smart lights</p>
-      </div>
-      <div class="picker-card" data-pick="1" onclick="pickKit(this)">
-        <div class="check">✓</div>
-        <div class="ico">🤖</div>
-        <h4>Robots &amp; Motion</h4>
-        <p>Robot arms, RC cars, moving things</p>
-      </div>
-      <div class="picker-card" data-pick="2" onclick="pickKit(this)">
-        <div class="check">✓</div>
-        <div class="ico">🎵</div>
-        <h4>Music &amp; Sound</h4>
-        <p>MIDI controllers, synthesizers, sound toys</p>
-      </div>
-      <div class="picker-card" data-pick="3" onclick="pickKit(this)">
-        <div class="check">✓</div>
-        <div class="ico">🔐</div>
-        <h4>Security &amp; Access</h4>
-        <p>Smart locks, alarms, NFC door systems</p>
-      </div>
+
+    <!-- Category filter tabs -->
+    <div class="pick-tabs reveal" id="pickTabs">
+      <button class="ptab active" onclick="filterPick(this,'all')">All Ideas</button>
+      <button class="ptab" onclick="filterPick(this,'home')">🏠 Home</button>
+      <button class="ptab" onclick="filterPick(this,'robots')">🤖 Robots</button>
+      <button class="ptab" onclick="filterPick(this,'nature')">🌿 Nature</button>
+      <button class="ptab" onclick="filterPick(this,'music')">🎵 Music</button>
+      <button class="ptab" onclick="filterPick(this,'ai')">🧠 AI</button>
+      <button class="ptab" onclick="filterPick(this,'security')">🔐 Security</button>
+      <button class="ptab" onclick="filterPick(this,'fun')">🎮 Fun</button>
     </div>
+
+    <div class="picker-cards-big reveal" id="pickerCards">
+
+      <!-- HOME -->
+      <div class="pick-big-card" data-cat="home" data-pick="0" onclick="pickKit(this)">
+        <div class="pbc-ico">💡</div>
+        <div class="pbc-body"><h4>Smart Lamp</h4><p>A lamp you control with your phone, voice, or schedule. Change colour, set timers, auto-dim at night.</p></div>
+        <div class="pbc-tag">ESP32 · Wi-Fi</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="home" data-pick="1" onclick="pickKit(this)">
+        <div class="pbc-ico">🌡️</div>
+        <div class="pbc-body"><h4>Weather Station</h4><p>Measures temperature, humidity, and pressure. Shows it on a tiny screen and sends you a daily summary.</p></div>
+        <div class="pbc-tag">ESP32 · OLED</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="home" data-pick="2" onclick="pickKit(this)">
+        <div class="pbc-ico">💧</div>
+        <div class="pbc-body"><h4>Auto Plant Waterer</h4><p>Checks if your soil is dry and waters automatically. Sends you a message when the tank is low.</p></div>
+        <div class="pbc-tag">Arduino · Sensor</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="home" data-pick="3" onclick="pickKit(this)">
+        <div class="pbc-ico">⏰</div>
+        <div class="pbc-body"><h4>Custom Alarm Clock</h4><p>Wakes you with light instead of noise, shows the weather, and plays a custom song from your phone.</p></div>
+        <div class="pbc-tag">Arduino · Display</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- ROBOTS -->
+      <div class="pick-big-card" data-cat="robots" data-pick="4" onclick="pickKit(this)">
+        <div class="pbc-ico">🦾</div>
+        <div class="pbc-body"><h4>Robot Arm</h4><p>Build a 3-axis arm you control from your phone. It can pick things up, wave, and do simple tasks.</p></div>
+        <div class="pbc-tag">Arduino · Servo</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="robots" data-pick="5" onclick="pickKit(this)">
+        <div class="pbc-ico">🚗</div>
+        <div class="pbc-body"><h4>RC Robot Car</h4><p>A wireless car you drive from your phone. Add an obstacle sensor so it stops automatically before crashing.</p></div>
+        <div class="pbc-tag">ESP32 · Motors</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="robots" data-pick="6" onclick="pickKit(this)">
+        <div class="pbc-ico">🕷️</div>
+        <div class="pbc-body"><h4>Walking Spider Bot</h4><p>A six-legged robot with 12 servo motors that walks and turns. Looks amazing, surprisingly beginner-friendly.</p></div>
+        <div class="pbc-tag">Arduino · Servo</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- NATURE -->
+      <div class="pick-big-card" data-cat="nature" data-pick="7" onclick="pickKit(this)">
+        <div class="pbc-ico">🌱</div>
+        <div class="pbc-body"><h4>Plant Health Monitor</h4><p>Tracks soil moisture, light level, and temperature. Tells you exactly what your plant needs each day.</p></div>
+        <div class="pbc-tag">Arduino · Sensors</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="nature" data-pick="8" onclick="pickKit(this)">
+        <div class="pbc-ico">🐦</div>
+        <div class="pbc-body"><h4>Bird Feeder Camera</h4><p>Detects when a bird lands, snaps a photo, and sends it to your phone. Like a trail cam for your garden.</p></div>
+        <div class="pbc-tag">ESP32-CAM · Wi-Fi</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="nature" data-pick="9" onclick="pickKit(this)">
+        <div class="pbc-ico">☀️</div>
+        <div class="pbc-body"><h4>Solar Tracker</h4><p>A panel that automatically rotates to face the sun all day, generating more power than a fixed panel.</p></div>
+        <div class="pbc-tag">Arduino · Motors</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- MUSIC -->
+      <div class="pick-big-card" data-cat="music" data-pick="10" onclick="pickKit(this)">
+        <div class="pbc-ico">🎹</div>
+        <div class="pbc-body"><h4>MIDI Controller</h4><p>Build your own custom music controller with pads, knobs, and sliders. Works with any music software.</p></div>
+        <div class="pbc-tag">ESP32 · Bluetooth</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="music" data-pick="11" onclick="pickKit(this)">
+        <div class="pbc-ico">🎸</div>
+        <div class="pbc-body"><h4>Guitar Tuner</h4><p>A physical tuner with a display that listens to your guitar and tells you which string is flat or sharp.</p></div>
+        <div class="pbc-tag">Arduino · Audio</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="music" data-pick="12" onclick="pickKit(this)">
+        <div class="pbc-ico">📻</div>
+        <div class="pbc-body"><h4>Internet Radio</h4><p>A real physical radio that streams any station from the internet. Custom buttons, volume knob, display.</p></div>
+        <div class="pbc-tag">ESP32 · Wi-Fi</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- AI -->
+      <div class="pick-big-card" data-cat="ai" data-pick="13" onclick="pickKit(this)">
+        <div class="pbc-ico">🧠</div>
+        <div class="pbc-body"><h4>Personal AI Assistant</h4><p>Press a button, ask a question, hear the answer out loud. Your own physical AI device powered by ChatGPT.</p></div>
+        <div class="pbc-tag">ESP32 · Wi-Fi · API</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="ai" data-pick="14" onclick="pickKit(this)">
+        <div class="pbc-ico">👁️</div>
+        <div class="pbc-body"><h4>Object Recognition Camera</h4><p>A camera that runs AI directly on the chip to identify what it sees — no internet needed. Shows results on a display.</p></div>
+        <div class="pbc-tag">ESP32-CAM · TinyML</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="ai" data-pick="15" onclick="pickKit(this)">
+        <div class="pbc-ico">🗣️</div>
+        <div class="pbc-body"><h4>Voice-Controlled Lights</h4><p>Say "turn on," "make it red," or "dim to 50%" and your lights respond. No smart home hub required.</p></div>
+        <div class="pbc-tag">ESP32 · BLE · LEDs</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="pick-big-card" data-cat="security" data-pick="16" onclick="pickKit(this)">
+        <div class="pbc-ico">🔑</div>
+        <div class="pbc-body"><h4>NFC Smart Lock</h4><p>Tap your card or phone to unlock your door. Logs every entry with a timestamp and notifies you.</p></div>
+        <div class="pbc-tag">ESP32 · NFC</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="security" data-pick="17" onclick="pickKit(this)">
+        <div class="pbc-ico">🚨</div>
+        <div class="pbc-body"><h4>Motion Alarm</h4><p>Detects movement and sends you a phone notification instantly. Optional siren and camera snapshot.</p></div>
+        <div class="pbc-tag">ESP32 · PIR sensor</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="security" data-pick="18" onclick="pickKit(this)">
+        <div class="pbc-ico">📦</div>
+        <div class="pbc-body"><h4>Package Detector</h4><p>Sits by your door and texts you the moment a package is delivered — or if someone takes it.</p></div>
+        <div class="pbc-tag">ESP32 · Weight sensor</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- FUN -->
+      <div class="pick-big-card" data-cat="fun" data-pick="19" onclick="pickKit(this)">
+        <div class="pbc-ico">🎮</div>
+        <div class="pbc-body"><h4>Handheld Game Console</h4><p>Build your own mini game console with a screen and buttons. Run classic Tetris, Snake, or make your own game.</p></div>
+        <div class="pbc-tag">Arduino · OLED</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="fun" data-pick="20" onclick="pickKit(this)">
+        <div class="pbc-ico">🌈</div>
+        <div class="pbc-body"><h4>LED Music Visualizer</h4><p>A strip of lights that dances to your music in real time. Reacts to bass, treble, and beat drops.</p></div>
+        <div class="pbc-tag">Arduino · LED strip</div>
+        <div class="pbc-check">✓</div>
+      </div>
+      <div class="pick-big-card" data-cat="fun" data-pick="21" onclick="pickKit(this)">
+        <div class="pbc-ico">🎲</div>
+        <div class="pbc-body"><h4>Electronic Dice / Scoreboard</h4><p>A physical dice you shake to roll, or a scoreboard for game nights. Great first project for kids too.</p></div>
+        <div class="pbc-tag">Arduino · Display</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+      <!-- SOMETHING ELSE -->
+      <div class="pick-big-card pick-custom" data-cat="all" data-pick="99" onclick="pickKit(this)">
+        <div class="pbc-ico">✏️</div>
+        <div class="pbc-body"><h4>Something completely different</h4><p>None of these? That's totally fine — scroll down and describe your idea. If you can imagine it, we can probably build it.</p></div>
+        <div class="pbc-tag">Anything goes</div>
+        <div class="pbc-check">✓</div>
+      </div>
+
+    </div>
+
+    <!-- Result panel -->
     <div class="picker-result" id="pickerResult">
       <div class="picker-result-ico" id="prIco"></div>
       <div class="picker-result-body">
         <h4 id="prTitle"></h4>
         <p id="prDesc"></p>
-        <a href="#ideabox" class="btn btn-brand" style="font-size:.84rem;padding:.7rem 1.4rem">Tell me more about my idea →</a>
+        <a href="#ideabox" class="btn btn-brand" style="font-size:.84rem;padding:.7rem 1.4rem">Tell me I want to build this →</a>
       </div>
     </div>
   </div>
@@ -677,29 +856,60 @@ footer .logo-img{ height:32px; }
       <div class="edu-vis reveal">
         <div class="ecard">
           <div class="ecard-glow"></div>
-          <div class="ecard-hd"><span>🎒 Your Build-and-Learn Kit</span><span class="newpill">New ✦</span></div>
+          <div class="ecard-hd"><span>🎒 Your Custom Build-and-Learn Kit</span><span class="newpill">You choose ✦</span></div>
           <div class="esteps">
-            <div class="estep"><div class="ecirc">1</div><div><h4>Pick the thing you want to build</h4><p>A weather station, robot, music gadget? Choose something you genuinely think is cool — that's the whole point.</p></div></div>
-            <div class="estep"><div class="ecirc">2</div><div><h4>I mail you a box with everything inside</h4><p>Every wire, chip, and part is in there. Nothing to buy separately. Open the box and you're ready.</p></div></div>
-            <div class="estep"><div class="ecirc">3</div><div><h4>I walk you through it, step by step</h4><p>My guide explains everything in plain English — not "connect pin 14 to GND" but "plug this wire here, and here's why."</p></div></div>
-            <div class="estep"><div class="ecirc">4</div><div><h4>Break it, change it, make it yours</h4><p>Once it works I give you fun challenges to modify it. That's where the real learning happens — by messing around!</p></div></div>
+            <div class="estep"><div class="ecirc">1</div><div>
+              <h4>You pick — literally anything</h4>
+              <p>A smart lamp? A weather station? A personal AI assistant? An automatic plant waterer? A guitar tuner? There are no rules. If you can describe it, we'll build a kit around it.</p>
+            </div></div>
+            <div class="estep"><div class="ecirc">2</div><div>
+              <h4>We custom-pack your kit</h4>
+              <p>Once you've chosen your project, we pick every component it needs and send them to you in a clearly labelled box. Nothing generic — it's built for exactly what you want to make.</p>
+            </div></div>
+            <div class="estep"><div class="ecirc">3</div><div>
+              <h4>We guide you through building it</h4>
+              <p>Your guide is written for your specific project — not a generic tutorial. We explain every step in plain English, with photos and videos so you're never guessing.</p>
+            </div></div>
+            <div class="estep"><div class="ecirc">4</div><div>
+              <h4>You understand it, then you make it yours</h4>
+              <p>By the end you'll know exactly how your device works. Then we challenge you to change it, add to it, or start on something completely new.</p>
+            </div></div>
           </div>
         </div>
-        <div class="emini"><div class="n">🏆</div><div class="l">Beginner friendly</div></div>
+        <div class="emini"><div class="n">∞</div><div class="l">Unlimited ideas</div></div>
       </div>
       <div class="edu-content reveal" style="transition-delay:.15s">
-        <span class="eyebrow">✦ Learn &amp; Build</span>
-        <h2 class="stitle">Learn electronics by building<br><span style="color:var(--brand-d)">something you actually want.</span></h2>
-        <p class="ssub">School makes electronics feel boring. I flip that — you pick a fun project, I send the parts, and you figure out how it all works by doing it yourself. No knowledge needed. Seriously.</p>
-        <div class="efeat">
-          <div class="erow"><div class="echk">✓</div>Complete beginner? Perfect — that's exactly who this is for</div>
-          <div class="erow"><div class="echk">✓</div>Every part included — open the box and start</div>
-          <div class="erow"><div class="echk">✓</div>Guide explains the "why," not just the "what to do"</div>
-          <div class="erow"><div class="echk">✓</div>Arduino and ESP32 tracks (I'll help you choose)</div>
-          <div class="erow"><div class="echk">✓</div>Discord community — ask me anything, anytime</div>
-          <div class="erow"><div class="echk">✓</div>Expand with more sensors as you grow</div>
+        <span class="eyebrow">✦ Learn &amp; Build — Your Way</span>
+        <h2 class="stitle">You pick what to build.<br><span style="color:var(--brand-d)">We handle the rest.</span></h2>
+        <p class="ssub">This isn't a fixed kit where everyone builds the same thing. You choose your project — a lamp, a robot, a personal AI, a music controller, anything — and we build the learning experience around it. That's how you actually learn electronics: by making something you care about.</p>
+        <div class="edu-examples reveal">
+          <div class="edu-ex-label">Things people have asked to build:</div>
+          <div class="edu-ex-tags">
+            <span class="edu-ex-tag">💡 Smart lamp</span>
+            <span class="edu-ex-tag">🌡️ Weather station</span>
+            <span class="edu-ex-tag">🧠 AI assistant</span>
+            <span class="edu-ex-tag">🦾 Robot arm</span>
+            <span class="edu-ex-tag">🎹 MIDI controller</span>
+            <span class="edu-ex-tag">💧 Plant waterer</span>
+            <span class="edu-ex-tag">🔑 Smart door lock</span>
+            <span class="edu-ex-tag">📻 Internet radio</span>
+            <span class="edu-ex-tag">🌈 LED music visualiser</span>
+            <span class="edu-ex-tag">🚗 RC car</span>
+            <span class="edu-ex-tag">🐦 Bird feeder camera</span>
+            <span class="edu-ex-tag">✏️ Your idea</span>
+          </div>
         </div>
-        <a href="#ideabox" class="btn btn-brand">Get Your Kit →</a>
+        <div class="efeat" style="margin-top:1.5rem">
+          <div class="erow"><div class="echk">✓</div>No experience needed — zero, none, starting from scratch is fine</div>
+          <div class="erow"><div class="echk">✓</div>100% custom kit for your chosen project — no generic boxes</div>
+          <div class="erow"><div class="echk">✓</div>Step-by-step guide written for <em>your</em> specific build</div>
+          <div class="erow"><div class="echk">✓</div>Arduino or ESP32 — we'll recommend the right one for you</div>
+          <div class="erow"><div class="echk">✓</div>Direct Discord access to me — ask anything, any time</div>
+        </div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem">
+          <a href="#kitpicker" class="btn btn-brand">Browse Project Ideas →</a>
+          <a href="#ideabox" class="btn btn-ghost">I have my own idea</a>
+        </div>
       </div>
     </div>
   </div>
@@ -822,7 +1032,8 @@ footer .logo-img{ height:32px; }
     <div class="faq-grid" id="faqGrid">
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Do I need any electronics knowledge?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">Absolutely not. Zero. We built Varible specifically for people who have a cool idea but no idea how to make it happen. You describe what you want in plain everyday English — we handle everything techy.</div></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What even is an Arduino or ESP32?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">Think of them as tiny, cheap computers about the size of a credit card. You can program them to control lights, motors, sensors, displays, or pretty much anything. They're the brain inside most DIY electronics projects.</div></div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How much does a custom build cost?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">It depends on the complexity. Simple projects (a sensor, a display, a buzzer) can be very affordable. We always give you a clear price quote before any work begins — no surprises. During beta, we're offering special discounted rates.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How much does a custom build cost?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">We keep our prices as low as possible because we want electronics to be for everyone — not just people with big budgets. Simple projects can cost as little as €15–30 for parts plus a small build fee. More complex devices are more, but we always give you a clear, written quote before any work starts. No surprises, ever. Beta testers also get an extra discount on top.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Can schools order kits for students?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">Absolutely — school kits are something we care deeply about. We offer classroom packs with teacher guides, student worksheets, and everything a class needs. We have special pricing for schools, and we specifically offer subsidised kits for schools in developing countries. Whether you're a teacher in Vienna or running a coding club in rural Kenya — please reach out. We'll make it work.</div></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What if my idea is really vague?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">Perfect, honestly. "I want something that turns my fan on automatically when it gets hot" is plenty to work with. We'll ask you questions and help shape the idea together. The rougher the idea, the more fun we have figuring it out.</div></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What's the Edu Kit exactly?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">It's a box we mail you containing every single part you need to build a specific electronics project. You choose the project (like a weather station or robot), we pack the components, and you build it step by step using our online guide. It's designed for total beginners.</div></div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What does "beta testing" mean?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">It means we're still early — we're working with our first real customers to make sure everything works great before we launch publicly on Kickstarter. Beta users get special access, lower prices, and direct contact with us. If you join beta, you're helping shape the final product.</div></div></div>
@@ -858,6 +1069,59 @@ footer .logo-img{ height:32px; }
           <div class="saved-empty" id="savedEmpty">Nothing saved yet — tap 🔖 on any post!</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DISCLAIMER -->
+<section id="schools" style="background:var(--bg2);border-top:1px solid var(--bdr2)">
+  <div class="wrap" style="padding:4rem 3rem">
+    <div class="reveal"><span class="eyebrow">✦ Good to know</span></div>
+    <h2 class="stitle reveal">Honest answers to the<br>questions that matter most.</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem" class="disc-grid">
+
+      <!-- Affordability -->
+      <div class="disc-card reveal">
+        <div class="disc-icon">💰</div>
+        <h3>Completely affordable — no surprises</h3>
+        <p>We believe everyone should be able to learn electronics and build cool things, regardless of budget. Our kits start at just a few euros/dollars and every custom build comes with a <strong>clear, upfront quote</strong> before anything is agreed. You'll never be surprised by a bill.</p>
+        <p style="margin-top:.7rem">Beta testers get an <strong>extra discount</strong> on top of our already low prices. And if you're a student, a teacher, or just someone who can't afford much right now — message us. We'll always find a way to make it work.</p>
+      </div>
+
+      <!-- Cancellation / Refund -->
+      <div class="disc-card reveal" style="transition-delay:.1s">
+        <div class="disc-icon">🛡️</div>
+        <h3>If we can't build it — you get a full refund</h3>
+        <p>Sometimes a project idea turns out to be too technically complex, or requires components we can't source reliably. <strong>If that happens, we will always tell you clearly and cancel with a 100% full refund, no questions asked.</strong></p>
+        <p style="margin-top:.7rem">We will never start work on something we're not confident about. If there's any risk, we flag it before you pay anything. Our reputation matters more than any single sale.</p>
+      </div>
+
+      <!-- Schools -->
+      <div class="disc-card reveal" style="transition-delay:.2s">
+        <div class="disc-icon">🏫</div>
+        <h3>School kits — available worldwide</h3>
+        <p>We offer <strong>classroom kits for schools</strong> — custom-designed for teachers and students who want to learn electronics and coding hands-on. Kits come with teacher guides, student worksheets, and everything needed for a full class.</p>
+        <p style="margin-top:.7rem">We especially care about <strong>schools in developing countries</strong>. We offer subsidised pricing and have donation partnerships to help get kits into classrooms that can't normally afford them. If you run a school or NGO anywhere in the world — please reach out.</p>
+        <a href="#contact" class="btn btn-brand" style="margin-top:1.1rem;font-size:.82rem;padding:.65rem 1.3rem;display:inline-flex">Get school pricing →</a>
+      </div>
+
+      <!-- What we promise -->
+      <div class="disc-card reveal" style="transition-delay:.3s">
+        <div class="disc-icon">🤝</div>
+        <h3>Our promise to you</h3>
+        <p>We're a small, honest team. We built Varible because we believe <strong>anyone</strong> should be able to make electronics — no matter their age, background, budget, or country. Here's what we commit to:</p>
+        <ul class="disc-list">
+          <li>✓ Always tell you the price before you pay</li>
+          <li>✓ Full refund if we can't deliver — always</li>
+          <li>✓ Plain English, no technical gatekeeping</li>
+          <li>✓ School pricing available globally</li>
+          <li>✓ Extra support for developing-country schools</li>
+          <li>✓ You own your code and designs — forever</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
@@ -980,26 +1244,38 @@ function showToast(msg, duration){
 /* ── Email validator ── */
 function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 
-/* ── Countdown (target: 60 days from now at page first load, stored shared) ── */
-async function initCountdown(){
-  // Fixed launch date: 1 September 2025 at 10:00 UTC
-  // Change this date whenever you want to update the countdown
-  var LAUNCH_DATE = new Date('2025-09-01T10:00:00Z').getTime();
-  var target = LAUNCH_DATE;
+/* ══════════════════════════════════════════════════
+   ★ SET YOUR KICKSTARTER LAUNCH DATE HERE ★
+   Format: 'YYYY-MM-DDTHH:MM:SS'  (24-hour, UTC time)
+   Example: '2025-10-15T09:00:00' = 15 Oct 2025 at 9am UTC
+   ══════════════════════════════════════════════════ */
+var KS_LAUNCH = '2025-10-01T10:00:00';   // ← CHANGE THIS DATE
+
+function initCountdown(){
+  var target = new Date(KS_LAUNCH).getTime();
   function tick(){
-    const now=Date.now();
-    let diff=Math.max(0, target - now);
-    const d=Math.floor(diff/86400000); diff-=d*86400000;
-    const h=Math.floor(diff/3600000); diff-=h*3600000;
-    const m=Math.floor(diff/60000); diff-=m*60000;
-    const s=Math.floor(diff/1000);
-    const pad=n=>String(n).padStart(2,'0');
-    document.getElementById('cd-d').textContent=pad(d);
-    document.getElementById('cd-h').textContent=pad(h);
-    document.getElementById('cd-m').textContent=pad(m);
-    document.getElementById('cd-s').textContent=pad(s);
+    var now  = Date.now();
+    var diff = Math.max(0, target - now);
+    var d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    var h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+    var m = Math.floor(diff / 60000);    diff -= m * 60000;
+    var s = Math.floor(diff / 1000);
+    function pad(n){ return String(n).padStart(2,'0'); }
+    var dd = document.getElementById('cd-d');
+    var dh = document.getElementById('cd-h');
+    var dm = document.getElementById('cd-m');
+    var ds = document.getElementById('cd-s');
+    if(dd) dd.textContent = pad(d);
+    if(dh) dh.textContent = pad(h);
+    if(dm) dm.textContent = pad(m);
+    if(ds) ds.textContent = pad(s);
+    if(diff <= 0){
+      var cdEl = document.getElementById('countdown');
+      if(cdEl) cdEl.innerHTML = '<div class="cd-box" style="min-width:200px"><span class="cd-num" style="font-size:1.4rem">🚀</span><span class="cd-lbl">We\'re Live on Kickstarter!</span></div>';
+    }
   }
-  tick(); setInterval(tick,1000);
+  tick();
+  setInterval(tick, 1000);
 }
 initCountdown();
 
@@ -1108,24 +1384,54 @@ async function confirmBetaJoin(){
   const btn = document.querySelector('[onclick="confirmBetaJoin()"]');
   if(btn){ btn.textContent='🧪 You\'re in beta!'; btn.style.background='#e8f5e9'; btn.style.color='#2e7d32'; btn.setAttribute('onclick',''); }
 
-  // Add avatar
+  // Add new avatar with real initials
   const avatarEl = document.getElementById('betaAvatars');
-  if(avatarEl && name){
+  if(avatarEl){
+    // Remove "Be the first" placeholder if present
+    const placeholder = avatarEl.querySelector('span');
+    if(placeholder) placeholder.remove();
+    // Remove old +N badge if present
+    const moreBadge = avatarEl.querySelector('.bs-avatar-more');
+    if(moreBadge) moreBadge.remove();
+
+    const initials = (name && name !== 'Anonymous')
+      ? name.trim().split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2)
+      : '?';
     const av = document.createElement('div');
-    av.className='bs-avatar';
-    av.textContent=(name[0]||'?').toUpperCase();
-    avatarEl.insertBefore(av, avatarEl.lastElementChild);
+    av.className    = 'bs-avatar';
+    av.title        = name || 'Anonymous';
+    av.textContent  = initials;
+    av.style.animation = 'up .4s ease both';
+    avatarEl.appendChild(av);
+
+    // Re-add +N badge if needed
+    if(newSpots > 8){
+      const more = document.createElement('div');
+      more.className   = 'bs-avatar bs-avatar-more';
+      more.textContent = '+' + (newSpots - 8);
+      avatarEl.appendChild(more);
+    }
   }
 
   showToast('🎉 You\'re beta tester #'+newSpots+'! We\'ll be in touch soon.');
 }
 
 function setBetaUI(n){
-  const capped = Math.min(n, 50);
-  document.getElementById('spotsCount').textContent = capped;
-  document.getElementById('spotsFill').style.width = Math.round((capped/50)*100)+'%';
-  const btn = document.querySelector('[onclick="handleBetaJoin()"]');
-  if(btn && capped >= 50){ btn.textContent = '😅 Beta Full — Join Kickstarter List'; btn.style.opacity='.6'; }
+  var capped   = Math.min(n, 50);
+  var remaining = 50 - capped;
+  var countEl  = document.getElementById('spotsCount');
+  var labelEl  = document.getElementById('spotsLabel');
+  var fillEl   = document.getElementById('spotsFill');
+  var btn      = document.querySelector('[onclick="handleBetaJoin()"]');
+  if(countEl) countEl.textContent = capped;
+  if(labelEl) labelEl.textContent = capped >= 50
+    ? 'Beta is now full!'
+    : 'of 50 spots filled — ' + remaining + ' remaining';
+  if(fillEl)  fillEl.style.width = Math.round((capped/50)*100)+'%';
+  if(btn && capped >= 50){
+    btn.textContent   = '😅 Beta Full — Join Kickstarter List';
+    btn.style.opacity = '.6';
+  }
 }
 
 /* ── Load shared counters on page load ── */
@@ -1133,6 +1439,33 @@ function setBetaUI(n){
   // Beta spots
   const spots = (await sGet('beta_spots', true)) || 0;
   setBetaUI(spots);
+
+  // Load real beta tester avatars from shared list
+  const betaList = (await sGet('varible_beta_list', true)) || [];
+  const avatarEl  = document.getElementById('betaAvatars');
+  if(avatarEl){
+    avatarEl.innerHTML = ''; // clear placeholder
+    const show = betaList.slice(-8); // show last 8 joiners
+    show.forEach(function(tester){
+      const initials = (tester.name && tester.name !== 'Anonymous')
+        ? tester.name.trim().split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2)
+        : '?';
+      const av = document.createElement('div');
+      av.className = 'bs-avatar';
+      av.title     = tester.name || 'Anonymous';
+      av.textContent = initials;
+      avatarEl.appendChild(av);
+    });
+    if(betaList.length > 8){
+      const more = document.createElement('div');
+      more.className   = 'bs-avatar bs-avatar-more';
+      more.textContent = '+' + (betaList.length - 8);
+      avatarEl.appendChild(more);
+    }
+    if(betaList.length === 0){
+      avatarEl.innerHTML = '<span style="font-size:.72rem;color:rgba(255,255,255,.35);font-style:italic">Be the first to join!</span>';
+    }
+  }
 
   // KS signup count
   const list = (await sGet('ks_emails', true)) || [];
@@ -1147,21 +1480,60 @@ function setBetaUI(n){
 })();
 
 /* ── Kit Picker ── */
-const kitData=[
-  {ico:'🌱',title:'Perfect match: Smart Plant & Home Kit',desc:'You\'d love our Nature Starter Kit. It uses an Arduino to monitor soil moisture, temperature, and light — and can buzz your phone when your plant needs water. Great first build, zero experience needed.'},
-  {ico:'🤖',title:'Perfect match: Robot Arm Starter Kit',desc:'The Robotics Edu Kit is made for you. You\'ll build a 3-axis robot arm using servo motors and an Arduino Uno. Surprisingly satisfying to control from your phone when it\'s done!'},
-  {ico:'🎵',title:'Perfect match: MIDI Music Controller Kit',desc:'The Music Maker Kit uses an ESP32 to create a wireless Bluetooth MIDI controller. Connect it to any music software and play sounds by pressing your own custom buttons.'},
-  {ico:'🔐',title:'Perfect match: NFC Smart Access Kit',desc:'The Security Kit uses an ESP32 and an NFC reader to build a tap-to-unlock door system. We show you how to add your own cards, set up alerts, and log access times.'},
-];
+const KIT_DATA = {
+  0:  {ico:'💡', title:'Smart Lamp Kit',            desc:'We\'ll send you an ESP32, a smart LED strip or bulb controller, and a step-by-step guide to build a lamp you control from your phone, with colour changing, schedules, and auto-dimming.'},
+  1:  {ico:'🌡️', title:'Weather Station Kit',       desc:'An ESP32, temperature/humidity/pressure sensors, a small OLED screen, and a guide that walks you through wiring it all and sending daily summaries straight to your phone.'},
+  2:  {ico:'💧', title:'Auto Plant Waterer Kit',     desc:'An Arduino, soil moisture sensor, mini water pump, and tubing — all included. The guide walks you through wiring it and programming it to water automatically when the soil gets dry.'},
+  3:  {ico:'⏰', title:'Custom Alarm Clock Kit',     desc:'An Arduino, a bright LED matrix display, a buzzer, and light sensor. Build a clock that wakes you gently with light, shows the weather, and plays your phone music over Bluetooth.'},
+  4:  {ico:'🦾', title:'Robot Arm Kit',             desc:'Three servo motors, a custom-cut arm frame, an Arduino, and a Bluetooth controller. You build the arm, wire the motors, and control it from your phone. Surprisingly satisfying.'},
+  5:  {ico:'🚗', title:'RC Robot Car Kit',          desc:'An ESP32, two motors, a motor driver board, and a chassis. You build it, flash the code, and drive it from your browser or phone. Add the optional distance sensor to stop it before it crashes.'},
+  6:  {ico:'🕷️', title:'Walking Spider Bot Kit',   desc:'12 servo motors, a 3D-printed (or laser-cut) frame, and an Arduino Mega. This is a bigger build but incredibly rewarding — you\'ll learn loads about motor control and programming.'},
+  7:  {ico:'🌱', title:'Plant Health Monitor Kit',  desc:'An Arduino, soil moisture sensor, light sensor, and temperature probe. It tells you exactly what your plant needs — water, more light, or a different spot — and logs everything over time.'},
+  8:  {ico:'🐦', title:'Bird Feeder Camera Kit',    desc:'An ESP32-CAM module, a motion detector, and a 3D-printed housing you assemble. When a bird lands, it snaps a photo and sends it to your phone. Magical to set up.'},
+  9:  {ico:'☀️', title:'Solar Tracker Kit',         desc:'Two servo motors, a solar panel, light sensors, and an Arduino. It tracks the sun across the sky and tilts the panel to face it — generating significantly more power than a fixed panel.'},
+  10: {ico:'🎹', title:'MIDI Controller Kit',       desc:'An ESP32, custom pads or keys, knobs, and a Bluetooth module. Build your own wireless MIDI controller that connects to GarageBand, Ableton, or any music app — with whatever layout you want.'},
+  11: {ico:'🎸', title:'Guitar Tuner Kit',          desc:'An Arduino, a microphone module, and a small display. It listens to your guitar string, identifies the note, and shows you whether you\'re flat, sharp, or perfectly in tune.'},
+  12: {ico:'📻', title:'Internet Radio Kit',        desc:'An ESP32, a small speaker and amplifier, a rotary knob, and a display. Build a real physical radio that streams any internet station. Incredibly satisfying to tune with an actual knob.'},
+  13: {ico:'🧠', title:'Personal AI Assistant Kit', desc:'An ESP32 with a microphone and speaker, plus a guide to connecting it to the ChatGPT API. Press a button, ask a question out loud, hear the answer. Your own physical AI device.'},
+  14: {ico:'👁️', title:'Object Recognition Camera Kit', desc:'An ESP32-CAM with a TinyML model pre-loaded. It identifies objects in front of it in real time — no internet needed. You\'ll learn how AI runs directly on tiny hardware.'},
+  15: {ico:'🗣️', title:'Voice-Controlled Lights Kit', desc:'An ESP32 with a microphone, LED strip, and a voice recognition module. Say "turn on," "make it red," or "dim to 50%" and your lights respond — no smart hub, no subscription.'},
+  16: {ico:'🔑', title:'NFC Smart Lock Kit',        desc:'An ESP32, an NFC reader, a door lock servo, and a small display. Tap your card or phone to unlock. It logs every entry with a timestamp and sends you a notification each time.'},
+  17: {ico:'🚨', title:'Motion Alarm Kit',          desc:'An ESP32, a PIR motion sensor, a buzzer, and an LED. Wire it up, and it sends your phone a push notification the moment it detects movement. Optional camera module available.'},
+  18: {ico:'📦', title:'Package Detector Kit',      desc:'An ESP32 and a pressure-sensitive mat you place under your doormat. The moment a package lands on it, you get a text. If it\'s removed when you\'re not home, you get another alert.'},
+  19: {ico:'🎮', title:'Handheld Game Console Kit', desc:'An Arduino, a small OLED screen, and four buttons — all in a 3D-printed case. It comes pre-loaded with Tetris and Snake, but the guide teaches you how to write your own games from scratch.'},
+  20: {ico:'🌈', title:'LED Music Visualiser Kit',  desc:'An Arduino, a sound sensor, and an addressable LED strip. Wire it up and it dances to the music in the room in real time — reacting to bass hits, high notes, and beat drops.'},
+  21: {ico:'🎲', title:'Electronic Dice &amp; Scoreboard Kit', desc:'An Arduino and a small display. Shake it to roll a random number — or use it as a scoreboard for game nights. A great first project that you can finish in a couple of hours.'},
+  99: {ico:'✏️', title:'Something completely your own', desc:'None of the above? Scroll down and describe what you want in your own words. If you can imagine it, we can almost certainly build a kit around it — and teach you how to make it yourself.'},
+};
+
+function filterPick(btn, cat){
+  document.querySelectorAll('.ptab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.pick-big-card').forEach(function(c){
+    if(cat === 'all' || c.dataset.cat === cat){
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
+  // Clear selection when filtering
+  document.getElementById('pickerResult').classList.remove('show');
+}
+
 function pickKit(card){
-  document.querySelectorAll('.picker-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.pick-big-card').forEach(function(c){ c.classList.remove('selected'); });
   card.classList.add('selected');
-  const idx=parseInt(card.dataset.pick);
-  const d=kitData[idx];
-  document.getElementById('prIco').textContent=d.ico;
-  document.getElementById('prTitle').textContent=d.title;
-  document.getElementById('prDesc').textContent=d.desc;
+  const idx = parseInt(card.dataset.pick);
+  const d = KIT_DATA[idx];
+  if(!d) return;
+  document.getElementById('prIco').textContent   = d.ico;
+  document.getElementById('prTitle').textContent = d.title;
+  document.getElementById('prDesc').textContent  = d.desc;
   document.getElementById('pickerResult').classList.add('show');
+  // Smooth scroll to result
+  setTimeout(function(){
+    document.getElementById('pickerResult').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }, 100);
 }
 
 /* ── FAQ ── */
