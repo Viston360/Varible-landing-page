@@ -1181,42 +1181,40 @@ footer .logo-img{ height:32px; }
    Formspree will forward every submission to varible.tech@gmail.com
    ═══════════════════════════════════════════════════════ */
 
-const FORMSPREE_ID  = 'mvzwlaka';
-const OWNER_EMAIL   = 'varible.tech@gmail.com';
+/* ─────────────────────────────────────────────────────────────
+   FORMSPREE — form ID 'mvzwlaka' → delivers to varible.tech@gmail.com
+   Every submission is also logged to shared storage as a backup.
+   ───────────────────────────────────────────────────────────── */
+var FORMSPREE_ID = 'mvzwlaka';
+var OWNER_EMAIL  = 'varible.tech@gmail.com';
 
 async function sendEmail(subject, message, fromName, fromEmail) {
-  // Always log to shared storage — nothing is ever lost
-  const log = (await sGet('varible_email_log', true)) || [];
-  log.push({
-    subject:   subject,
-    message:   message,
-    fromName:  fromName  || 'Anonymous',
-    fromEmail: fromEmail || '',
-    ts:        new Date().toISOString()
-  });
+  fromName  = fromName  || 'Anonymous';
+  fromEmail = fromEmail || '';
+
+  /* 1 ─ Always write to shared storage first so nothing is lost */
+  var log = (await sGet('varible_email_log', true)) || [];
+  log.push({ subject: subject, message: message, fromName: fromName, fromEmail: fromEmail, ts: new Date().toISOString() });
   await sSet('varible_email_log', log, true);
 
-  if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-    // Not configured yet — just log
-    console.info('[Varible] Would email:', subject, '| From:', fromName, fromEmail);
-    return true;
-  }
-
+  /* 2 ─ Fire to Formspree (delivers to varible.tech@gmail.com) */
   try {
-    const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-      method:  'POST',
+    var body = {
+      _subject : subject,
+      message  : message,
+      name     : fromName,
+      email    : fromEmail || 'no-reply@varible.io',
+      _replyto : fromEmail || 'no-reply@varible.io'
+    };
+    var res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+      method : 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject:  subject,
-        message:   message,
-        name:      fromName  || 'Anonymous',
-        email:     fromEmail || 'no-reply@varible.io',
-        _replyto:  fromEmail || 'no-reply@varible.io'
-      })
+      body   : JSON.stringify(body)
     });
+    if (!res.ok) console.warn('[Varible] Formspree returned', res.status, '— saved to log anyway');
     return res.ok;
   } catch (err) {
-    console.warn('[Varible] Email send failed (stored in log):', err);
+    console.warn('[Varible] Formspree fetch failed — saved to log anyway:', err);
     return false;
   }
 }
@@ -1267,7 +1265,7 @@ function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
    Format: 'YYYY-MM-DDTHH:MM:SS'  (24-hour, UTC time)
    Example: '2025-10-15T09:00:00' = 15 Oct 2025 at 9am UTC
    ══════════════════════════════════════════════════ */
-var KS_LAUNCH = '2025-10-01T10:00:00';   // ← CHANGE THIS DATE
+var KS_LAUNCH = '2026-05-01T10:00:00';   // ← Kickstarter launch: 1 May 2026 at 10:00 UTC
 
 function initCountdown(){
   var target = new Date(KS_LAUNCH).getTime();
@@ -1433,28 +1431,28 @@ async function confirmBetaJoin(){
 
   showToast('🎉 You\'re beta tester #'+newSpots+'! We\'ll be in touch soon.');
 
-  // Re-render the list panel so new joiner appears immediately
-  await (async function(){
-    var betaList2 = (await sGet('varible_beta_list', true)) || [];
-    var listItems2 = document.getElementById('betaListItems');
-    var listCount2 = document.getElementById('betaListCount');
-    var listEmpty2 = document.getElementById('betaListEmpty');
-    if(!listItems2) return;
-    if(listEmpty2) listEmpty2.style.display = 'none';
-    if(listCount2) listCount2.textContent = betaList2.length + ' tester' + (betaList2.length === 1 ? '' : 's') + ' joined';
-    // Prepend the new tester row
-    var newTester = betaList2[betaList2.length - 1];
-    if(newTester){
-      var row2 = document.createElement('div');
-      row2.style.cssText = 'display:flex;align-items:center;gap:.6rem;padding:.45rem .55rem;border-radius:8px;background:rgba(255,176,0,.12);animation:up .4s ease both';
-      var nm2 = (newTester.name && newTester.name !== 'Anonymous') ? newTester.name : 'Beta Tester';
-      var ini2 = nm2.trim().split(' ').map(function(w){ return w[0]||''; }).join('').toUpperCase().slice(0,2);
-      row2.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:var(--ink);flex-shrink:0">'+ini2+'</div>'
-        + '<div style="flex:1;font-size:.76rem;font-weight:700;color:rgba(255,255,255,.85)">'+nm2+' <span style="color:rgba(255,176,0,.7);font-family:var(--mono);font-size:.62rem">#'+newSpots+'</span></div>'
-        + '<div style="font-size:.6rem;color:rgba(255,176,0,.5);font-family:var(--mono)">Just now ✨</div>';
-      listItems2.insertBefore(row2, listItems2.firstChild);
+  // Re-render the full list panel from shared storage so it's always accurate
+  var freshList = (await sGet('varible_beta_list', true)) || [];
+  renderBetaPanel(freshList);
+  // Also refresh avatars
+  var avEl = document.getElementById('betaAvatars');
+  if (avEl) {
+    avEl.innerHTML = '';
+    freshList.slice(-8).forEach(function(t) {
+      var av  = document.createElement('div');
+      av.className   = 'bs-avatar';
+      av.style.animation = 'up .3s ease both';
+      av.title       = (t.name && t.name !== 'Anonymous') ? t.name : 'Anonymous';
+      av.textContent = initials(t.name);
+      avEl.appendChild(av);
+    });
+    if (freshList.length > 8) {
+      var moreAv = document.createElement('div');
+      moreAv.className   = 'bs-avatar bs-avatar-more';
+      moreAv.textContent = '+' + (freshList.length - 8);
+      avEl.appendChild(moreAv);
     }
-  })();
+  }
 }
 
 function setBetaUI(n){
@@ -1476,104 +1474,138 @@ function setBetaUI(n){
 }
 
 /* ── Load shared counters on page load ── */
-(async function loadSharedCounters(){
-  // Beta spots counter
-  const spots = (await sGet('beta_spots', true)) || 0;
+/* ─────────────────────────────────────────────────────────────
+   LOAD ALL SHARED DATA ON PAGE LOAD
+   Reads from shared storage (synced across all devices/browsers)
+   and populates:
+     • Beta spots counter + remaining label
+     • Avatar row with real initials from every sign-up
+     • Scrollable tester list with name, email, spot #, join date
+     • KS email counter
+     • "Already joined" state for this device
+   All beta sign-ups are ALSO emailed via Formspree to varible.tech@gmail.com
+   ───────────────────────────────────────────────────────────── */
+(async function loadSharedCounters() {
+
+  /* ── Beta spots ── */
+  var spots    = (await sGet('beta_spots', true)) || 0;
+  var betaList = (await sGet('varible_beta_list', true)) || [];
   setBetaUI(spots);
 
-  // Load full beta tester list from shared storage
-  const betaList = (await sGet('varible_beta_list', true)) || [];
-
-  // ── Avatars row ──
-  const avatarEl = document.getElementById('betaAvatars');
-  if(avatarEl){
+  /* ── Avatar bubbles ── */
+  var avatarEl = document.getElementById('betaAvatars');
+  if (avatarEl) {
     avatarEl.innerHTML = '';
-    const show = betaList.slice(-8);
-    show.forEach(function(tester){
-      var initials = (tester.name && tester.name !== 'Anonymous')
-        ? tester.name.trim().split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2)
-        : '?';
-      var av = document.createElement('div');
-      av.className   = 'bs-avatar';
-      av.title       = tester.name || 'Anonymous';
-      av.textContent = initials;
-      avatarEl.appendChild(av);
-    });
-    if(betaList.length > 8){
-      var more = document.createElement('div');
-      more.className   = 'bs-avatar bs-avatar-more';
-      more.textContent = '+' + (betaList.length - 8);
-      avatarEl.appendChild(more);
-    }
-    if(betaList.length === 0){
-      avatarEl.innerHTML = '<span style="font-size:.72rem;color:rgba(255,255,255,.35);font-style:italic">Be the first to join!</span>';
-    }
-  }
-
-  // ── Beta tester list panel (shows names & join times) ──
-  var listItems  = document.getElementById('betaListItems');
-  var listCount  = document.getElementById('betaListCount');
-  var listEmpty  = document.getElementById('betaListEmpty');
-  if(listItems){
-    if(betaList.length === 0){
-      if(listEmpty) listEmpty.style.display = '';
-      if(listCount) listCount.textContent = '';
+    if (betaList.length === 0) {
+      avatarEl.innerHTML = '<span style="font-size:.72rem;color:rgba(255,255,255,.35);font-style:italic">Be the first beta tester!</span>';
     } else {
-      if(listEmpty) listEmpty.style.display = 'none';
-      if(listCount) listCount.textContent = betaList.length + ' tester' + (betaList.length === 1 ? '' : 's') + ' joined';
-      listItems.innerHTML = '';
-      // Show most recent first
-      betaList.slice().reverse().forEach(function(tester, idx){
-        var row = document.createElement('div');
-        row.style.cssText = 'display:flex;align-items:center;gap:.6rem;padding:.45rem .55rem;border-radius:8px;background:rgba(255,255,255,.04);';
-        // Initials badge
-        var initials = (tester.name && tester.name !== 'Anonymous')
-          ? tester.name.trim().split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2)
-          : '?';
-        var badge = document.createElement('div');
-        badge.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:var(--ink);flex-shrink:0;';
-        badge.textContent = initials;
-        // Name + spot
-        var meta = document.createElement('div');
-        meta.style.cssText = 'flex:1;min-width:0;';
-        var nameStr  = (tester.name && tester.name !== 'Anonymous') ? tester.name : 'Beta Tester';
-        // Format join date nicely
-        var dateStr  = '';
-        if(tester.ts){
-          var d = new Date(tester.ts);
-          dateStr = d.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
-        }
-        meta.innerHTML = '<div style="font-size:.76rem;font-weight:700;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + nameStr + '</div>'
-          + (dateStr ? '<div style="font-size:.62rem;color:rgba(255,255,255,.3);font-family:var(--mono)">Joined ' + dateStr + '</div>' : '');
-        // Spot number
-        var spotBadge = document.createElement('div');
-        spotBadge.style.cssText = 'font-size:.6rem;font-weight:700;color:rgba(255,176,0,.7);font-family:var(--mono);flex-shrink:0;';
-        spotBadge.textContent = tester.spot ? '#' + tester.spot : '#' + (betaList.length - idx);
-        row.appendChild(badge);
-        row.appendChild(meta);
-        row.appendChild(spotBadge);
-        listItems.appendChild(row);
+      betaList.slice(-8).forEach(function(t) {
+        var ini = initials(t.name);
+        var av  = document.createElement('div');
+        av.className   = 'bs-avatar';
+        av.title       = (t.name && t.name !== 'Anonymous') ? t.name + (t.email ? ' (' + t.email + ')' : '') : 'Anonymous';
+        av.textContent = ini;
+        avatarEl.appendChild(av);
       });
-
-      // Formspree note at bottom
-      var note = document.createElement('div');
-      note.style.cssText = 'margin-top:.65rem;font-size:.62rem;color:rgba(255,255,255,.2);font-family:var(--mono);text-align:center;';
-      note.textContent   = 'Signups also forwarded to varible.tech@gmail.com via Formspree';
-      listItems.appendChild(note);
+      if (betaList.length > 8) {
+        var more = document.createElement('div');
+        more.className   = 'bs-avatar bs-avatar-more';
+        more.textContent = '+' + (betaList.length - 8);
+        avatarEl.appendChild(more);
+      }
     }
   }
 
-  // KS signup count
-  var ksList = (await sGet('ks_emails', true)) || [];
-  if(ksList.length > 0) updateKsCounter(ksList.length);
+  /* ── Tester list panel ── */
+  renderBetaPanel(betaList);
 
-  // Already joined this device?
+  /* ── KS email counter ── */
+  var ksList = (await sGet('ks_emails', true)) || [];
+  if (ksList.length > 0) updateKsCounter(ksList.length);
+
+  /* ── Already joined on this device? ── */
   var joined = await sGet('beta_joined_me', false);
-  if(joined){
+  if (joined) {
     var btn = document.querySelector('[onclick="handleBetaJoin()"]');
-    if(btn){ btn.textContent="🧪 You're in beta!"; btn.style.background='#e8f5e9'; btn.style.color='#2e7d32'; }
+    if (btn) { btn.textContent = "🧪 You're in beta!"; btn.style.background = '#e8f5e9'; btn.style.color = '#2e7d32'; }
   }
 })();
+
+/* Build initials string from a name */
+function initials(name) {
+  if (!name || name === 'Anonymous') return '?';
+  return name.trim().split(/\s+/).map(function(w) { return w[0] || ''; }).join('').toUpperCase().slice(0, 2) || '?';
+}
+
+/* Render / refresh the scrollable beta tester panel */
+function renderBetaPanel(betaList) {
+  var listItems = document.getElementById('betaListItems');
+  var listCount = document.getElementById('betaListCount');
+  var listEmpty = document.getElementById('betaListEmpty');
+  if (!listItems) return;
+
+  if (betaList.length === 0) {
+    if (listEmpty) listEmpty.style.display = '';
+    if (listCount) listCount.textContent   = '';
+    return;
+  }
+
+  if (listEmpty) listEmpty.style.display = 'none';
+  if (listCount) listCount.textContent   = betaList.length + (betaList.length === 1 ? ' tester' : ' testers') + ' joined';
+
+  /* Clear and rebuild rows (most recent first) */
+  /* Remove all except the empty-state span */
+  Array.from(listItems.children).forEach(function(c) {
+    if (c.id !== 'betaListEmpty') c.remove();
+  });
+
+  betaList.slice().reverse().forEach(function(t, i) {
+    var nameStr = (t.name && t.name !== 'Anonymous') ? t.name : 'Beta Tester';
+    var ini     = initials(t.name);
+    var spotNum = t.spot ? '#' + t.spot : '#' + (betaList.length - i);
+    var dateStr = '';
+    if (t.ts) {
+      dateStr = new Date(t.ts).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+    var emailStr = (t.email && t.email !== '(none)') ? t.email : '';
+
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;gap:.6rem;padding:.45rem .55rem;border-radius:8px;background:rgba(255,255,255,.04);margin-bottom:2px;';
+
+    /* Initials badge */
+    var badge = document.createElement('div');
+    badge.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:var(--ink);flex-shrink:0;';
+    badge.textContent   = ini;
+
+    /* Name + email + date */
+    var meta = document.createElement('div');
+    meta.style.cssText  = 'flex:1;min-width:0;';
+    meta.innerHTML =
+      '<div style="font-size:.76rem;font-weight:700;color:rgba(255,255,255,.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + nameStr + '</div>'
+      + (emailStr ? '<div style="font-size:.6rem;color:rgba(255,255,255,.35);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + emailStr + '</div>' : '')
+      + (dateStr  ? '<div style="font-size:.6rem;color:rgba(255,255,255,.25);font-family:var(--mono);">Joined ' + dateStr + '</div>' : '');
+
+    /* Spot badge */
+    var spot = document.createElement('div');
+    spot.style.cssText  = 'font-size:.6rem;font-weight:700;color:rgba(255,176,0,.8);font-family:var(--mono);flex-shrink:0;';
+    spot.textContent    = spotNum;
+
+    row.appendChild(badge);
+    row.appendChild(meta);
+    row.appendChild(spot);
+    listItems.appendChild(row);
+  });
+
+  /* Footer note */
+  var existing = listItems.querySelector('.formspree-note');
+  if (!existing) {
+    var note = document.createElement('div');
+    note.className   = 'formspree-note';
+    note.style.cssText = 'margin-top:.7rem;padding-top:.55rem;border-top:1px solid rgba(255,255,255,.06);font-size:.6rem;color:rgba(255,255,255,.18);font-family:var(--mono);text-align:center;';
+    note.textContent = '✉ Every signup is emailed to varible.tech@gmail.com via Formspree (ID: mvzwlaka)';
+    listItems.appendChild(note);
+  }
+}
 
 /* ── Kit Picker ── */
 const KIT_DATA = {
