@@ -1219,14 +1219,30 @@ async function sendEmail(subject, message, fromName, fromEmail) {
   }
 }
 
-/* ── Storage helpers ── */
-async function sGet(key, shared=false){
-  try{ const r=await window.storage.get(key,shared); return r?JSON.parse(r.value):null; }
-  catch(e){ return null; }
+/* ─────────────────────────────────────────────────────────────
+   STORAGE LAYER — uses localStorage (works in every browser)
+   "shared" keys use the prefix "vbl_shared_"  → same data for
+   everyone on the same hosted URL (truly shared via a backend
+   would need a server; for now localStorage is per-browser but
+   reliable and never fails silently like window.storage did)
+   Personal keys use "vbl_me_"
+   ───────────────────────────────────────────────────────────── */
+function _storageKey(key, shared) {
+  return (shared ? 'vbl_shared_' : 'vbl_me_') + key;
 }
-async function sSet(key, val, shared=false){
-  try{ await window.storage.set(key,JSON.stringify(val),shared); return true; }
-  catch(e){ console.warn('Storage error',key,e); return false; }
+async function sGet(key, shared) {
+  shared = shared || false;
+  try {
+    var raw = localStorage.getItem(_storageKey(key, shared));
+    return raw !== null ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+async function sSet(key, val, shared) {
+  shared = shared || false;
+  try {
+    localStorage.setItem(_storageKey(key, shared), JSON.stringify(val));
+    return true;
+  } catch(e) { console.warn('sSet failed:', key, e); return false; }
 }
 
 /* ── NAV offset for announcement bar ── */
@@ -1266,6 +1282,25 @@ function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
    Example: '2025-10-15T09:00:00' = 15 Oct 2025 at 9am UTC
    ══════════════════════════════════════════════════ */
 var KS_LAUNCH = '2026-05-01T10:00:00';   // ← Kickstarter launch: 1 May 2026 at 10:00 UTC
+
+/* ══════════════════════════════════════════════════════════════
+   ★ BETA TESTER LIST — edit this manually ★
+   Add a new entry for each person who signs up.
+   Fields:
+     name  → their name (shown in the panel)
+     email → their email (shown small below the name, optional)
+     spot  → their spot number (1, 2, 3 ...)
+     date  → when they joined (any readable string you like)
+   ══════════════════════════════════════════════════════════════ */
+var BETA_TESTERS = [
+  /* Example entries — replace or add your real ones below:
+  { name: 'Jane Smith',  email: 'jane@example.com',  spot: 1, date: '20 Mar 2026' },
+  { name: 'Tom K.',      email: 'tom@example.com',   spot: 2, date: '21 Mar 2026' },
+  { name: 'Marie L.',    email: '',                  spot: 3, date: '22 Mar 2026' },
+  */
+];
+/* Total spots available */
+var BETA_TOTAL = 50;
 
 function initCountdown(){
   var target = new Date(KS_LAUNCH).getTime();
@@ -1367,92 +1402,73 @@ async function handleBetaJoin(){
 }
 
 async function confirmBetaJoin(){
-  const emailEl = document.getElementById('betaEmail');
-  const nameEl  = document.getElementById('betaName');
-  const email   = emailEl ? emailEl.value.trim().toLowerCase() : '';
-  const name    = nameEl  ? nameEl.value.trim() : '';
+  var emailEl = document.getElementById('betaEmail');
+  var nameEl  = document.getElementById('betaName');
+  var email   = emailEl ? emailEl.value.trim().toLowerCase() : '';
+  var name    = nameEl  ? nameEl.value.trim() : '';
 
   if(email && !isEmail(email)){ showToast('⚠️ Check your email address — something looks off.'); return; }
 
-  const spots = (await sGet('beta_spots', true)) || 0;
-  if(spots >= 50){ showToast('😅 Beta is full! Sign up for the Kickstarter list above.'); return; }
+  if(BETA_TESTERS.length >= BETA_TOTAL){
+    showToast('😅 Beta is full! Sign up for the Kickstarter list above.');
+    return;
+  }
 
-  const newSpots = spots + 1;
-  await sSet('beta_spots', newSpots, true);
-  await sSet('beta_joined_me', true, false);
+  /* Add to the in-memory list so the page updates immediately */
+  var newSpot = BETA_TESTERS.length + 1;
+  BETA_TESTERS.push({
+    name:  name  || 'Anonymous',
+    email: email || '',
+    spot:  newSpot,
+    date:  new Date().toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'})
+  });
 
-  // Log the signup to shared storage
-  const betaList = (await sGet('varible_beta_list', true)) || [];
-  betaList.push({ name: name||'Anonymous', email: email||'(none)', ts: new Date().toISOString(), spot: newSpots });
-  await sSet('varible_beta_list', betaList, true);
+  /* Remember on this device so the button stays green on refresh */
+  try { localStorage.setItem('vbl_me_beta_joined_me', '1'); } catch(e) {}
 
-  // Send notification email to owner
+  /* Send email via Formspree */
   await sendEmail(
-    '🧪 New Beta Tester #'+newSpots+' — Varible',
-    'Someone just joined the beta!\n\nName: '+(name||'Not provided')+'\nEmail: '+(email||'Not provided')+'\nSpot #: '+newSpots+' of 50\nTime: '+new Date().toLocaleString()+'\n\nTotal beta testers so far: '+newSpots,
-    name||'Beta Signup', email||'no-reply@varible.io'
+    '🧪 New Beta Tester #' + newSpot + ' — Varible',
+    'Someone just joined the beta!\n\nName: '  + (name  || 'Not provided') +
+    '\nEmail: ' + (email || 'Not provided') +
+    '\nSpot #: ' + newSpot + ' of ' + BETA_TOTAL +
+    '\nTime: '  + new Date().toLocaleString(),
+    name || 'Beta Signup',
+    email || 'no-reply@varible.io'
   );
 
-  // Update UI
-  setBetaUI(newSpots);
-  const row = document.getElementById('betaEmailInline');
+  /* Update counter */
+  setBetaUI(BETA_TESTERS.length);
+
+  /* Remove input row and update button */
+  var row = document.getElementById('betaEmailInline');
   if(row) row.remove();
-  const btn = document.querySelector('[onclick="confirmBetaJoin()"]');
-  if(btn){ btn.textContent='🧪 You\'re in beta!'; btn.style.background='#e8f5e9'; btn.style.color='#2e7d32'; btn.setAttribute('onclick',''); }
+  var btn = document.querySelector('[onclick="confirmBetaJoin()"]');
+  if(btn){ btn.textContent = "🧪 You're in beta!"; btn.style.background = '#e8f5e9'; btn.style.color = '#2e7d32'; btn.setAttribute('onclick',''); }
 
-  // Add new avatar with real initials
-  const avatarEl = document.getElementById('betaAvatars');
+  /* Re-render avatars and panel from updated list */
+  var avatarEl = document.getElementById('betaAvatars');
   if(avatarEl){
-    // Remove "Be the first" placeholder if present
-    const placeholder = avatarEl.querySelector('span');
-    if(placeholder) placeholder.remove();
-    // Remove old +N badge if present
-    const moreBadge = avatarEl.querySelector('.bs-avatar-more');
-    if(moreBadge) moreBadge.remove();
-
-    const initials = (name && name !== 'Anonymous')
-      ? name.trim().split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2)
-      : '?';
-    const av = document.createElement('div');
-    av.className    = 'bs-avatar';
-    av.title        = name || 'Anonymous';
-    av.textContent  = initials;
+    var ph = avatarEl.querySelector('span');
+    if(ph) ph.remove();
+    var mb = avatarEl.querySelector('.bs-avatar-more');
+    if(mb) mb.remove();
+    var av = document.createElement('div');
+    av.className   = 'bs-avatar';
+    av.title       = (name || 'Anonymous') + (email ? ' — ' + email : '');
+    av.textContent = initials(name || 'Anonymous');
     av.style.animation = 'up .4s ease both';
     avatarEl.appendChild(av);
-
-    // Re-add +N badge if needed
-    if(newSpots > 8){
-      const more = document.createElement('div');
+    if(BETA_TESTERS.length > 8){
+      var more = document.createElement('div');
       more.className   = 'bs-avatar bs-avatar-more';
-      more.textContent = '+' + (newSpots - 8);
+      more.textContent = '+' + (BETA_TESTERS.length - 8);
       avatarEl.appendChild(more);
     }
   }
+  renderBetaPanel(BETA_TESTERS);
 
-  showToast('🎉 You\'re beta tester #'+newSpots+'! We\'ll be in touch soon.');
-
-  // Re-render the full list panel from shared storage so it's always accurate
-  var freshList = (await sGet('varible_beta_list', true)) || [];
-  renderBetaPanel(freshList);
-  // Also refresh avatars
-  var avEl = document.getElementById('betaAvatars');
-  if (avEl) {
-    avEl.innerHTML = '';
-    freshList.slice(-8).forEach(function(t) {
-      var av  = document.createElement('div');
-      av.className   = 'bs-avatar';
-      av.style.animation = 'up .3s ease both';
-      av.title       = (t.name && t.name !== 'Anonymous') ? t.name : 'Anonymous';
-      av.textContent = initials(t.name);
-      avEl.appendChild(av);
-    });
-    if (freshList.length > 8) {
-      var moreAv = document.createElement('div');
-      moreAv.className   = 'bs-avatar bs-avatar-more';
-      moreAv.textContent = '+' + (freshList.length - 8);
-      avEl.appendChild(moreAv);
-    }
-  }
+  showToast('🎉 You are beta tester #' + newSpot + '! We will be in touch soon.');
 }
 
 function setBetaUI(n){
@@ -1473,62 +1489,44 @@ function setBetaUI(n){
   }
 }
 
-/* ── Load shared counters on page load ── */
-/* ─────────────────────────────────────────────────────────────
-   LOAD ALL SHARED DATA ON PAGE LOAD
-   Reads from shared storage (synced across all devices/browsers)
-   and populates:
-     • Beta spots counter + remaining label
-     • Avatar row with real initials from every sign-up
-     • Scrollable tester list with name, email, spot #, join date
-     • KS email counter
-     • "Already joined" state for this device
-   All beta sign-ups are ALSO emailed via Formspree to varible.tech@gmail.com
-   ───────────────────────────────────────────────────────────── */
-(async function loadSharedCounters() {
+/* ── Page load: render beta list from hardcoded BETA_TESTERS array ── */
+(function initPage() {
+  setBetaUI(BETA_TESTERS.length);
 
-  /* ── Beta spots ── */
-  var spots    = (await sGet('beta_spots', true)) || 0;
-  var betaList = (await sGet('varible_beta_list', true)) || [];
-  setBetaUI(spots);
-
-  /* ── Avatar bubbles ── */
+  /* Avatar bubbles */
   var avatarEl = document.getElementById('betaAvatars');
   if (avatarEl) {
     avatarEl.innerHTML = '';
-    if (betaList.length === 0) {
+    if (BETA_TESTERS.length === 0) {
       avatarEl.innerHTML = '<span style="font-size:.72rem;color:rgba(255,255,255,.35);font-style:italic">Be the first beta tester!</span>';
     } else {
-      betaList.slice(-8).forEach(function(t) {
-        var ini = initials(t.name);
-        var av  = document.createElement('div');
+      BETA_TESTERS.slice(-8).forEach(function(t) {
+        var av = document.createElement('div');
         av.className   = 'bs-avatar';
-        av.title       = (t.name && t.name !== 'Anonymous') ? t.name + (t.email ? ' (' + t.email + ')' : '') : 'Anonymous';
-        av.textContent = ini;
+        av.title       = t.name + (t.email ? ' — ' + t.email : '');
+        av.textContent = initials(t.name);
         avatarEl.appendChild(av);
       });
-      if (betaList.length > 8) {
+      if (BETA_TESTERS.length > 8) {
         var more = document.createElement('div');
         more.className   = 'bs-avatar bs-avatar-more';
-        more.textContent = '+' + (betaList.length - 8);
+        more.textContent = '+' + (BETA_TESTERS.length - 8);
         avatarEl.appendChild(more);
       }
     }
   }
 
-  /* ── Tester list panel ── */
-  renderBetaPanel(betaList);
+  /* Tester list panel */
+  renderBetaPanel(BETA_TESTERS);
 
-  /* ── KS email counter ── */
-  var ksList = (await sGet('ks_emails', true)) || [];
-  if (ksList.length > 0) updateKsCounter(ksList.length);
-
-  /* ── Already joined on this device? ── */
-  var joined = await sGet('beta_joined_me', false);
-  if (joined) {
-    var btn = document.querySelector('[onclick="handleBetaJoin()"]');
-    if (btn) { btn.textContent = "🧪 You're in beta!"; btn.style.background = '#e8f5e9'; btn.style.color = '#2e7d32'; }
-  }
+  /* Already joined on this device? */
+  try {
+    var joined = localStorage.getItem('vbl_me_beta_joined_me');
+    if (joined) {
+      var btn = document.querySelector('[onclick="handleBetaJoin()"]');
+      if (btn) { btn.textContent = "🧪 You're in beta!"; btn.style.background = '#e8f5e9'; btn.style.color = '#2e7d32'; }
+    }
+  } catch(e) {}
 })();
 
 /* Build initials string from a name */
