@@ -650,7 +650,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
             <div class="brow"><div class="bp g"></div><div class="bp"></div><div class="bp g"></div><div class="bp"></div><div class="bp g"></div><div class="bp"></div><div class="bp g"></div></div>
           </div>
         </div>
-        <div class="blbl">Custom ESP32 project · varible.io</div>
+        <div class="blbl">Custom Project · varible.net</div>
         <div class="cfoot">
           <div><div class="cname">Your Idea</div><div class="cdtl">Any Components · Custom Designed Casings · Proffesionals</div></div>
           <div class="cpill">🔨 In Progress</div>
@@ -1371,8 +1371,8 @@ async function sendEmail(subject, message, fromName, fromEmail) {
         _subject : subject,
         message  : message,
         name     : fromName,
-        email    : fromEmail || 'no-reply@varible.io',
-        _replyto : fromEmail || 'no-reply@varible.io'
+        email    : fromEmail || 'no-reply@varible.net',
+        _replyto : fromEmail || 'no-reply@varible.net'
       })
     });
     if(!res.ok) console.warn('[Varible] Formspree returned', res.status);
@@ -1696,7 +1696,7 @@ function buildPost(p,liked,saved,likes,comments){
   var body=p.body.replace(/\n/g,'<br>');
   var tags=p.tags.map(function(t){return '<span class="ptag-inline">#'+t+'</span>';}).join(' ');
   var cHtml=comments.map(function(c){return '<div class="comment"><div class="c-avatar">'+getInitials(c.name)+'</div><div class="c-bubble"><div class="c-name">'+(c.name||'Anonymous')+'</div>'+c.text+'</div></div>';}).join('');
-  return '<div class="post-header"><div class="post-avatar">V</div><div style="flex:1"><div class="post-author">Varible Team</div><div class="post-handle">@varible.io</div></div><div class="post-time">'+p.time+'</div></div>'
+  return '<div class="post-header"><div class="post-avatar">V</div><div style="flex:1"><div class="post-author">Varible Team</div><div class="post-handle">@varible.net</div></div><div class="post-time">'+p.time+'</div></div>'
     +'<div class="post-body">'+body+'<br><br>'+tags+'</div>'
     +'<div class="post-img"><canvas class="board-canvas"></canvas><span class="post-img-label">From our workshop 🛠️</span></div>'
     +'<div class="post-actions">'
