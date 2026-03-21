@@ -15,7 +15,7 @@
   --bdr:rgba(255,176,0,.22);--bdr2:rgba(24,20,13,.07);
   --sh:0 2px 20px rgba(24,20,13,.06);--sh2:0 8px 48px rgba(24,20,13,.11);
   --glow:0 4px 28px rgba(255,176,0,.38);--r:14px;
-  --font:"Plus Jakarta Sans",sans-serif;--mono:"DM Mono",monospace;
+  --font:"Plus Jakarta Sans",sans-serif;--mono:"DM Mono",monospace;--logo-bg:#ededec;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -27,7 +27,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);overflow-x:hi
 .announce a{color:var(--brand);text-decoration:none;font-weight:700;border-bottom:1px solid rgba(255,176,0,.4)}
 .announce-close{position:absolute;right:1rem;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:1rem}
 .announce-close:hover{color:#fff}
-nav{position:fixed;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(253,250,243,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--bdr2);transition:top .3s}
+nav{position:fixed;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(237,237,236,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr2);transition:top .3s}
 .logo{display:flex;align-items:center;text-decoration:none}
 .logo img{height:36px;width:auto;display:block}
 .nav-right{display:flex;align-items:center;gap:1.4rem}
@@ -365,7 +365,7 @@ section{position:relative}
 .ptag-inline{display:inline-block;background:var(--brand-s);color:var(--brand-d);font-size:.71rem;font-weight:600;padding:.12rem .5rem;border-radius:50px;border:1px solid var(--bdr)}
 .post-img{border-radius:11px;overflow:hidden;margin-bottom:1rem;background:var(--bg2);height:168px;display:flex;align-items:center;justify-content:center;position:relative}
 .post-img canvas{position:absolute;inset:0;width:100%;height:100%}
-.post-img-label{position:relative;z-index:1;font-family:var(--mono);font-size:.65rem;color:var(--muted);background:rgba(253,250,243,.88);padding:.28rem .65rem;border-radius:6px}
+.post-img-label{position:relative;z-index:1;font-family:var(--mono);font-size:.65rem;color:var(--muted);background:rgba(237,237,236,.9);padding:.28rem .65rem;border-radius:6px}
 .post-actions{display:flex;align-items:center;gap:.9rem;padding-top:.72rem;border-top:1px solid var(--bdr2)}
 .like-btn,.save-btn,.share-btn{display:flex;align-items:center;gap:.38rem;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:.79rem;font-weight:600;color:var(--muted);padding:.36rem .78rem;border-radius:50px;transition:background .18s,color .18s}
 .like-btn:hover{background:rgba(255,176,0,.1);color:var(--brand-d)}
@@ -410,7 +410,7 @@ section{position:relative}
 .btn-ghost-light:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
 
 /* ── FOOTER ── */
-footer{background:var(--surface);border-top:1px solid var(--bdr2);padding:2.2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem}
+footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.2rem}
 .fcopy{font-size:.77rem;color:var(--muted)}
 .flinks{display:flex;gap:1.6rem}
 .flinks a{font-size:.78rem;font-weight:600;color:var(--muted);text-decoration:none;transition:color .2s}
@@ -443,6 +443,100 @@ footer{background:var(--surface);border-top:1px solid var(--bdr2);padding:2.2rem
   nav .nav-links{display:none}
   .announce{font-size:.72rem;padding:.5rem 1.5rem}
   .beta-modal{padding:1.5rem}
+}
+
+/* ── SERVICE SLIDESHOW ── */
+.slideshow-section{background:var(--ink);position:relative;overflow:hidden}
+.slideshow-section .eyebrow{background:rgba(255,176,0,.14);border-color:rgba(255,176,0,.28);color:var(--brand)}
+.slideshow-wrap{max-width:1160px;margin:0 auto;padding:5rem 3rem}
+.slideshow-hdr{text-align:center;margin-bottom:3rem}
+.slideshow-hdr .stitle{color:#fff}
+.slideshow-hdr .ssub{color:rgba(255,255,255,.5);margin:0 auto 0;text-align:center}
+.slider{position:relative;overflow:hidden;border-radius:20px}
+.slides{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.slide{
+  min-width:100%;display:flex;align-items:stretch;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;
+}
+.slide-left{
+  flex:1;padding:3rem;display:flex;flex-direction:column;justify-content:center;
+}
+.slide-tag{font-size:.68rem;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;font-family:var(--mono)}
+.slide-title{font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:1rem;letter-spacing:-.02em}
+.slide-desc{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:1.6rem;max-width:420px}
+.slide-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.slide-chip{font-family:var(--mono);font-size:.65rem;padding:.28rem .7rem;border-radius:50px;border:1px solid rgba(255,176,0,.3);color:rgba(255,176,0,.85);background:rgba(255,176,0,.07)}
+.slide-right{
+  width:340px;flex-shrink:0;
+  background:rgba(255,255,255,.03);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.slide-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+.slide-icon{font-size:5rem;position:relative;z-index:1;filter:drop-shadow(0 0 30px rgba(255,176,0,.4))}
+/* slider controls */
+.slider-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:2rem}
+.slider-btn{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  color:#fff;font-size:1.1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s;
+}
+.slider-btn:hover{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.slider-dots{display:flex;gap:.5rem;align-items:center}
+.sdot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.2);border:none;cursor:pointer;padding:0;
+  transition:background .2s,transform .2s;
+}
+.sdot.active{background:var(--brand);transform:scale(1.35)}
+.slider-progress{height:2px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:1.2rem;overflow:hidden}
+.slider-bar{height:100%;background:var(--brand);border-radius:2px;width:0%;transition:width .1s linear}
+
+/* ── SCHOOL REGISTRATION FORM ── */
+.school-reg-bg{background:var(--surface);border-top:1px solid var(--bdr2)}
+.school-reg-wrap{max-width:900px;margin:0 auto;padding:5.5rem 3rem}
+.school-reg-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.school-reg-form{background:var(--bg2);border:1.5px solid var(--bdr2);border-radius:20px;padding:2.2rem;box-shadow:var(--sh)}
+.school-reg-form h3{font-size:1.1rem;font-weight:800;margin-bottom:.35rem}
+.school-reg-form .form-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.6rem;line-height:1.6}
+.form-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:0}
+.form-field{display:flex;flex-direction:column;gap:.38rem;margin-bottom:.9rem;flex:1;min-width:140px}
+.form-field label{font-size:.76rem;font-weight:700;color:var(--ink2)}
+.form-field label .hint{font-weight:400;color:var(--muted);font-size:.7rem}
+.form-input,.form-select,.form-textarea{
+  width:100%;background:var(--surface);border:1.5px solid var(--bdr2);
+  border-radius:10px;padding:.68rem .95rem;
+  font-family:var(--font);font-size:.84rem;color:var(--ink);
+  outline:none;transition:border-color .2s;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--brand)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--muted2)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238c7f6a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+.form-textarea{min-height:80px;resize:vertical}
+.form-check-group{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.9rem}
+.form-check{display:flex;align-items:flex-start;gap:.55rem;font-size:.82rem;color:var(--ink2);cursor:pointer}
+.form-check input{accent-color:var(--brand);margin-top:.15rem;flex-shrink:0}
+.form-submit-row{display:flex;justify-content:flex-end;margin-top:.5rem}
+.school-reg-success{background:var(--brand-s);border:1.5px solid var(--bdr);border-radius:14px;padding:1.5rem;text-align:center;display:none}
+.school-reg-success.show{display:block}
+/* info side */
+.school-reg-info{display:flex;flex-direction:column;gap:1.2rem}
+.school-info-card{background:var(--brand-s);border:1.5px solid var(--bdr);border-radius:var(--r);padding:1.4rem}
+.school-info-card h4{font-size:.92rem;font-weight:700;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.school-info-card p{font-size:.82rem;color:var(--muted);line-height:1.68}
+.school-info-card ul{font-size:.82rem;color:var(--muted);line-height:1.68;padding-left:1.1rem;margin-top:.4rem}
+.school-info-card ul li{margin-bottom:.25rem}
+
+/* responsive additions */
+@media(max-width:1024px){
+  .slide-right{display:none}
+  .school-reg-layout{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .slide-left{padding:1.8rem}
+  .school-reg-wrap{padding:4rem 1.5rem}
 }
 </style>
 </head>
@@ -509,7 +603,7 @@ footer{background:var(--surface);border-top:1px solid var(--bdr2);padding:2.2rem
       <li><a href="#services">What We Do</a></li>
       <li><a href="#edukit">Edu Kits</a></li>
       <li><a href="#kickstarter">Kickstarter</a></li>
-      <li><a href="#schools">Schools</a></li>
+      <li><a href="#showcase">Showcase</a></li><li><a href="#schools">Schools</a></li>
       <li><a href="#contact" class="ncta">Talk to Us →</a></li>
     </ul>
     <div class="nav-badge"><div class="badge-dot"></div> Beta</div>
@@ -622,7 +716,7 @@ footer{background:var(--surface);border-top:1px solid var(--bdr2);padding:2.2rem
         <div class="beta-list-panel">
           <div class="beta-list-hdr"><span>🧪 Beta testers who've applied</span><span class="beta-list-count" id="betaListCount"></span></div>
           <div class="beta-list-items" id="betaListItems"><span class="beta-empty">No applications yet — be the first!</span></div>
-          <div class="beta-form-note">✉ Every application is emailed to varible.tech@gmail.com via Formspree</div>
+          <div class="beta-form-note">✉ Every application is emailed to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="770116051e151b12590312141f37101a161e1b5914181a">[email&#160;protected]</a> via Formspree</div>
         </div>
         <button class="btn btn-brand" style="width:100%;justify-content:center;margin-top:1rem" onclick="openBetaModal()">Apply for Beta Testing →</button>
       </div>
@@ -746,6 +840,121 @@ footer{background:var(--surface);border-top:1px solid var(--bdr2);padding:2.2rem
   </div>
 </section>
 
+
+<!-- SERVICE SLIDESHOW -->
+<section class="slideshow-section" id="showcase">
+  <div class="slideshow-wrap">
+    <div class="slideshow-hdr reveal">
+      <span class="eyebrow">✦ What we do</span>
+      <h2 class="stitle">Everything we can build for you.</h2>
+      <p class="ssub">From a beginner's first LED blink to a full AI-powered assistant — here's a taste of what's possible.</p>
+    </div>
+    <div class="slider" id="mainSlider">
+      <div class="slides" id="slidesTrack">
+
+        <!-- Slide 1 -->
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-tag">Custom Devices</div>
+            <div class="slide-title">We build your idea from scratch</div>
+            <div class="slide-desc">You describe it in plain words. We design the circuit, write the code, and build the device. No schematics, no jargon — just tell us what you want and we handle the rest.</div>
+            <div class="slide-chips"><span class="slide-chip">Arduino</span><span class="slide-chip">ESP32</span><span class="slide-chip">Any complexity</span></div>
+            <a href="#ideabox" class="btn btn-brand" style="font-size:.84rem;padding:.72rem 1.5rem">Submit your idea →</a>
+          </div>
+          <div class="slide-right">
+            <canvas class="slide-canvas" data-color="#ffb000"></canvas>
+            <div class="slide-icon">⚡</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-tag">IoT &amp; Wi-Fi</div>
+            <div class="slide-title">Make it talk to your phone</div>
+            <div class="slide-desc">We connect your device to the internet so it can send you notifications, log data, respond to voice commands, or talk to any app — from anywhere in the world.</div>
+            <div class="slide-chips"><span class="slide-chip">Wi-Fi</span><span class="slide-chip">Bluetooth</span><span class="slide-chip">Notifications</span><span class="slide-chip">MQTT</span></div>
+            <a href="#ideabox" class="btn btn-brand" style="font-size:.84rem;padding:.72rem 1.5rem">Build an IoT device →</a>
+          </div>
+          <div class="slide-right">
+            <canvas class="slide-canvas" data-color="#4caf50"></canvas>
+            <div class="slide-icon">📡</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-tag">Edu Kits</div>
+            <div class="slide-title">Learn by building what you love</div>
+            <div class="slide-desc">Pick any project — a weather station, robot arm, smart lamp, or personal AI assistant. We create a custom step-by-step guide just for your project. No experience needed, ever.</div>
+            <div class="slide-chips"><span class="slide-chip">Total beginners</span><span class="slide-chip">Any age</span><span class="slide-chip">Any project</span></div>
+            <a href="#edukit" class="btn btn-brand" style="font-size:.84rem;padding:.72rem 1.5rem">Explore Edu Kits →</a>
+          </div>
+          <div class="slide-right">
+            <canvas class="slide-canvas" data-color="#7c83d1"></canvas>
+            <div class="slide-icon">🎒</div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-tag">AI-Powered Devices</div>
+            <div class="slide-title">Your own physical AI assistant</div>
+            <div class="slide-desc">Press a button, speak your question, hear the answer out loud. We build real physical AI devices powered by ChatGPT — no screen, no phone, just a button and a voice.</div>
+            <div class="slide-chips"><span class="slide-chip">ChatGPT API</span><span class="slide-chip">Voice</span><span class="slide-chip">ESP32</span></div>
+            <a href="#kitpicker" class="btn btn-brand" style="font-size:.84rem;padding:.72rem 1.5rem">See the AI kit →</a>
+          </div>
+          <div class="slide-right">
+            <canvas class="slide-canvas" data-color="#e91e63"></canvas>
+            <div class="slide-icon">🧠</div>
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-tag">School Kits</div>
+            <div class="slide-title">Electronics for every classroom</div>
+            <div class="slide-desc">Custom classroom packs with Arduino, components of your choice, teacher guides, and student worksheets. Subsidised pricing for schools worldwide — including free kits for qualifying developing-country schools.</div>
+            <div class="slide-chips"><span class="slide-chip">All ages</span><span class="slide-chip">Worldwide</span><span class="slide-chip">Subsidised pricing</span></div>
+            <a href="#school-register" class="btn btn-brand" style="font-size:.84rem;padding:.72rem 1.5rem">Register your school →</a>
+          </div>
+          <div class="slide-right">
+            <canvas class="slide-canvas" data-color="#ff9800"></canvas>
+            <div class="slide-icon">🏫</div>
+          </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-tag">100% Free Builds</div>
+            <div class="slide-title">The best ideas get built for free</div>
+            <div class="slide-desc">Send us your idea. If it excites us, we build it ourselves and post it on the Varible website — completely free. You get full credit, all the code, and a full build write-up. The rougher the idea, the better.</div>
+            <div class="slide-chips"><span class="slide-chip">Free</span><span class="slide-chip">Full credit</span><span class="slide-chip">Posted publicly</span></div>
+            <a href="#ideabox" class="btn btn-brand" style="font-size:.84rem;padding:.72rem 1.5rem">Submit your idea →</a>
+          </div>
+          <div class="slide-right">
+            <canvas class="slide-canvas" data-color="#26c6da"></canvas>
+            <div class="slide-icon">🎁</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="slider-controls">
+      <button class="slider-btn" id="slidePrev" aria-label="Previous">&#8592;</button>
+      <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-btn" id="slideNext" aria-label="Next">&#8594;</button>
+    </div>
+    <div class="slider-progress"><div class="slider-bar" id="sliderBar"></div></div>
+  </div>
+</section>
+
 <!-- SCHOOL KITS -->
 <section class="school-bg" id="schools">
   <div class="wrap">
@@ -804,6 +1013,142 @@ footer{background:var(--surface);border-top:1px solid var(--bdr2);padding:2.2rem
         <p style="margin-top:.7rem"><strong>This programme is still in development.</strong> We expect to launch it 6–12 months after our main Kickstarter launch. Schools in developing countries who register interest now will be first in line when it becomes available.</p>
         <a href="#contact" class="btn btn-ghost" style="margin-top:1.1rem;font-size:.82rem;padding:.65rem 1.3rem;display:inline-flex;border-color:var(--brand)">Register your school →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCHOOL REGISTRATION -->
+<section class="school-reg-bg" id="school-register">
+  <div class="school-reg-wrap">
+    <div class="reveal" style="text-align:center;margin-bottom:.5rem"><span class="eyebrow">✦ Register your school</span></div>
+    <h2 class="stitle reveal" style="text-align:center;margin-bottom:.5rem">Get your school set up<br>with Varible kits.</h2>
+    <p class="ssub reveal" style="text-align:center;margin:0 auto 3rem">Fill in this form and we'll get back to you with pricing, options, and next steps. Schools in developing countries are especially welcome — we will always find a way to make it work.</p>
+    <div class="school-reg-layout">
+
+      <!-- Left: form -->
+      <div class="school-reg-form reveal" id="schoolRegForm">
+        <h3>📋 School Registration</h3>
+        <p class="form-sub">Takes about 2 minutes. We read every submission personally and reply within a few days.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>School / Organisation name <span class="hint">(required)</span></label>
+            <input class="form-input" type="text" id="sr-school" placeholder="e.g. Vienna International School"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Your name <span class="hint">(required)</span></label>
+            <input class="form-input" type="text" id="sr-name" placeholder="e.g. Ms. Anna Müller"/>
+          </div>
+          <div class="form-field">
+            <label>Your role</label>
+            <select class="form-select" id="sr-role">
+              <option value="">— Select —</option>
+              <option>Teacher</option>
+              <option>Head Teacher / Principal</option>
+              <option>IT Coordinator</option>
+              <option>STEM Coordinator</option>
+              <option>Curriculum Lead</option>
+              <option>NGO / Charity representative</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Email address <span class="hint">(required)</span></label>
+            <input class="form-input" type="email" id="sr-email" placeholder="teacher@school.org"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Country</label>
+            <input class="form-input" type="text" id="sr-country" placeholder="e.g. Austria, Kenya, Brazil..."/>
+          </div>
+          <div class="form-field">
+            <label>Number of students</label>
+            <select class="form-select" id="sr-students">
+              <option value="">— Approx. class size —</option>
+              <option>1–10 students</option>
+              <option>10–25 students</option>
+              <option>25–50 students</option>
+              <option>50–100 students</option>
+              <option>100+ students</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Student age range</label>
+          <select class="form-select" id="sr-age">
+            <option value="">— Age group —</option>
+            <option>Under 10</option>
+            <option>10–13 (Middle school)</option>
+            <option>14–17 (High school)</option>
+            <option>18+ (College / University)</option>
+            <option>Mixed ages</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>What are you interested in? <span class="hint">(tick all that apply)</span></label>
+          <div class="form-check-group">
+            <label class="form-check"><input type="checkbox" value="Standard classroom kit"/> Standard classroom kit (Arduino + components)</label>
+            <label class="form-check"><input type="checkbox" value="Custom curriculum kit"/> Custom curriculum kit tailored to our subjects</label>
+            <label class="form-check"><input type="checkbox" value="Subsidised / donated kits"/> Subsidised or donated kits (limited budget)</label>
+            <label class="form-check"><input type="checkbox" value="Laptop donation programme"/> Laptop donation programme for developing nations</label>
+            <label class="form-check"><input type="checkbox" value="Teacher training"/> Teacher training &amp; support materials</label>
+            <label class="form-check"><input type="checkbox" value="Ongoing subscription"/> Ongoing subscription / new kits each term</label>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Anything else? <span class="hint">(optional)</span></label>
+          <textarea class="form-textarea" id="sr-notes" placeholder="Tell us about your school, your goals, any budget constraints, or anything else that's relevant..."></textarea>
+        </div>
+
+        <div class="form-submit-row">
+          <button class="btn btn-brand" onclick="submitSchoolReg()">Send Registration →</button>
+        </div>
+      </div>
+
+      <!-- Right: info cards -->
+      <div class="school-reg-info reveal" style="transition-delay:.15s">
+        <div class="school-info-card">
+          <h4>📦 What you get</h4>
+          <ul>
+            <li>Arduino Uno + USB cable per student</li>
+            <li>Full jumper wire set + breadboard</li>
+            <li>Components of your choice (see kit page)</li>
+            <li>Printed getting-started cards</li>
+            <li>Teacher guide + student worksheets</li>
+            <li>Access to our online curriculum</li>
+          </ul>
+        </div>
+        <div class="school-info-card">
+          <h4>💰 Pricing</h4>
+          <p>We price school kits as low as we possibly can. Bulk orders of 10+ get an automatic discount. Schools with limited budgets get subsidised pricing — just tell us your situation and we'll work something out.</p>
+        </div>
+        <div class="school-info-card">
+          <h4>🌍 Developing nations</h4>
+          <p>Schools in developing countries are a priority for us. Qualifying schools receive kits at heavily subsidised or zero cost. Our laptop donation programme (launching 6–12 months after Kickstarter) will also donate refurbished laptops to students who need them.</p>
+        </div>
+        <div class="school-info-card">
+          <h4>⏱️ What happens next?</h4>
+          <p>We read every registration personally and reply within a few days with pricing, options, and next steps. No automated replies — a real person from our team will get back to you.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="school-reg-success" id="schoolRegSuccess">
+      <div style="font-size:2rem;margin-bottom:.6rem">🏫</div>
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:.4rem">Registration received!</h4>
+      <p style="font-size:.83rem;color:var(--muted);line-height:1.65">Thank you for registering your school. A real person from our team will read this and get back to you within a few days with pricing, options, and next steps. We're excited to work with you!</p>
     </div>
   </div>
 </section>
@@ -1457,6 +1802,111 @@ function renderSavedSidebar(){
 }
 
 loadFeed();
+
+/* ── SLIDESHOW ── */
+(function initSlider(){
+  var track  = document.getElementById('slidesTrack');
+  var dots   = document.getElementById('sliderDots');
+  var bar    = document.getElementById('sliderBar');
+  if(!track) return;
+  var slides = track.querySelectorAll('.slide');
+  var total  = slides.length;
+  var cur    = 0;
+  var timer, progress = 0;
+  var INTERVAL = 6000;
+
+  slides.forEach(function(_, i){
+    var d = document.createElement('button');
+    d.className = 'sdot' + (i===0?' active':'');
+    d.setAttribute('data-idx', i);
+    d.onclick = function(){ goTo(i); resetTimer(); };
+    dots.appendChild(d);
+  });
+
+  track.querySelectorAll('.slide-canvas').forEach(function(cv){
+    var color = cv.dataset.color || '#ffb000';
+    function draw(){
+      cv.width = cv.offsetWidth || 340;
+      cv.height = cv.offsetHeight || 320;
+      var ctx = cv.getContext('2d');
+      ctx.clearRect(0,0,cv.width,cv.height);
+      ctx.strokeStyle = color; ctx.lineWidth = 0.9;
+      for(var x=0;x<cv.width;x+=28) for(var y=0;y<cv.height;y+=28){
+        if(Math.random()<.38){ctx.globalAlpha=.12+Math.random()*.18;ctx.beginPath();ctx.moveTo(x,y);Math.random()<.5?ctx.lineTo(x+28,y):ctx.lineTo(x,y+28);ctx.stroke();}
+        if(Math.random()<.06){ctx.globalAlpha=.45;ctx.beginPath();ctx.arc(x,y,2.2,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();}
+      }
+      ctx.globalAlpha=1;
+    }
+    draw(); new ResizeObserver(draw).observe(cv);
+  });
+
+  function goTo(n){
+    cur = (n + total) % total;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.querySelectorAll('.sdot').forEach(function(d,i){ d.classList.toggle('active', i===cur); });
+    if(bar) bar.style.width = '0%';
+  }
+
+  function resetTimer(){
+    clearInterval(timer); progress = 0;
+    timer = setInterval(function(){
+      progress += 100 / (INTERVAL / 100);
+      if(bar) bar.style.width = Math.min(progress, 100) + '%';
+      if(progress >= 100){ progress = 0; goTo(cur + 1); }
+    }, 100);
+  }
+
+  document.getElementById('slideNext').onclick = function(){ goTo(cur+1); resetTimer(); };
+  document.getElementById('slidePrev').onclick = function(){ goTo(cur-1); resetTimer(); };
+
+  var startX = 0;
+  track.parentElement.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.parentElement.addEventListener('touchend',   function(e){
+    var dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 50){ goTo(dx < 0 ? cur+1 : cur-1); resetTimer(); }
+  }, {passive:true});
+
+  goTo(0); resetTimer();
+})();
+
+/* ── SCHOOL REGISTRATION ── */
+async function submitSchoolReg(){
+  var school   = document.getElementById('sr-school').value.trim();
+  var name     = document.getElementById('sr-name').value.trim();
+  var email    = document.getElementById('sr-email').value.trim().toLowerCase();
+  var role     = document.getElementById('sr-role').value;
+  var country  = document.getElementById('sr-country').value.trim();
+  var students = document.getElementById('sr-students').value;
+  var age      = document.getElementById('sr-age').value;
+  var notes    = document.getElementById('sr-notes').value.trim();
+  var interests = [];
+  document.querySelectorAll('#schoolRegForm .form-check input:checked').forEach(function(cb){ interests.push(cb.value); });
+
+  if(!school){ showToast('Please enter your school name.'); return; }
+  if(!name)  { showToast('Please enter your name.'); return; }
+  if(!email || !isEmail(email)){ showToast('Please enter a valid email address.'); return; }
+
+  var btn = document.querySelector('[onclick="submitSchoolReg()"]');
+  if(btn){ btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  var msgBody = 'New school registration!\n\n'
+    + 'School: '   + school  + '\n'
+    + 'Contact: '  + name    + ' (' + (role||'Not specified') + ')\n'
+    + 'Email: '    + email   + '\n'
+    + 'Country: '  + (country||'Not specified') + '\n'
+    + 'Students: ' + (students||'Not specified') + '\n'
+    + 'Age range: '+ (age||'Not specified') + '\n'
+    + 'Interests: '+ (interests.length ? interests.join(', ') : 'Not specified') + '\n'
+    + 'Notes: '    + (notes||'None') + '\n\n'
+    + 'Time: ' + new Date().toLocaleString();
+
+  await sendEmail('🏫 New School Registration — Varible', msgBody, name, email);
+
+  if(btn){ btn.textContent = 'Send Registration →'; btn.disabled = false; }
+  document.getElementById('schoolRegForm').style.display = 'none';
+  document.getElementById('schoolRegSuccess').classList.add('show');
+  showToast('🏫 Registration sent! We will be in touch within a few days.', 4000);
+}
 </script>
 </body>
 </html>
