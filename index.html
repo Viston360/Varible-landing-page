@@ -538,6 +538,50 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
   .slide-left{padding:1.8rem}
   .school-reg-wrap{padding:4rem 1.5rem}
 }
+
+/* ── accent colours ── */
+:root{
+  --green:#2e7d32;--green-s:#e8f5e9;--green-m:#a5d6a7;
+  --purple:#5c35a8;--purple-s:#ede7f6;--purple-m:#ce93d8;
+}
+/* pause button */
+.slider-pause{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  color:#fff;font-size:.95rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s;
+}
+.slider-pause:hover{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.slider-pause.paused{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+/* slide image overlay */
+.slide-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:.55;border-radius:0;
+}
+/* bespoke pill */
+.bespoke-pill{
+  display:inline-flex;align-items:center;gap:.38rem;
+  background:linear-gradient(135deg,var(--purple-s),var(--green-s));
+  border:1.5px solid var(--purple-m);
+  color:var(--purple);font-size:.7rem;font-weight:700;
+  padding:.3rem .85rem;border-radius:50px;margin-bottom:1rem;
+  letter-spacing:.04em;
+}
+/* serial / QR callout */
+.serial-callout{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:linear-gradient(135deg,var(--purple-s),var(--brand-s));
+  border:1.5px solid var(--purple-m);border-radius:14px;
+  padding:1.2rem 1.4rem;margin-top:2.5rem;
+}
+.serial-callout .sc-icon{font-size:2rem;flex-shrink:0}
+.serial-callout h4{font-size:.92rem;font-weight:800;color:var(--purple);margin-bottom:.3rem}
+.serial-callout p{font-size:.8rem;color:var(--muted);line-height:1.68}
+/* green trust badge */
+.green-tag{background:var(--green-s);border:1px solid var(--green-m);color:var(--green);font-size:.63rem;font-weight:700;padding:.2rem .62rem;border-radius:50px;display:inline-block;font-family:var(--mono)}
+/* purple tag */
+.purple-tag{background:var(--purple-s);border:1px solid var(--purple-m);color:var(--purple);font-size:.63rem;font-weight:700;padding:.2rem .62rem;border-radius:50px;display:inline-block;font-family:var(--mono)}
 </style>
 </head>
 <body>
@@ -591,7 +635,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
   <span class="beta-pill">🧪 Beta</span>
   <span>We're in beta — actively building and testing. </span>
   <span class="beta-pill" style="background:rgba(255,255,255,.12);color:#fff">🚀 Kickstarter</span>
-  <span>Launching Kickstarter 1 May 2026! <a href="#kickstarter"> Get early access →</a></span>
+  <span>Launching 1 May 2026! <a href="#kickstarter">Get early access →</a></span>
   <button class="announce-close" onclick="document.getElementById('announcebar').style.display='none';updateNavTop()">✕</button>
 </div>
 
@@ -616,6 +660,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
   <div class="hero-grid">
     <div>
       <div class="hbadge"><div class="live"></div> We build electronics — message us your idea</div>
+      <div style="margin-bottom:1rem"><span class="bespoke-pill">✏️ Bespoke design team — every build is unique</span></div>
       <h1>You dream it.<br>We <span class="hl">build it</span> for free.</h1>
       <p class="hero-p">No experience needed. Describe your idea in plain words — a smart lamp, a plant waterer, a personal AI assistant — and <strong>if we love your idea, we'll build it and post it on the website for free.</strong> We use tiny computers called Arduino and ESP32 that can make almost anything possible.</p>
       <div class="hero-acts">
@@ -624,6 +669,10 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
       </div>
     </div>
     <div class="hero-vis">
+      <div class="ftags">
+        <div class="ftag">⚡ Arduino Uno</div>
+        <div class="ftag">📡 ESP32 Wi-Fi</div>
+      </div>
       <div class="hcard">
         <div class="board">
           <svg class="board-svg" viewBox="0 0 340 148" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -646,9 +695,9 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
             <div class="brow"><div class="bp g"></div><div class="bp"></div><div class="bp g"></div><div class="bp"></div><div class="bp g"></div><div class="bp"></div><div class="bp g"></div></div>
           </div>
         </div>
-        <div class="blbl">Custom Project · varible.net</div>
+        <div class="blbl">Custom ESP32 project · varible.io</div>
         <div class="cfoot">
-          <div><div class="cname">Your Idea</div><div class="cdtl">Any Components · Custom Designes · No Experience needed</div></div>
+          <div><div class="cname">Smart Home Sensor</div><div class="cdtl">Wi-Fi · Temperature · Light</div></div>
           <div class="cpill">🔨 In Progress</div>
         </div>
       </div>
@@ -660,8 +709,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
 <!-- TRUST -->
 <div class="trust">
   <div class="ti reveal"><div class="tn">🔨</div><div class="tl">Actively building &amp; testing in beta</div></div>
-  <div class="ti reveal" style="transition-delay:.1s"><div class="tn">Free</div><div class="tl">Best ideas built &amp; posted for free</div></div>
-  <div class="ti reveal" style="transition-delay:.2s"><div class="tn">🧪</div><div class="tl">Beta testing open now</div></div>
+  <div class="ti reveal" style="transition-delay:.1s;background:var(--purple-s)"><div class="tn" style="color:var(--purple)">Free</div><div class="tl">Best ideas built &amp; posted for free</div></div>
+  <div class="ti reveal" style="transition-delay:.2s;background:var(--green-s)"><div class="tn" style="color:var(--green)">🧪</div><div class="tl">Beta testing open now</div></div>
   <div class="ti reveal" style="transition-delay:.3s"><div class="tn">100%</div><div class="tl">Full refund if we can't build it</div></div>
 </div>
 
@@ -744,6 +793,32 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
       <div class="scard reveal" style="transition-delay:.28s"><div class="sico">🎒</div><h3>Build-and-Learn Edu Kits</h3><p>Pick a real project you want. We create a custom guide tailored to your exact project and walk you through every step. You'll understand how it all works.</p><span class="stag">Perfect for total beginners</span></div>
       <div class="scard reveal" style="transition-delay:.35s"><div class="sico">🔩</div><h3>Make a Few Copies</h3><p>Need 5 or 10 of the same device? Once we launch fully, we'll source the parts, assemble everything, and test each one. <em>Coming after Kickstarter.</em></p><span class="stag">Small batch, full quality</span></div>
     </div>
+
+    <!-- BESPOKE DESIGN CALLOUT -->
+    <div class="serial-callout reveal" style="margin-top:2.5rem;background:linear-gradient(135deg,var(--purple-s),var(--brand-s));border-color:var(--purple-m)">
+      <div class="sc-icon">✏️</div>
+      <div>
+        <h4 style="color:var(--purple)">Our bespoke design team — every product is one of a kind</h4>
+        <p>We never repeat. Every device, kit, and build that leaves our workshop is completely unique — designed from scratch by our in-house team specifically for you. We combine electronics engineering with thoughtful industrial design so your device doesn't just work beautifully — it <em>looks</em> beautiful too. No templates, no clones, no copy-paste.</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem">
+          <span class="purple-tag">Bespoke design</span>
+          <span class="green-tag">Never repeated</span>
+          <span class="purple-tag">In-house team</span>
+          <span class="green-tag">Unique serial #</span>
+          <span class="purple-tag">QR product page</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="serial-callout reveal" style="margin-top:1rem;background:linear-gradient(135deg,var(--green-s),var(--brand-s));border-color:var(--green-m)">
+      <div class="sc-icon">🔢</div>
+      <div>
+        <h4 style="color:var(--green)">Inside every device: a unique number &amp; QR code</h4>
+        <p>Open any Varible product and you'll find two things: a <strong>unique serial number</strong> that belongs only to your device, and a <strong>QR code</strong> you can scan to reach your personal product page — with your full specs, circuit diagrams, component list, firmware version, and build notes. A permanent record of exactly what you have and how it was made.</p>
+        <p style="margin-top:.5rem;font-size:.76rem;font-family:var(--mono);color:var(--green)">e.g. → varible.net/product/VBL-00247 → your device's full spec page</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -859,7 +934,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
           </div>
           <div class="slide-right">
             <canvas class="slide-canvas" data-color="#ffb000"></canvas>
-            <div class="slide-icon">⚡</div>
+            <img class="slide-img" id="simg-0" src="" alt="" style="display:none"/>
+            <div class="slide-icon" id="sico-0">⚡</div>
           </div>
         </div>
 
@@ -874,7 +950,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
           </div>
           <div class="slide-right">
             <canvas class="slide-canvas" data-color="#4caf50"></canvas>
-            <div class="slide-icon">📡</div>
+            <img class="slide-img" id="simg-1" src="" alt="" style="display:none"/>
+            <div class="slide-icon" id="sico-1">📡</div>
           </div>
         </div>
 
@@ -889,7 +966,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
           </div>
           <div class="slide-right">
             <canvas class="slide-canvas" data-color="#7c83d1"></canvas>
-            <div class="slide-icon">🎒</div>
+            <img class="slide-img" id="simg-2" src="" alt="" style="display:none"/>
+            <div class="slide-icon" id="sico-2">🎒</div>
           </div>
         </div>
 
@@ -904,7 +982,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
           </div>
           <div class="slide-right">
             <canvas class="slide-canvas" data-color="#e91e63"></canvas>
-            <div class="slide-icon">🧠</div>
+            <img class="slide-img" id="simg-3" src="" alt="" style="display:none"/>
+            <div class="slide-icon" id="sico-3">🧠</div>
           </div>
         </div>
 
@@ -919,7 +998,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
           </div>
           <div class="slide-right">
             <canvas class="slide-canvas" data-color="#ff9800"></canvas>
-            <div class="slide-icon">🏫</div>
+            <img class="slide-img" id="simg-4" src="" alt="" style="display:none"/>
+            <div class="slide-icon" id="sico-4">🏫</div>
           </div>
         </div>
 
@@ -934,7 +1014,8 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
           </div>
           <div class="slide-right">
             <canvas class="slide-canvas" data-color="#26c6da"></canvas>
-            <div class="slide-icon">🎁</div>
+            <img class="slide-img" id="simg-5" src="" alt="" style="display:none"/>
+            <div class="slide-icon" id="sico-5">🎁</div>
           </div>
         </div>
 
@@ -945,6 +1026,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
     <div class="slider-controls">
       <button class="slider-btn" id="slidePrev" aria-label="Previous">&#8592;</button>
       <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-pause" id="slidePause" aria-label="Pause/Play" title="Pause / Play">⏸</button>
       <button class="slider-btn" id="slideNext" aria-label="Next">&#8594;</button>
     </div>
     <div class="slider-progress"><div class="slider-bar" id="sliderBar"></div></div>
@@ -1030,14 +1112,14 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
         <div class="form-row">
           <div class="form-field">
             <label>School / Organisation name <span class="hint">(required)</span></label>
-            <input class="form-input" type="text" id="sr-school" placeholder="e.g. American International School"/>
+            <input class="form-input" type="text" id="sr-school" placeholder="e.g. Vienna International School"/>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-field">
             <label>Your name <span class="hint">(required)</span></label>
-            <input class="form-input" type="text" id="sr-name" placeholder="e.g. Mr. Victor"/>
+            <input class="form-input" type="text" id="sr-name" placeholder="e.g. Ms. Anna Müller"/>
           </div>
           <div class="form-field">
             <label>Your role</label>
@@ -1224,13 +1306,13 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
     </div>
     <div class="road-grid">
       <div class="road-track reveal">
-        <div class="road-item"><div class="rdot done">✓</div><div><h4>First Prototype</h4><p>We built and tested our first custom devices and gathered real feedback.</p><span class="rbadge rb-done">Done ✓</span></div></div>
-        <div class="road-item"><div class="rdot done">✓</div><div><h4>Kit v1 designed</h4><p>Designed and tested the first Custom Electronic Kit format with our beta users.</p><span class="rbadge rb-done">Done ✓</span></div></div>
+        <div class="road-item"><div class="rdot done">✓</div><div><h4>First builds completed</h4><p>We built and tested our first custom devices and gathered real feedback.</p><span class="rbadge rb-done">Done ✓</span></div></div>
+        <div class="road-item"><div class="rdot done">✓</div><div><h4>Edu Kit v1 designed</h4><p>Designed and tested the first Edu Kit format with our beta users.</p><span class="rbadge rb-done">Done ✓</span></div></div>
         <div class="road-item"><div class="rdot active">▶</div><div><h4>Beta testing with early users</h4><p>Right now — building with our first beta users, taking feedback, and improving everything.</p><span class="rbadge rb-active">In Progress 🔥</span></div></div>
       </div>
       <div class="road-track reveal" style="transition-delay:.15s">
         <div class="road-item"><div class="rdot next">○</div><div><h4>Kickstarter launch — 1 May 2026</h4><p>Our full public launch with early-bird kits, exclusive rewards, and school pricing.</p><span class="rbadge rb-soon">1 May 2026</span></div></div>
-        <div class="road-item"><div class="rdot next">○</div><div><h4>School kit programme & Kit Programme</h4><p>Full classroom kits available globally, with subsidised pricing for developing-country schools. And any persno anywhere will be able to turn their ideas into reality!</p><span class="rbadge rb-soon">Post-launch</span></div></div>
+        <div class="road-item"><div class="rdot next">○</div><div><h4>School kit programme</h4><p>Full classroom kits available globally, with subsidised pricing for developing-country schools.</p><span class="rbadge rb-soon">Post-launch</span></div></div>
         <div class="road-item"><div class="rdot next">○</div><div><h4>Laptop donation programme</h4><p>Free refurbished laptops for students in developing nations who join our school programme.</p><span class="rbadge rb-soon">6–12 months post-launch</span></div></div>
       </div>
     </div>
@@ -1328,6 +1410,29 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
 var KS_LAUNCH = '2026-05-01T10:00:00';
 
 /* ══════════════════════════════════════════════════════════════
+   ★ SLIDE IMAGES — edit these URLs to change slideshow images ★
+
+   HOW TO USE GITHUB:
+   1. Create a repo called "varible-assets" (or any name)
+   2. Upload your images with these EXACT filenames:
+      slide-custom.jpg, slide-iot.jpg, slide-edu.jpg,
+      slide-ai.jpg, slide-school.jpg, slide-free.jpg
+   3. Get the raw URL:
+      https://raw.githubusercontent.com/YOUR_USERNAME/varible-assets/main/slide-custom.jpg
+   4. Paste that URL below in place of '' for each slide.
+
+   Leave as '' to use the default animated circuit background.
+   ══════════════════════════════════════════════════════════════ */
+var SLIDE_IMAGES = {
+  0: '',   /* Custom Devices  — e.g. 'https://raw.githubusercontent.com/varible/assets/main/slide-custom.jpg'  */
+  1: '',   /* IoT & Wi-Fi     — e.g. 'https://raw.githubusercontent.com/varible/assets/main/slide-iot.jpg'     */
+  2: '',   /* Edu Kits        — e.g. 'https://raw.githubusercontent.com/varible/assets/main/slide-edu.jpg'     */
+  3: '',   /* AI Devices      — e.g. 'https://raw.githubusercontent.com/varible/assets/main/slide-ai.jpg'      */
+  4: '',   /* School Kits     — e.g. 'https://raw.githubusercontent.com/varible/assets/main/slide-school.jpg'  */
+  5: ''    /* Free Builds     — e.g. 'https://raw.githubusercontent.com/varible/assets/main/slide-free.jpg'    */
+};
+
+/* ══════════════════════════════════════════════════════════════
    ★ BETA TESTER LIST — edit manually ★
    Add each person who applies and is accepted.
    { name, email, spot, date }
@@ -1367,8 +1472,8 @@ async function sendEmail(subject, message, fromName, fromEmail) {
         _subject : subject,
         message  : message,
         name     : fromName,
-        email    : fromEmail || 'no-reply@varible.net',
-        _replyto : fromEmail || 'no-reply@varible.net'
+        email    : fromEmail || 'no-reply@varible.io',
+        _replyto : fromEmail || 'no-reply@varible.io'
       })
     });
     if(!res.ok) console.warn('[Varible] Formspree returned', res.status);
@@ -1692,7 +1797,7 @@ function buildPost(p,liked,saved,likes,comments){
   var body=p.body.replace(/\n/g,'<br>');
   var tags=p.tags.map(function(t){return '<span class="ptag-inline">#'+t+'</span>';}).join(' ');
   var cHtml=comments.map(function(c){return '<div class="comment"><div class="c-avatar">'+getInitials(c.name)+'</div><div class="c-bubble"><div class="c-name">'+(c.name||'Anonymous')+'</div>'+c.text+'</div></div>';}).join('');
-  return '<div class="post-header"><div class="post-avatar">V</div><div style="flex:1"><div class="post-author">Varible Team</div><div class="post-handle">@varible.net</div></div><div class="post-time">'+p.time+'</div></div>'
+  return '<div class="post-header"><div class="post-avatar">V</div><div style="flex:1"><div class="post-author">Varible Team</div><div class="post-handle">@varible.io</div></div><div class="post-time">'+p.time+'</div></div>'
     +'<div class="post-body">'+body+'<br><br>'+tags+'</div>'
     +'<div class="post-img"><canvas class="board-canvas"></canvas><span class="post-img-label">From our workshop 🛠️</span></div>'
     +'<div class="post-actions">'
@@ -1804,21 +1909,37 @@ loadFeed();
   var track  = document.getElementById('slidesTrack');
   var dots   = document.getElementById('sliderDots');
   var bar    = document.getElementById('sliderBar');
+  var pauseBtn = document.getElementById('slidePause');
   if(!track) return;
-  var slides = track.querySelectorAll('.slide');
-  var total  = slides.length;
-  var cur    = 0;
+  var slides  = track.querySelectorAll('.slide');
+  var total   = slides.length;
+  var cur     = 0;
   var timer, progress = 0;
+  var paused  = false;
   var INTERVAL = 6000;
 
+  /* ── Load images from SLIDE_IMAGES config ── */
+  Object.keys(SLIDE_IMAGES).forEach(function(i){
+    var url  = SLIDE_IMAGES[i];
+    var img  = document.getElementById('simg-' + i);
+    var ico  = document.getElementById('sico-' + i);
+    if(img && url && url.trim() !== ''){
+      img.src = url;
+      img.style.display = 'block';
+      if(ico) ico.style.display = 'none'; /* hide emoji when real image shown */
+    }
+  });
+
+  /* ── Build dots ── */
   slides.forEach(function(_, i){
     var d = document.createElement('button');
     d.className = 'sdot' + (i===0?' active':'');
     d.setAttribute('data-idx', i);
-    d.onclick = function(){ goTo(i); resetTimer(); };
+    d.onclick = function(){ goTo(i); resetTimer(); if(paused) pause(); };
     dots.appendChild(d);
   });
 
+  /* ── Draw circuit canvases ── */
   track.querySelectorAll('.slide-canvas').forEach(function(cv){
     var color = cv.dataset.color || '#ffb000';
     function draw(){
@@ -1843,9 +1964,22 @@ loadFeed();
     if(bar) bar.style.width = '0%';
   }
 
+  function pause(){
+    paused = true;
+    clearInterval(timer);
+    if(pauseBtn){ pauseBtn.textContent = '▶'; pauseBtn.classList.add('paused'); pauseBtn.title='Play'; }
+  }
+
+  function play(){
+    paused = false;
+    resetTimer();
+    if(pauseBtn){ pauseBtn.textContent = '⏸'; pauseBtn.classList.remove('paused'); pauseBtn.title='Pause'; }
+  }
+
   function resetTimer(){
     clearInterval(timer); progress = 0;
     timer = setInterval(function(){
+      if(paused) return;
       progress += 100 / (INTERVAL / 100);
       if(bar) bar.style.width = Math.min(progress, 100) + '%';
       if(progress >= 100){ progress = 0; goTo(cur + 1); }
@@ -1854,7 +1988,9 @@ loadFeed();
 
   document.getElementById('slideNext').onclick = function(){ goTo(cur+1); resetTimer(); };
   document.getElementById('slidePrev').onclick = function(){ goTo(cur-1); resetTimer(); };
+  if(pauseBtn) pauseBtn.onclick = function(){ paused ? play() : pause(); };
 
+  /* ── Touch swipe ── */
   var startX = 0;
   track.parentElement.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
   track.parentElement.addEventListener('touchend',   function(e){
