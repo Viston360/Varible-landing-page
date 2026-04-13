@@ -1,9 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Varible — Custom Electronics for Everyone</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PRIMARY SEO
+     ═══════════════════════════════════════════════════════════ -->
+<title>Varible — Custom Arduino & ESP32 Electronics, Edu Kits &amp; School Kits</title>
+<meta name="description" content="Varible builds custom Arduino and ESP32 electronics for everyone. No experience needed — describe your idea, we build it for free if we love it. Edu Kits, school kits, IoT devices, and AI-powered gadgets. Kickstarter launching 1 May 2026."/>
+<meta name="keywords" content="custom electronics, Arduino, ESP32, IoT devices, electronics kit, edu kit, school electronics kit, custom gadget, build electronics, STEM kit, beginner electronics, custom device build, ESP32 Wi-Fi, Arduino Uno kit, electronics for schools, Varible, bespoke electronics design"/>
+<meta name="author" content="Varible"/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<link rel="canonical" href="https://varible.net/"/>
+<meta name="theme-color" content="#ffb000"/>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Discord)
+     ═══════════════════════════════════════════════════════════ -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://varible.net/"/>
+<meta property="og:title" content="Varible — Custom Electronics for Everyone"/>
+<meta property="og:description" content="You dream it, we build it. Custom Arduino &amp; ESP32 devices, Edu Kits, school classroom kits, and AI-powered gadgets. The best ideas get built and posted for free. Kickstarter launching 1 May 2026."/>
+<meta property="og:image" content="https://varible.net/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Varible — Custom Electronics for Everyone"/>
+<meta property="og:site_name" content="Varible"/>
+<meta property="og:locale" content="en_GB"/>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TWITTER / X CARD
+     ═══════════════════════════════════════════════════════════ -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@varible_io"/>
+<meta name="twitter:creator" content="@varible_io"/>
+<meta name="twitter:title" content="Varible — Custom Electronics for Everyone"/>
+<meta name="twitter:description" content="You dream it, we build it. Custom Arduino &amp; ESP32 devices, Edu Kits &amp; school kits. Best ideas built free. Kickstarter 1 May 2026."/>
+<meta name="twitter:image" content="https://varible.net/og-image.png"/>
+<meta name="twitter:image:alt" content="Varible — Custom Electronics, Edu Kits &amp; Arduino Projects"/>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STRUCTURED DATA — Organisation
+     ═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Varible",
+  "url": "https://varible.net",
+  "logo": "https://varible.net/logo.png",
+  "description": "Varible builds custom Arduino and ESP32 electronics for everyone. Edu Kits, school classroom kits, IoT devices, AI-powered gadgets, and bespoke electronics design.",
+  "email": "varible.tech@gmail.com",
+  "foundingDate": "2025",
+  "knowsAbout": ["Arduino","ESP32","IoT","Electronics","STEM Education","Custom Electronics","Edu Kits"],
+  "sameAs": [
+    "https://www.instagram.com/varible",
+    "https://github.com/varible",
+    "https://discord.gg/varible"
+  ]
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STRUCTURED DATA — WebSite + SearchAction (sitelinks search)
+     ═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Varible",
+  "url": "https://varible.net",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://varible.net/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STRUCTURED DATA — Product (for rich results)
+     ═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Varible Custom Electronics Edu Kit",
+  "description": "A fully custom learn-by-building electronics kit tailored to the project you choose. Includes an Arduino Uno, jumper wires, breadboard, components of your choice, teacher guide, and step-by-step instructions in plain English. Designed for total beginners.",
+  "brand": { "@type": "Brand", "name": "Varible" },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "15",
+    "priceValidUntil": "2027-01-01",
+    "availability": "https://schema.org/PreOrder",
+    "url": "https://varible.net/#edukit"
+  },
+  "audience": { "@type": "EducationalAudience", "educationalRole": "student" }
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STRUCTURED DATA — FAQPage (FAQ rich results in Google)
+     ═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need any electronics knowledge to use Varible?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely not. Zero experience needed. You describe what you want in plain everyday English — we handle all the technical parts." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an Arduino or ESP32?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They are tiny, cheap computers about the size of a credit card. They can control lights, motors, sensors, displays, and connect to Wi-Fi or Bluetooth. They are the brain inside most DIY electronics projects." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a custom electronics build cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Simple projects start at around €15–30 for parts plus a small build fee. The best ideas we receive get built and posted on the site completely free. We always provide a clear written quote before anything starts." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can schools order electronics kits from Varible?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. We offer classroom packs with teacher guides, student worksheets, and everything a class needs. Special bulk pricing is available for schools, and subsidised kits are available for schools in developing countries." }
+    },
+    {
+      "@type": "Question",
+      "name": "When does Varible launch on Kickstarter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Our Kickstarter campaign launches on 1 May 2026. Sign up on our website to be notified first and get exclusive early-bird pricing." }
+    }
+  ]
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STRUCTURED DATA — Event (Kickstarter launch)
+     ═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Varible Kickstarter Launch",
+  "startDate": "2026-05-01T10:00:00Z",
+  "description": "Varible launches on Kickstarter on 1 May 2026 with exclusive early-bird electronics kits, custom device builds, and classroom packs for schools.",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "url": "https://varible.net/#kickstarter",
+  "organizer": { "@type": "Organization", "name": "Varible", "url": "https://varible.net" }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -64,8 +218,8 @@ section{position:relative}
 /* ── HERO ── */
 .hero{min-height:100vh;padding:8rem 3rem 5rem;display:flex;align-items:center;position:relative;overflow:hidden}
 .blob{position:absolute;border-radius:50%;filter:blur(72px);pointer-events:none}
-.b1{width:580px;height:580px;top:-80px;right:-80px;background:radial-gradient(circle,rgba(255,176,0,.16) 0%,transparent 70%)}
-.b2{width:360px;height:360px;bottom:60px;left:15%;background:radial-gradient(circle,rgba(255,224,130,.2) 0%,transparent 70%)}
+.b1{width:580px;height:580px;top:-80px;right:-80px;background:rgba(255,176,0,.12)}
+.b2{width:360px;height:360px;bottom:60px;left:15%;background:rgba(255,224,130,.15)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;max-width:1160px;margin:0 auto;width:100%}
 .hbadge{display:inline-flex;align-items:center;gap:.5rem;background:var(--brand-s);border:1px solid var(--bdr);padding:.35rem .9rem;border-radius:50px;font-size:.74rem;font-weight:600;color:var(--brand-d);margin-bottom:1.6rem;animation:up .7s ease both}
 .live{width:7px;height:7px;background:var(--brand);border-radius:50%;animation:blink 2s infinite}
@@ -111,7 +265,7 @@ section{position:relative}
 
 /* ── KICKSTARTER ── */
 .ks-section{background:var(--ink);position:relative;overflow:hidden}
-.ks-blob{position:absolute;width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,176,0,.1) 0%,transparent 65%);pointer-events:none}
+.ks-blob{position:absolute;width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,176,0,.06);pointer-events:none}
 .ks-wrap{max-width:1160px;margin:0 auto;padding:4.5rem 3rem;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
 .ks-left .eyebrow{background:rgba(255,176,0,.14);border-color:rgba(255,176,0,.28);color:var(--brand)}
 .ks-left .stitle{color:#fff;margin-bottom:.9rem}
@@ -146,7 +300,7 @@ section{position:relative}
 .bs-count{font-size:1.45rem;font-weight:800;color:var(--brand);line-height:1;font-family:var(--mono)}
 .bs-count-lbl{font-size:.62rem;color:rgba(255,255,255,.38);text-align:right}
 .progress-bar{height:7px;background:rgba(255,255,255,.1);border-radius:50px;overflow:hidden;margin-bottom:.85rem}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--brand-d),var(--brand));border-radius:50px;transition:width 1s ease}
+.progress-fill{height:100%;background:var(--brand);border-radius:50px;transition:width 1s ease}
 .bs-names{display:flex;flex-wrap:wrap;gap:0;margin-bottom:1rem;min-height:32px}
 .bs-avatar{width:28px;height:28px;border-radius:50%;background:var(--brand-s);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;color:var(--brand-d);margin-left:-5px}
 .bs-avatar:first-child{margin-left:0}
@@ -234,7 +388,7 @@ section{position:relative}
 /* ── EDU KIT ── */
 .edu-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .ecard{background:var(--surface);border:1.5px solid var(--bdr2);border-radius:20px;padding:2.2rem;box-shadow:var(--sh2);position:relative;overflow:hidden}
-.ecard-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at top right,rgba(255,176,0,.07) 0%,transparent 60%)}
+.ecard-glow{position:absolute;inset:0;pointer-events:none;background:rgba(255,176,0,.05)}
 .ecard-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem}
 .ecard-hd span{font-size:.95rem;font-weight:700}
 .newpill{background:var(--brand);color:var(--ink);font-size:.63rem;font-weight:700;padding:.23rem .65rem;border-radius:50px}
@@ -270,7 +424,7 @@ section{position:relative}
 .hbg{background:var(--surface);border-top:1px solid var(--bdr2);border-bottom:1px solid var(--bdr2)}
 .hhdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.2rem;flex-wrap:wrap;gap:2rem}
 .hsteps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative}
-.hsteps::before{content:"";position:absolute;top:24px;left:9%;right:9%;height:2px;background:repeating-linear-gradient(90deg,var(--bdr) 0,var(--bdr) 8px,transparent 8px,transparent 16px)}
+.hsteps::before{content:"";position:absolute;top:24px;left:9%;right:9%;height:2px;background:var(--bdr2)}
 .hstep{display:flex;flex-direction:column;gap:.9rem;position:relative;z-index:1}
 .hnum{width:48px;height:48px;background:var(--brand-s);border:2px solid var(--brand-m);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:var(--brand-d)}
 .hstep h3{font-size:.95rem;font-weight:700}
@@ -295,7 +449,7 @@ section{position:relative}
 .pcard-big:first-child{grid-row:span 2}
 .pbg{position:absolute;inset:0;transition:transform .5s}
 .pcard-big:hover .pbg{transform:scale(1.04)}
-.pcard-big::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,14,8,.8) 0%,rgba(18,14,8,.05) 58%,transparent 100%)}
+.pcard-big::after{content:"";position:absolute;inset:0;background:rgba(18,14,8,.65)}
 .pinfo{position:relative;z-index:1}
 .ptag3{font-family:var(--mono);font-size:.59rem;color:var(--brand);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
 .pcard-big h4{font-size:.88rem;font-weight:700;color:#fff;line-height:1.3}
@@ -400,7 +554,7 @@ section{position:relative}
 
 /* ── CTA ── */
 .ctabg{background:var(--ink);position:relative;overflow:hidden}
-.ctablob{position:absolute;width:650px;height:650px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,176,0,.1) 0%,transparent 65%);pointer-events:none}
+.ctablob{position:absolute;width:650px;height:650px;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,176,0,.06);pointer-events:none}
 .ctawrap{max-width:680px;margin:0 auto;padding:7rem 3rem;text-align:center;position:relative;z-index:1}
 .ctawrap .eyebrow{background:rgba(255,176,0,.13);border-color:rgba(255,176,0,.28);color:var(--brand)}
 .ctawrap .stitle{color:#fff;max-width:100%}
@@ -562,7 +716,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
 /* bespoke pill */
 .bespoke-pill{
   display:inline-flex;align-items:center;gap:.38rem;
-  background:linear-gradient(135deg,var(--purple-s),var(--green-s));
+  background:var(--purple-s);
   border:1.5px solid var(--purple-m);
   color:var(--purple);font-size:.7rem;font-weight:700;
   padding:.3rem .85rem;border-radius:50px;margin-bottom:1rem;
@@ -571,7 +725,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
 /* serial / QR callout */
 .serial-callout{
   display:flex;align-items:flex-start;gap:1rem;
-  background:linear-gradient(135deg,var(--purple-s),var(--brand-s));
+  background:var(--purple-s);
   border:1.5px solid var(--purple-m);border-radius:14px;
   padding:1.2rem 1.4rem;margin-top:2.5rem;
 }
@@ -582,6 +736,128 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
 .green-tag{background:var(--green-s);border:1px solid var(--green-m);color:var(--green);font-size:.63rem;font-weight:700;padding:.2rem .62rem;border-radius:50px;display:inline-block;font-family:var(--mono)}
 /* purple tag */
 .purple-tag{background:var(--purple-s);border:1px solid var(--purple-m);color:var(--purple);font-size:.63rem;font-weight:700;padding:.2rem .62rem;border-radius:50px;display:inline-block;font-family:var(--mono)}
+
+/* ═══════════════════════════════════════════════════════
+   DEVICE BUILDER SIMULATOR
+   ═══════════════════════════════════════════════════════ */
+.sim-section{background:var(--ink);border-top:3px solid var(--brand);position:relative}
+.sim-section .eyebrow{background:rgba(255,176,0,.14);border-color:rgba(255,176,0,.28);color:var(--brand)}
+.sim-wrap{max-width:1160px;margin:0 auto;padding:5rem 3rem}
+.sim-hdr{text-align:center;margin-bottom:2.5rem}
+.sim-hdr .stitle{color:#fff}
+.sim-hdr .ssub{color:rgba(255,255,255,.5);margin:0 auto;text-align:center}
+.sim-layout{display:grid;grid-template-columns:260px 1fr 280px;gap:1.2rem;align-items:start}
+/* component palette */
+.sim-palette{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.1rem;position:sticky;top:90px}
+.sim-palette h4{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem}
+.comp-list{display:flex;flex-direction:column;gap:.42rem}
+.comp-item{
+  display:flex;align-items:center;gap:.65rem;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:.6rem .85rem;
+  cursor:grab;user-select:none;transition:background .18s,border-color .18s,transform .15s;
+  position:relative;
+}
+.comp-item:hover{background:rgba(255,176,0,.12);border-color:rgba(255,176,0,.35);transform:translateX(3px)}
+.comp-item:active{cursor:grabbing;transform:scale(.97)}
+.comp-item.dragging{opacity:.45;transform:scale(.95)}
+.comp-ico{font-size:1.25rem;flex-shrink:0;width:28px;text-align:center}
+.comp-name{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.85);flex:1;line-height:1.35}
+.comp-tag{font-size:.57rem;font-family:var(--mono);color:rgba(255,176,0,.7);background:rgba(255,176,0,.1);padding:.12rem .42rem;border-radius:50px;border:1px solid rgba(255,176,0,.2);white-space:nowrap}
+.comp-cost{font-size:.6rem;font-family:var(--mono);color:rgba(255,255,255,.35);margin-top:.1rem}
+.comp-add-btn{
+  width:20px;height:20px;border-radius:50%;background:var(--brand);border:none;
+  color:var(--ink);font-size:.75rem;font-weight:800;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .15s;
+}
+.comp-add-btn:hover{transform:scale(1.2)}
+/* board canvas area */
+.sim-board-wrap{display:flex;flex-direction:column;gap:1rem}
+.sim-board{
+  background:#0e1117;border:2px solid rgba(255,176,0,.25);border-radius:16px;
+  min-height:380px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.sim-board.drag-over{border-color:var(--brand);background:#131820}
+.sim-board-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,176,0,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,176,0,.04) 1px,transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;
+}
+.sim-board-label{
+  font-size:.72rem;font-weight:700;color:rgba(255,255,255,.15);
+  text-transform:uppercase;letter-spacing:.1em;text-align:center;
+  pointer-events:none;
+}
+.sim-board-label.has-items{display:none}
+.board-comp{
+  position:absolute;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  cursor:move;user-select:none;
+  transition:filter .2s;
+}
+.board-comp:hover .bc-chip{border-color:var(--brand);background:rgba(255,176,0,.15)}
+.board-comp.selected .bc-chip{border-color:var(--brand);box-shadow:0 0 0 2px rgba(255,176,0,.35);background:rgba(255,176,0,.15)}
+.bc-chip{
+  background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);
+  border-radius:8px;padding:.55rem .75rem;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  min-width:72px;transition:all .2s;
+}
+.bc-ico{font-size:1.55rem;line-height:1}
+.bc-lbl{font-size:.6rem;font-weight:700;color:rgba(255,255,255,.75);white-space:nowrap}
+.bc-rm{
+  width:16px;height:16px;border-radius:50%;border:none;
+  background:#ef5350;color:#fff;font-size:.62rem;cursor:pointer;
+  display:none;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px;
+  transition:transform .15s;
+}
+.board-comp.selected .bc-rm{display:flex}
+.bc-rm:hover{transform:scale(1.25)}
+/* connection wires */
+.sim-wires{position:absolute;inset:0;pointer-events:none}
+/* board toolbar */
+.sim-toolbar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.sim-tb-btn{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.7);font-family:var(--font);font-size:.75rem;font-weight:600;
+  padding:.45rem .9rem;border-radius:50px;cursor:pointer;transition:all .2s;
+}
+.sim-tb-btn:hover{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.sim-tb-btn.active{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.sim-tb-btn.danger:hover{background:#ef5350;border-color:#ef5350;color:#fff}
+/* output panel */
+.sim-output{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.1rem;position:sticky;top:90px}
+.sim-output h4{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem}
+.sim-out-empty{font-size:.78rem;color:rgba(255,255,255,.25);font-style:italic;text-align:center;padding:1.5rem 0}
+.out-stat{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.8rem}
+.out-stat:last-child{border-bottom:none}
+.out-stat-lbl{color:rgba(255,255,255,.5);font-weight:500}
+.out-stat-val{color:#fff;font-weight:700;font-family:var(--mono);font-size:.75rem}
+.out-stat-val.green{color:var(--green-m)}
+.out-stat-val.amber{color:var(--brand)}
+.out-stat-val.purple{color:var(--purple-m)}
+.sim-gen-btn{
+  width:100%;margin-top:1rem;background:var(--brand);color:var(--ink);
+  font-family:var(--font);font-size:.82rem;font-weight:700;border:none;
+  padding:.8rem 1rem;border-radius:50px;cursor:pointer;transition:all .2s;
+}
+.sim-gen-btn:hover{background:var(--brand-d);transform:translateY(-1px)}
+.sim-gen-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.sim-estimate{margin-top:.75rem;background:rgba(255,176,0,.08);border:1px solid rgba(255,176,0,.2);border-radius:10px;padding:.75rem;font-size:.76rem;color:rgba(255,255,255,.65);line-height:1.6;display:none}
+.sim-estimate.show{display:block}
+.comp-cat-label{font-size:.65rem;font-weight:700;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.1em;margin-top:.7rem;margin-bottom:.3rem;padding-left:.3rem}
+/* responsive */
+@media(max-width:1024px){
+  .sim-layout{grid-template-columns:1fr;gap:1rem}
+  .sim-palette{position:static}
+  .comp-list{display:grid;grid-template-columns:1fr 1fr}
+  .sim-output{position:static}
+}
 </style>
 </head>
 <body>
@@ -647,7 +923,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
       <li><a href="#services">What We Do</a></li>
       <li><a href="#edukit">Edu Kits</a></li>
       <li><a href="#kickstarter">Kickstarter</a></li>
-      <li><a href="#showcase">Showcase</a></li><li><a href="#schools">Schools</a></li>
+      <li><a href="#showcase">Showcase</a></li><li><a href="#builder">🛠 Builder</a></li><li><a href="#schools">Schools</a></li>
       <li><a href="#contact" class="ncta">Talk to Us →</a></li>
     </ul>
     <div class="nav-badge"><div class="badge-dot"></div> Beta</div>
@@ -795,7 +1071,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
     </div>
 
     <!-- BESPOKE DESIGN CALLOUT -->
-    <div class="serial-callout reveal" style="margin-top:2.5rem;background:linear-gradient(135deg,var(--purple-s),var(--brand-s));border-color:var(--purple-m)">
+    <div class="serial-callout reveal" style="margin-top:2.5rem;background:var(--purple-s);border-color:var(--purple-m)">
       <div class="sc-icon">✏️</div>
       <div>
         <h4 style="color:var(--purple)">Our bespoke design team — every product is one of a kind</h4>
@@ -810,7 +1086,7 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
       </div>
     </div>
 
-    <div class="serial-callout reveal" style="margin-top:1rem;background:linear-gradient(135deg,var(--green-s),var(--brand-s));border-color:var(--green-m)">
+    <div class="serial-callout reveal" style="margin-top:1rem;background:var(--green-s);border-color:var(--green-m)">
       <div class="sc-icon">🔢</div>
       <div>
         <h4 style="color:var(--green)">Inside every device: a unique number &amp; QR code</h4>
@@ -1288,11 +1564,11 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
       <a href="#feed" class="btn btn-ghost reveal">See the feed ↓</a>
     </div>
     <div class="pgrid">
-      <div class="pcard-big reveal"><div class="pbg" id="pc1" style="background:linear-gradient(135deg,#163520,#2a5c38)"></div><div class="pinfo"><div class="ptag3">ESP32 · Wi-Fi</div><h4>Weather station that sends your phone a daily report</h4></div></div>
-      <div class="pcard-big reveal" style="transition-delay:.08s"><div class="pbg" id="pc2" style="background:linear-gradient(135deg,#2e1414,#5c2828)"></div><div class="pinfo"><div class="ptag3">Arduino · Motors</div><h4>Robot arm that picks things up</h4></div></div>
-      <div class="pcard-big reveal" style="transition-delay:.16s"><div class="pbg" id="pc3" style="background:linear-gradient(135deg,#141428,#28285c)"></div><div class="pinfo"><div class="ptag3">ESP32 · Bluetooth</div><h4>Wireless MIDI music controller</h4></div></div>
-      <div class="pcard-big reveal" style="transition-delay:.24s"><div class="pbg" id="pc4" style="background:linear-gradient(135deg,#2a2408,#5c5020)"></div><div class="pinfo"><div class="ptag3">Arduino · Edu Kit</div><h4>Plant monitor that beeps when your plant is thirsty</h4></div></div>
-      <div class="pcard-big reveal" style="transition-delay:.32s"><div class="pbg" id="pc5" style="background:linear-gradient(135deg,#0e2a2a,#1e4e4e)"></div><div class="pinfo"><div class="ptag3">Custom PCB · ESP32</div><h4>Smart door — tap your card to unlock</h4></div></div>
+      <div class="pcard-big reveal"><div class="pbg" id="pc1" style="background:#163520"></div><div class="pinfo"><div class="ptag3">ESP32 · Wi-Fi</div><h4>Weather station that sends your phone a daily report</h4></div></div>
+      <div class="pcard-big reveal" style="transition-delay:.08s"><div class="pbg" id="pc2" style="background:#2e1414"></div><div class="pinfo"><div class="ptag3">Arduino · Motors</div><h4>Robot arm that picks things up</h4></div></div>
+      <div class="pcard-big reveal" style="transition-delay:.16s"><div class="pbg" id="pc3" style="background:#141428"></div><div class="pinfo"><div class="ptag3">ESP32 · Bluetooth</div><h4>Wireless MIDI music controller</h4></div></div>
+      <div class="pcard-big reveal" style="transition-delay:.24s"><div class="pbg" id="pc4" style="background:#2a2408"></div><div class="pinfo"><div class="ptag3">Arduino · Edu Kit</div><h4>Plant monitor that beeps when your plant is thirsty</h4></div></div>
+      <div class="pcard-big reveal" style="transition-delay:.32s"><div class="pbg" id="pc5" style="background:#0e2a2a"></div><div class="pinfo"><div class="ptag3">Custom PCB · ESP32</div><h4>Smart door — tap your card to unlock</h4></div></div>
     </div>
   </div>
 </section>
@@ -1358,6 +1634,59 @@ footer{background:var(--logo-bg);border-top:1px solid var(--bdr2);padding:2.2rem
       <div class="disc-card reveal" style="transition-delay:.1s"><div class="disc-icon">🛡️</div><h3>If we can't build it — full refund</h3><p>Sometimes a project is too technically complex or requires parts we can't source reliably. <strong>If that happens, we will always tell you clearly and cancel with a 100% full refund, no questions asked.</strong> We never start work on something we're not confident about. Our reputation matters more than any single sale.</p></div>
       <div class="disc-card reveal" style="transition-delay:.2s"><div class="disc-icon">🏫</div><h3>School kits — available worldwide</h3><p>Classroom packs with teacher guides and student worksheets. Special bulk pricing for schools, and subsidised pricing for schools in developing countries. We especially want to reach schools that can't normally afford this. If you run a school or NGO anywhere in the world — please reach out.</p><a href="#contact" class="btn btn-brand" style="margin-top:1.1rem;font-size:.82rem;padding:.65rem 1.3rem;display:inline-flex">Get school pricing →</a></div>
       <div class="disc-card reveal" style="transition-delay:.3s"><div class="disc-icon">🤝</div><h3>Our promise to you</h3><ul class="disc-list"><li>✓ Always tell you the price before you pay</li><li>✓ Full refund if a project can't be built — always</li><li>✓ Plain English, no technical gatekeeping</li><li>✓ Best ideas built &amp; posted for free</li><li>✓ School pricing available globally</li><li>✓ Laptop donations for developing-country schools (6–12 months post-launch)</li><li>✓ You own your code and designs — forever</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICE BUILDER SIMULATOR -->
+<section class="sim-section" id="builder">
+  <div class="sim-wrap">
+    <div class="sim-hdr">
+      <div class="reveal"><span class="eyebrow">✦ Try it yourself</span></div>
+      <h2 class="stitle reveal">Build your device — right here.</h2>
+      <p class="ssub reveal">Drag components onto the board and see what your idea could look like. When you're happy, hit "Get a Quote" and we'll build the real thing for you.</p>
+    </div>
+    <div class="sim-layout">
+
+      <!-- LEFT: Component palette -->
+      <div class="sim-palette reveal">
+        <h4>Components</h4>
+        <div class="comp-list" id="compPalette">
+          <!-- filled by JS from COMPONENTS array -->
+        </div>
+      </div>
+
+      <!-- CENTRE: Board -->
+      <div class="sim-board-wrap">
+        <div class="sim-toolbar reveal">
+          <button class="sim-tb-btn active" id="simModeMove" onclick="setSimMode('move')">✋ Move</button>
+          <button class="sim-tb-btn" id="simModeConnect" onclick="setSimMode('connect')">🔗 Wire</button>
+          <button class="sim-tb-btn danger" onclick="clearBoard()">🗑 Clear</button>
+          <span style="margin-left:auto;font-size:.7rem;color:rgba(255,255,255,.3);font-family:var(--mono)" id="simHint">Drag components from the left panel</span>
+        </div>
+        <div class="sim-board reveal" id="simBoard" ondragover="event.preventDefault();simDragOver(event)" ondrop="simDrop(event)" ondragleave="simDragLeave()">
+          <div class="sim-board-grid"></div>
+          <svg class="sim-wires" id="simWiresSvg"></svg>
+          <div class="sim-board-label" id="simBoardLabel">Drop components here to build your device</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Output panel -->
+      <div class="sim-output reveal" style="transition-delay:.15s">
+        <h4>Your Build</h4>
+        <div id="simOutEmpty" class="sim-out-empty">Add components to see your build summary</div>
+        <div id="simOutStats" style="display:none">
+          <div class="out-stat"><span class="out-stat-lbl">Components</span><span class="out-stat-val amber" id="outCompCount">0</span></div>
+          <div class="out-stat"><span class="out-stat-lbl">Brain</span><span class="out-stat-val purple" id="outBrain">—</span></div>
+          <div class="out-stat"><span class="out-stat-lbl">Connectivity</span><span class="out-stat-val green" id="outConnectivity">None</span></div>
+          <div class="out-stat"><span class="out-stat-lbl">Power source</span><span class="out-stat-val" id="outPower">—</span></div>
+          <div class="out-stat"><span class="out-stat-lbl">Est. parts cost</span><span class="out-stat-val amber" id="outCost">€0</span></div>
+          <div class="out-stat"><span class="out-stat-lbl">Difficulty</span><span class="out-stat-val" id="outDifficulty">—</span></div>
+        </div>
+        <div class="sim-estimate" id="simEstimate"></div>
+        <button class="sim-gen-btn" id="simQuoteBtn" onclick="getSimQuote()" disabled>Get a Real Quote →</button>
+        <div style="margin-top:.6rem;font-size:.65rem;color:rgba(255,255,255,.25);text-align:center;font-family:var(--mono)">We'll read your build and reply personally</div>
+      </div>
     </div>
   </div>
 </section>
@@ -2039,6 +2368,363 @@ async function submitSchoolReg(){
   document.getElementById('schoolRegSuccess').classList.add('show');
   showToast('🏫 Registration sent! We will be in touch within a few days.', 4000);
 }
+/* ═══════════════════════════════════════════════════════════════
+   DEVICE BUILDER SIMULATOR
+
+   ★ TO ADD A COMPONENT: add an entry to COMPONENTS below.
+     Fields: id (unique), ico (emoji), name, tag (chip label),
+             category, cost (€ parts estimate), brain (bool — is this a microcontroller?),
+             wifi (bool), bluetooth (bool), power (string or null), difficulty (1-3)
+
+   ★ TO REMOVE A COMPONENT: delete its entry from COMPONENTS.
+   ★ CATEGORIES: 'brain', 'sensor', 'output', 'power', 'comms', 'input'
+   ═══════════════════════════════════════════════════════════════ */
+var COMPONENTS = [
+  /* ── BRAIN ── */
+  { id:'uno',   ico:'🟢', name:'Arduino Uno',       tag:'Brain',    category:'brain',  cost:8,  brain:true,  wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'esp32', ico:'🔵', name:'ESP32',              tag:'Wi-Fi+BLE',category:'brain',  cost:6,  brain:true,  wifi:true,  bluetooth:true,  power:null,      difficulty:2 },
+  { id:'nano',  ico:'🟤', name:'Arduino Nano',       tag:'Compact',  category:'brain',  cost:5,  brain:true,  wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'pico',  ico:'⚫', name:'Raspberry Pi Pico',  tag:'RP2040',   category:'brain',  cost:4,  brain:true,  wifi:false, bluetooth:false, power:null,      difficulty:2 },
+
+  /* ── SENSORS ── */
+  { id:'dht11', ico:'🌡️', name:'Temp & Humidity',    tag:'DHT11',    category:'sensor', cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'ultra', ico:'📏', name:'Distance Sensor',    tag:'HC-SR04',  category:'sensor', cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'soil',  ico:'🌱', name:'Soil Moisture',       tag:'Sensor',   category:'sensor', cost:1,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'pir',   ico:'👀', name:'Motion Detector',    tag:'PIR',      category:'sensor', cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'ldr',   ico:'☀️', name:'Light Sensor',        tag:'LDR',      category:'sensor', cost:1,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'sound', ico:'🎤', name:'Microphone',          tag:'Sound',    category:'sensor', cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'nfc',   ico:'📶', name:'NFC Reader',          tag:'RFID/NFC', category:'sensor', cost:4,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'cam',   ico:'📷', name:'Camera Module',       tag:'OV2640',   category:'sensor', cost:8,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:3 },
+
+  /* ── OUTPUT ── */
+  { id:'oled',  ico:'🖥️', name:'OLED Display',        tag:'128×64',  category:'output', cost:3,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'led',   ico:'💡', name:'LED Strip (RGB)',      tag:'WS2812B', category:'output', cost:4,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'buzz',  ico:'🔔', name:'Buzzer',               tag:'Active',  category:'output', cost:1,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'servo', ico:'⚙️', name:'Servo Motor',          tag:'9g',      category:'output', cost:3,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'motor', ico:'🔄', name:'DC Motor + Driver',   tag:'L298N',   category:'output', cost:4,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'relay', ico:'⚡', name:'Relay Module',         tag:'5V',      category:'output', cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'speak', ico:'🔊', name:'Speaker',              tag:'Audio',   category:'output', cost:3,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+
+  /* ── INPUT ── */
+  { id:'btn',   ico:'🔘', name:'Push Buttons (×4)',   tag:'Tactile', category:'input',  cost:1,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'pot',   ico:'🎚️', name:'Potentiometer',        tag:'10kΩ',    category:'input',  cost:1,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+  { id:'keypad',ico:'⌨️', name:'4×4 Keypad',           tag:'Matrix',  category:'input',  cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:2 },
+  { id:'joy',   ico:'🕹️', name:'Joystick Module',      tag:'Analog',  category:'input',  cost:2,  brain:false, wifi:false, bluetooth:false, power:null,      difficulty:1 },
+
+  /* ── COMMS ── */
+  { id:'bt',    ico:'🔷', name:'Bluetooth Module',    tag:'HC-05',   category:'comms',  cost:4,  brain:false, wifi:false, bluetooth:true,  power:null,      difficulty:2 },
+  { id:'wifi',  ico:'📡', name:'Wi-Fi Module',        tag:'ESP8266', category:'comms',  cost:3,  brain:false, wifi:true,  bluetooth:false, power:null,      difficulty:2 },
+
+  /* ── POWER ── */
+  { id:'usb',   ico:'🔌', name:'USB Power',           tag:'5V',      category:'power',  cost:0,  brain:false, wifi:false, bluetooth:false, power:'USB 5V',  difficulty:1 },
+  { id:'batt',  ico:'🔋', name:'LiPo Battery',        tag:'3.7V',    category:'power',  cost:5,  brain:false, wifi:false, bluetooth:false, power:'LiPo 3.7V',difficulty:1 },
+  { id:'solar', ico:'🌞', name:'Solar Panel',         tag:'5V 1W',   category:'power',  cost:6,  brain:false, wifi:false, bluetooth:false, power:'Solar 5V',difficulty:2 },
+];
+
+/* ── Build palette ── */
+(function buildPalette(){
+  var palette = document.getElementById('compPalette');
+  if(!palette) return;
+  var cats = [
+    { id:'brain',  label:'🧠 Brain (Microcontrollers)' },
+    { id:'sensor', label:'👁 Sensors' },
+    { id:'output', label:'📺 Outputs & Actuators' },
+    { id:'input',  label:'✋ User Inputs' },
+    { id:'comms',  label:'📡 Connectivity' },
+    { id:'power',  label:'⚡ Power' },
+  ];
+  cats.forEach(function(cat){
+    var comps = COMPONENTS.filter(function(c){ return c.category === cat.id; });
+    if(!comps.length) return;
+    var lbl = document.createElement('div');
+    lbl.className = 'comp-cat-label'; lbl.textContent = cat.label;
+    palette.appendChild(lbl);
+    comps.forEach(function(c){
+      var el = document.createElement('div');
+      el.className = 'comp-item';
+      el.draggable = true;
+      el.dataset.id = c.id;
+      el.innerHTML =
+        '<span class="comp-ico">' + c.ico + '</span>'
+        + '<div style="flex:1;min-width:0">'
+          + '<div class="comp-name">' + c.name + '</div>'
+          + '<div class="comp-cost">~€' + c.cost + '</div>'
+        + '</div>'
+        + '<span class="comp-tag">' + c.tag + '</span>'
+        + '<button class="comp-add-btn" onclick="addCompById(\'' + c.id + '\')\' title="Add to board">+</button>';
+      el.addEventListener('dragstart', function(e){
+        e.dataTransfer.setData('comp-id', c.id);
+        el.classList.add('dragging');
+        simDragCompId = c.id;
+      });
+      el.addEventListener('dragend', function(){ el.classList.remove('dragging'); });
+      palette.appendChild(el);
+    });
+  });
+})();
+
+/* ── Simulator state ── */
+var simBoard       = document.getElementById('simBoard');
+var simBoardLabel  = document.getElementById('simBoardLabel');
+var simWiresSvg    = document.getElementById('simWiresSvg');
+var boardComps     = [];    // { id, compId, x, y, el }
+var boardWires     = [];    // { fromId, toId }
+var selectedComp   = null;
+var simMode        = 'move';
+var wireFrom       = null;
+var simDragCompId  = null;
+var _nextId        = 1;
+
+function setSimMode(m){
+  simMode = m;
+  document.getElementById('simModeMove').classList.toggle('active', m==='move');
+  document.getElementById('simModeConnect').classList.toggle('active', m==='connect');
+  document.getElementById('simHint').textContent =
+    m==='connect' ? 'Click two components to wire them together' : 'Drag components to reposition';
+  wireFrom = null;
+  document.querySelectorAll('.board-comp').forEach(function(el){ el.classList.remove('selected'); });
+  selectedComp = null;
+}
+
+/* drag from palette */
+function simDragOver(e){
+  e.preventDefault();
+  simBoard.classList.add('drag-over');
+}
+function simDragLeave(){ simBoard.classList.remove('drag-over'); }
+function simDrop(e){
+  e.preventDefault();
+  simBoard.classList.remove('drag-over');
+  var id = e.dataTransfer.getData('comp-id') || simDragCompId;
+  if(!id) return;
+  var rect = simBoard.getBoundingClientRect();
+  var x = Math.max(10, e.clientX - rect.left - 36);
+  var y = Math.max(10, e.clientY - rect.top  - 36);
+  addCompAt(id, x, y);
+  simDragCompId = null;
+}
+
+function addCompById(id){
+  /* snap to grid-ish position */
+  var existing = boardComps.filter(function(c){ return c.compId === id; });
+  var x = 24 + (boardComps.length % 5) * 110;
+  var y = 24 + Math.floor(boardComps.length / 5) * 110;
+  addCompAt(id, x, y);
+}
+
+function addCompAt(compId, x, y){
+  var comp = COMPONENTS.find(function(c){ return c.id === compId; });
+  if(!comp) return;
+  var uid = 'bc' + (_nextId++);
+  var el = document.createElement('div');
+  el.className = 'board-comp';
+  el.id = uid;
+  el.style.left = x + 'px';
+  el.style.top  = y + 'px';
+  el.innerHTML =
+    '<button class="bc-rm" data-uid="' + uid + '" onclick="removeComp(this.dataset.uid)" title="Remove">✕</button>'
+    + '<div class="bc-chip">'
+      + '<span class="bc-ico">' + comp.ico + '</span>'
+      + '<span class="bc-lbl">' + comp.name.split(' ').slice(0,2).join(' ') + '</span>'
+    + '</div>';
+  makeDraggable(el, uid);
+  el.addEventListener('click', function(e){
+    if(e.target.classList.contains('bc-rm')) return;
+    if(simMode === 'connect'){
+      handleWireClick(uid);
+    } else {
+      selectComp(uid);
+    }
+  });
+  simBoard.appendChild(el);
+  boardComps.push({ id: uid, compId: compId, x: x, y: y, el: el });
+  if(simBoardLabel) simBoardLabel.classList.add('has-items');
+  updateSimOutput();
+  showToast('➕ ' + comp.name + ' added!');
+}
+
+function removeComp(uid){
+  var idx = boardComps.findIndex(function(c){ return c.id === uid; });
+  if(idx === -1) return;
+  boardComps[idx].el.remove();
+  boardComps.splice(idx, 1);
+  boardWires = boardWires.filter(function(w){ return w.from !== uid && w.to !== uid; });
+  if(boardComps.length === 0 && simBoardLabel) simBoardLabel.classList.remove('has-items');
+  updateSimOutput();
+  redrawWires();
+}
+
+function clearBoard(){
+  boardComps.slice().forEach(function(c){ c.el.remove(); });
+  boardComps = []; boardWires = [];
+  if(simBoardLabel) simBoardLabel.classList.remove('has-items');
+  updateSimOutput();
+  redrawWires();
+  showToast('🗑 Board cleared');
+}
+
+function selectComp(uid){
+  document.querySelectorAll('.board-comp').forEach(function(el){ el.classList.remove('selected'); });
+  var item = boardComps.find(function(c){ return c.id === uid; });
+  if(item){ item.el.classList.add('selected'); selectedComp = uid; }
+}
+
+/* ── Wire mode ── */
+function handleWireClick(uid){
+  if(!wireFrom){
+    wireFrom = uid;
+    var item = boardComps.find(function(c){ return c.id === uid; });
+    if(item) item.el.classList.add('selected');
+    document.getElementById('simHint').textContent = 'Now click the component to connect to';
+  } else if(wireFrom !== uid){
+    var already = boardWires.find(function(w){
+      return (w.from===wireFrom&&w.to===uid) || (w.from===uid&&w.to===wireFrom);
+    });
+    if(!already){
+      boardWires.push({ from: wireFrom, to: uid });
+      redrawWires();
+      showToast('🔗 Components wired!');
+    }
+    document.querySelectorAll('.board-comp').forEach(function(el){ el.classList.remove('selected'); });
+    document.getElementById('simHint').textContent = 'Click two components to wire them together';
+    wireFrom = null;
+  } else {
+    wireFrom = null;
+    document.querySelectorAll('.board-comp').forEach(function(el){ el.classList.remove('selected'); });
+  }
+}
+
+function redrawWires(){
+  if(!simWiresSvg) return;
+  simWiresSvg.innerHTML = '';
+  boardWires.forEach(function(w){
+    var a = boardComps.find(function(c){ return c.id===w.from; });
+    var b = boardComps.find(function(c){ return c.id===w.to; });
+    if(!a||!b) return;
+    var ax = a.x+36, ay = a.y+36, bx = b.x+36, by = b.y+36;
+    var line = document.createElementNS('http://www.w3.org/2000/svg','path');
+    var cx1 = ax + (bx-ax)*.5, cy1 = ay, cx2 = bx - (bx-ax)*.5, cy2 = by;
+    line.setAttribute('d','M '+ax+' '+ay+' C '+cx1+' '+cy1+', '+cx2+' '+cy2+', '+bx+' '+by);
+    line.setAttribute('stroke','rgba(255,176,0,.55)');
+    line.setAttribute('stroke-width','1.8');
+    line.setAttribute('fill','none');
+    line.setAttribute('stroke-dasharray','5,3');
+    simWiresSvg.appendChild(line);
+  });
+}
+
+/* ── Drag to reposition on board ── */
+function makeDraggable(el, uid){
+  var ox, oy, startX, startY, dragging = false;
+  el.addEventListener('mousedown', function(e){
+    if(simMode !== 'move') return;
+    if(e.target.classList.contains('bc-rm')) return;
+    dragging = true;
+    var item = boardComps.find(function(c){ return c.id===uid; });
+    startX = e.clientX; startY = e.clientY;
+    ox = item ? item.x : 0; oy = item ? item.y : 0;
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function(e){
+    if(!dragging) return;
+    var dx = e.clientX - startX, dy = e.clientY - startY;
+    var item = boardComps.find(function(c){ return c.id===uid; });
+    if(!item) return;
+    var rect = simBoard.getBoundingClientRect();
+    var nx = Math.max(0, Math.min(rect.width - 80, ox + dx));
+    var ny = Math.max(0, Math.min(rect.height - 80, oy + dy));
+    item.x = nx; item.y = ny;
+    el.style.left = nx + 'px'; el.style.top = ny + 'px';
+    redrawWires();
+  });
+  document.addEventListener('mouseup', function(){ dragging = false; });
+  /* touch */
+  el.addEventListener('touchstart', function(e){
+    if(simMode!=='move') return;
+    var t=e.touches[0]; startX=t.clientX; startY=t.clientY;
+    var item=boardComps.find(function(c){return c.id===uid;});
+    ox=item?item.x:0; oy=item?item.y:0; dragging=true;
+    e.preventDefault();
+  },{passive:false});
+  el.addEventListener('touchmove', function(e){
+    if(!dragging) return;
+    var t=e.touches[0], dx=t.clientX-startX, dy=t.clientY-startY;
+    var item=boardComps.find(function(c){return c.id===uid;});
+    if(!item) return;
+    var rect=simBoard.getBoundingClientRect();
+    var nx=Math.max(0,Math.min(rect.width-80,ox+dx));
+    var ny=Math.max(0,Math.min(rect.height-80,oy+dy));
+    item.x=nx; item.y=ny; el.style.left=nx+'px'; el.style.top=ny+'px';
+    redrawWires();
+    e.preventDefault();
+  },{passive:false});
+  el.addEventListener('touchend', function(){ dragging=false; });
+}
+
+/* ── Update output panel ── */
+function updateSimOutput(){
+  var empty = document.getElementById('simOutEmpty');
+  var stats = document.getElementById('simOutStats');
+  var qBtn  = document.getElementById('simQuoteBtn');
+  if(boardComps.length === 0){
+    if(empty) empty.style.display='';
+    if(stats) stats.style.display='none';
+    if(qBtn)  qBtn.disabled=true;
+    return;
+  }
+  if(empty) empty.style.display='none';
+  if(stats) stats.style.display='';
+  if(qBtn)  qBtn.disabled=false;
+
+  var ids = boardComps.map(function(c){ return c.compId; });
+  var comps = ids.map(function(id){ return COMPONENTS.find(function(c){ return c.id===id; }); }).filter(Boolean);
+
+  var totalCost = comps.reduce(function(s,c){ return s+c.cost; }, 0);
+  var brain = comps.find(function(c){ return c.brain; });
+  var hasWifi = comps.some(function(c){ return c.wifi; });
+  var hasBt   = comps.some(function(c){ return c.bluetooth; });
+  var powerComp = comps.find(function(c){ return c.power; });
+  var maxDiff = Math.max.apply(null, comps.map(function(c){ return c.difficulty||1; }));
+
+  document.getElementById('outCompCount').textContent = comps.length;
+  document.getElementById('outBrain').textContent = brain ? brain.name : 'None — add a brain!';
+  document.getElementById('outConnectivity').textContent =
+    hasWifi && hasBt ? 'Wi-Fi + Bluetooth' : hasWifi ? 'Wi-Fi' : hasBt ? 'Bluetooth' : 'None';
+  document.getElementById('outPower').textContent = powerComp ? powerComp.power : 'USB (via brain)';
+  document.getElementById('outCost').textContent = '~€' + totalCost + '–' + (totalCost + 12);
+  document.getElementById('outDifficulty').textContent =
+    maxDiff===1 ? '🟢 Beginner' : maxDiff===2 ? '🟡 Intermediate' : '🟠 Advanced';
+}
+
+/* ── Generate quote ── */
+function getSimQuote(){
+  var ids = boardComps.map(function(c){ return c.compId; });
+  var comps = ids.map(function(id){ return COMPONENTS.find(function(c){ return c.id===id; }); }).filter(Boolean);
+  var names = comps.map(function(c){ return c.name; });
+  var unique = names.filter(function(v,i,a){ return a.indexOf(v)===i; });
+  var totalCost = comps.reduce(function(s,c){ return s+c.cost; }, 0);
+
+  var est = document.getElementById('simEstimate');
+  est.innerHTML =
+    '<strong>Your build:</strong> ' + unique.join(', ')
+    + '<br><strong>Est. parts:</strong> ~€' + totalCost + '–' + (totalCost+12)
+    + '<br><strong>Build time:</strong> 3–7 days<br><br>'
+    + '👇 Scroll down and paste this into the idea box, or just tell us what your build should do!';
+  est.classList.add('show');
+
+  /* Pre-fill the idea form */
+  var ideaBox = document.getElementById('ideaText');
+  if(ideaBox){
+    ideaBox.value = 'Build idea from simulator:\n\nComponents: ' + unique.join(', ') + '\n\nWhat I want it to do: [describe your use case here]';
+    document.getElementById('charCount').textContent = ideaBox.value.length;
+  }
+  showToast('📋 Build copied to idea form — scroll down to send it!', 4000);
+  setTimeout(function(){
+    var ib = document.getElementById('ideabox');
+    if(ib) ib.scrollIntoView({behavior:'smooth'});
+  }, 1200);
+}
+
 </script>
 </body>
 </html>
